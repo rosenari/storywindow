@@ -1,0 +1,148 @@
+.nav_container{
+    position:relative;
+    border:#aaa solid;
+    border-width:1px;
+    border-top:0px;
+    border-left:0px;
+    border-right:0px;
+    z-index:10;
+}
+
+.navmenu {
+    position:relative;
+    margin:0 auto;
+    width:1124px;
+    height:60px;
+    z-index:10;
+}
+
+.navmenu ul,.navmenu ul li,.navmenu ul li a{
+    position:relative;
+    margin:0px;
+    line-height:1;
+    padding-top:0px;
+    border:0;
+    list-style:none;
+    display:block;
+    -webkit-box-sizing:border-box;
+    -moz-box-sizing:border-box;
+    box-sizing:border-box;
+    z-index:10;
+} 
+
+.navmenu:after,.navmenu > ul:after{content:".";display:block;clear:both;visibility:hidden;line-height:0;height:0;}
+
+.navmenu{font-family:"Nanum Gothic", sans-serif;background-color:rgb(255, 255, 255);z-index:8;}
+
+.navmenu > ul > li{float:left;height:60px;width:140px;text-align:center;}
+
+.navmenu > ul > li.sns_link{ float:right;width:58px; }
+
+
+.consult_img{
+    position:absolute;
+    top:15px;
+    left:60px;
+}
+
+.sns_link > img {
+    cursor:pointer;
+    margin-top:5px;
+}
+
+.navmenu > ul > li > a{
+    line-height:60px;
+    font-size:14px;
+    letter-spacing:1px;
+    text-decoration:none;
+    color:#333;
+    font-weight:bold;
+    -webkit-transition: all 0.2s ease-in-out;
+    -o-transition: all 0.2s ease-in-out;
+    transition: all 0.2s ease-in-out;
+}
+
+.navmenu > ul > li:hover > a{ 
+    color:#4ac6f5;
+    font-weight:1000;
+    font-size:14px;
+}
+.navmenu > ul > li.active > a{
+    color:#19b100;
+    font-weight:1000;
+    font-size:14px;
+}
+
+.hot_icon{
+    position:absolute;
+    top:5px;
+    left:70px;
+}
+
+.fabric_icon{
+    position:absolute;
+    top:5px;
+    left:70px;
+}
+
+.sewing_icon{
+    position:absolute;
+    top:19px;
+    right:0px;
+}
+
+.navmenu > ul > li.consult_link { 
+    float:right;
+    width:240px; 
+    text-align:right;
+    padding-right:15px;
+}
+  
+.navmenu > ul > li.consult_link span { 
+      display:inline-block; 
+      border-radius:5px; 
+      background:#ffd800; 
+      color:black;
+      width:170px; 
+      height:40px; 
+      line-height:40px; 
+      text-align:right; 
+      padding-right:5px; 
+      font-size:1.6em;
+      -webkit-transition: all 0.2s ease-in-out;
+      -o-transition: all 0.2s ease-in-out;
+      transition: all 0.2s ease-in-out;
+      animation: circleani2 2s infinite;
+      font-family: 'Do Hyeon', sans-serif;
+      color:#555;
+}
+  
+@keyframes circleani {
+    0% {
+      -moz-box-shadow: 0 0 0 0 rgba(78,194,245,0.5);
+      box-shadow: 0 0 0 0 rgba(78,194,245,0.5);
+    }
+    50% {
+      -moz-box-shadow: 0 0 0 20px rgba(78,194,245,0.0);
+      box-shadow: 0 0 0 20px rgba(78,194,245,0.0);
+    }
+    100% {
+      -moz-box-shadow: 0 0 0 0px rgba(78,194,245,0.0);
+      box-shadow: 0 0 0 0px rgba(78,194,245,0.0);
+    }
+}
+  
+@keyframes circleani2 {
+    0% {
+      -moz-box-shadow: 0 0 0 0 rgba(203,191,0,0.5);
+      box-shadow: 0 0 0 0 rgba(203,191,0,0.5);
+    }
+    50% {
+      -moz-box-shadow: 0 0 0 20px rgba(203,191,0,0.0);
+      box-shadow: 0 0 0 20px rgba(203,191,0,0.0);
+    }
+    100% {
+      -moz-box-shadow: 0 0 0 0px rgba(203,191,0,0.0);
+      box-shadow: 0 0 0 0px rgba(203,191,0,0.0);
+    }
+}
