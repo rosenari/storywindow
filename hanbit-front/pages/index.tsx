@@ -1,11 +1,11 @@
 import React from 'react';
-import { Header } from "../components";
+import { Imgslider } from '../components';
 
 export default function Home() {
 
 	return (
 		<div>
-			<Header />
+			<Imgslider />
 		</div>
 	);
 }

@@ -1,0 +1,41 @@
+.image_slider{
+    position:relative;
+    width:100%;
+    min-width:1024px;
+    height:350px;
+    background:#f4fcff;
+    text-align:center;
+    font-size:0.8em;
+    color:white;
+    overflow-y:hidden;
+    animation: fadeshow 1s;
+    z-index:6;
+}
+
+.slider_item{
+    position:relative;
+    width:100%;
+    background:url('/images/slide_hanbit2.png');
+    background-repeat:no-repeat;
+    background-position: center;
+}
+.slider_item2{
+    position:relative;
+    width:100%;
+    background:url('/images/slide_hanbit1.png');
+    background-repeat:no-repeat;
+    background-position: center;
+}
+
+.carousel-item{
+    transition: transform 0.5s ease, opacity .5s ease-out
+}
+
+@keyframes fadeshow {
+    from {
+        opacity:0;
+    }
+    to {
+        opacity:1;
+    }
+}

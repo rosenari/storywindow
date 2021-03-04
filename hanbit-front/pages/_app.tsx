@@ -3,6 +3,9 @@ import Head from 'next/head';
 import { AppProps } from "next/app";
 import { useRouter } from 'next/router';
 import NProgress from 'nprogress';
+import { Header } from "../components";
+import './css/global.css';
+import 'bootstrap/dist/css/bootstrap.min.css'
 import CssBaseline from '@material-ui/core/CssBaseline';
 
 
@@ -55,7 +58,15 @@ function App({ Component, pageProps }: AppProps) {
 				<meta name="keywords" content="대전전동블라인드,대전블라인드,대전커튼,전동블라인드,우드블라인드,콤비블라인드,블라인드,커튼,롤스크린,허니콤쉐이드" />
 				<title>대전블라인드 한빛창</title>
 			</Head>
-			<Component {...pageProps} />
+			<Header />
+			<div style={{
+				position: "relative",
+				margin: "0px auto",
+				padding: "0px",
+				marginTop: "101px"
+			}}>
+				<Component {...pageProps} />
+			</div>
 		</React.Fragment>
 	);
 }
