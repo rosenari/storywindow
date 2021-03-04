@@ -15,14 +15,6 @@
 .slider_item{
     position:relative;
     width:100%;
-    background:url('/images/slide_hanbit2.png');
-    background-repeat:no-repeat;
-    background-position: center;
-}
-.slider_item2{
-    position:relative;
-    width:100%;
-    background:url('/images/slide_hanbit1.png');
     background-repeat:no-repeat;
     background-position: center;
 }
