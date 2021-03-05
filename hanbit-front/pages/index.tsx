@@ -1,5 +1,5 @@
 import React from 'react';
-import { Imgslider, Cardslider } from '../components';
+import { Imgslider, Cardslider, Cardmenu, Shortcut } from '../components';
 import styles from "./css/index.module.css";
 
 export default function Home() {
@@ -17,6 +17,13 @@ export default function Home() {
 				</div>
 				<Cardslider />
 			</div>
+			<Cardmenu data={[
+				{ img: '/images/spaceimg_1.png', text: '아파트/빌라/다가구' },
+				{ img: '/images/spaceimg_2.png', text: '단독∙전원∙상가주택' },
+				{ img: '/images/spaceimg_3.png', text: '상업공간' },
+				{ img: '/images/spaceimg_4.png', text: '사무실/관공서 기타' }
+			]} />
+			<Shortcut />
 		</div>
 	);
 }

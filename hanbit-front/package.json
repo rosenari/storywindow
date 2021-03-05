@@ -14,6 +14,7 @@
     "@types/material-ui": "^0.21.8",
     "@types/nprogress": "^0.2.0",
     "@types/react-bootstrap": "^0.32.25",
+    "@types/react-fade-in": "^0.1.0",
     "@types/styled-components": "^5.1.7",
     "babel-plugin-styled-components": "^1.12.0",
     "bootstrap": "^4.6.0",
@@ -22,6 +23,7 @@
     "react": "17.0.1",
     "react-bootstrap": "^1.5.1",
     "react-dom": "17.0.1",
+    "react-fade-in": "^2.0.1",
     "react-icons": "^4.2.0",
     "react-items-carousel": "^2.8.0",
     "styled-components": "^5.2.1"
