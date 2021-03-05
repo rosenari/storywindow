@@ -15,8 +15,6 @@
 .slider_item{
     position:relative;
     width:100%;
-    background-repeat:no-repeat;
-    background-position: center;
 }
 
 .carousel-item{

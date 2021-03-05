@@ -13,7 +13,12 @@ const Imgslider: React.FC<ImgsldierProps> = (props) => {
                 {
                     props.Img.map((v, i) => {
                         return (
-                            <Carousel.Item key={"item" + i} className={styles.slider_item} style={{ background: `url(${v})` }}>
+                            <Carousel.Item key={"item" + i} className={styles.slider_item}
+                                style={{
+                                    background: `url(${v})`,
+                                    backgroundRepeat: 'no-repeat',
+                                    backgroundPosition: 'center'
+                                }}>
                                 <img src="/images/bin.png" />
                             </Carousel.Item>
                         )
