@@ -1,0 +1,383 @@
+<html>
+  <head>
+    <title>관리자페이지</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel='stylesheet' href='/stylesheets/header.css' />
+    <link rel='stylesheet' href='/stylesheets/index.css' />
+    <link rel='stylesheet' href='/stylesheets/etc.css' />
+  </head>
+  <body>
+      <% include ./header.html %>
+      <div class="main" id="main">
+          <div class="tag" id="tag">
+              <div class="admin_label">태그관리</div>
+              <div class="content" id="content">
+                  <div class="tag_inputs">
+                      <div class="tag_id">
+                          태그식별자
+                      </div>
+                      <div class="ui input tag_id_input">
+                          <input id="tagid" type="text" placeholder="태그식별자를 영문으로 입력하세요." />
+                      </div>
+                      <div class="tag_name">
+                          태그이름
+                      </div>
+                      <div class="ui input tag_name_input">
+                          <input id="tagname" type="text" placeholder="태그이름를 한글로 입력하세요." />
+                      </div>
+                  </div>
+                  <div class="tag_register">
+                        <button class="ui primary button" onclick="registerTag(this)">
+                            등록하기
+                        </button>
+                  </div>
+                  <div class="tag_list">
+                      <table class="ui celled table">
+                          <thead>
+                            <tr><th>태그식별자</th>
+                            <th>태그이름</th>
+                            <th>삭제</th>
+                            </tr></thead>
+                          <tbody>
+                            <tr>
+                              <td data-label="tagid">정보가 없습니다.</td>
+                              <td data-label="tagname">정보가 없습니다.</td>
+                              <td data-label="tagdelete">정보가 없습니다.</td>
+                            </tr>
+                          </tbody>
+                        </table>
+                  </div>
+              </div>
+              </div>
+              
+              <div class="colorconfig">
+              <div class="admin_label">색상관리</div>
+              <div class="content">
+                  <div class="colorconfig_inputs">
+                      <div class="colorconfig_id">
+                          색상선택
+                      </div>
+                      <div class="colorconfig_id_input">
+                          <input type="color" id="colorvalue" name="color" value="#e66465" />
+                      </div>
+                      <div class="colorconfig_name">
+                          색상이름
+                      </div>
+                      <div class="ui input colorconfig_name_input">
+                          <input type="text" id="colorname" placeholder="색상이름를 한글로 입력하세요." />
+                      </div>
+                  </div>
+                  <div class="colorconfig_register">
+                        <button class="ui primary button" onclick="registerColor(this)">
+                            등록하기
+                        </button>
+                  </div>
+                  <div class="colorconfig_list">
+                      <table class="ui celled table">
+                          <thead>
+                            <tr><th>색상</th>
+                            <th>색상이름</th>
+                            <th>삭제</th>
+                            </tr></thead>
+                          <tbody>
+                            <tr>
+                              <td data-label="colorid">정보가 없습니다.</td>
+                              <td data-label="colorname">정보가 없습니다.</td>
+                              <td data-label="colordelete">정보가 없습니다.</td>
+                            </tr>
+                          </tbody>
+                        </table>
+                  </div>
+              </div>
+          </div>
+          
+          
+          <div class="space" id="space">
+              <div class="admin_label">공간관리</div>
+              <div class="content" id="content">
+                  <div class="space_inputs">
+                      <div class="space_id">
+                          공간식별자
+                      </div>
+                      <div class="ui input space_id_input">
+                          <input id="spaceid" type="text" placeholder="공간식별자를 영문으로 입력하세요." />
+                      </div>
+                      <div class="space_name">
+                          공간이름
+                      </div>
+                      <div class="ui input space_name_input">
+                          <input id="spacename" type="text" placeholder="공간이름를 한글로 입력하세요." />
+                      </div>
+                  </div>
+                  <div class="space_register">
+                        <button class="ui primary button" onclick="registerSpace(this)">
+                            등록하기
+                        </button>
+                  </div>
+                  <div class="space_list">
+                      <table class="ui celled table">
+                          <thead>
+                            <tr><th>공간식별자</th>
+                            <th>공간이름</th>
+                            <th>삭제</th>
+                            </tr></thead>
+                          <tbody>
+                            <tr>
+                              <td data-label="spaceid">정보가 없습니다.</td>
+                              <td data-label="spacename">정보가 없습니다.</td>
+                              <td data-label="spacedelete">정보가 없습니다.</td>
+                            </tr>
+                          </tbody>
+                        </table>
+                  </div>
+              </div>
+              </div>
+      </div>
+      
+<script>
+function registerTag(obj){
+    tag_flag=true;
+    var loader = document.createElement('div');
+    loader.className = 'ui active inverted mini centered inline loader';
+    obj.innerHTML="";
+    obj.appendChild(loader);
+    obj.disabled=true;
+    
+    /*
+    var picname = "cuckoo";
+    var encode_picname = encodeURIComponent(picname);
+    var file1 = $('#cuckoo_pic_form').find('input[name="file1"]')[0].files[0];
+    var formData = new FormData();
+    formData.append('file1',file1);
+    */
+    var tagid = document.getElementById("tagid").value;
+    var tagname = encodeURIComponent(document.getElementById("tagname").value);
+    
+    setTimeout(function(){
+    $.ajax({
+       url:'/api/addTag',
+       data: {
+        tagid:tagid,
+        tagname:tagname
+       },
+       dataType:'text',
+       type: 'POST',
+       success: function(result){
+           let r = JSON.parse(result);
+          if(r.result=="Success"){
+             getTag();
+          }else{
+             alert("태그등록 실패");
+          }
+          obj.disabled =false;
+          $(obj).text("등록하기");
+          $(obj).children().remove();
+          tag_flag=false;
+       }
+    });
+    },500);
+}
+
+function registerColor(obj){
+    var colorvalue = document.getElementById("colorvalue").value;
+
+    color_flag=true;
+    var loader = document.createElement('div');
+    loader.className = 'ui active inverted mini centered inline loader';
+    obj.innerHTML="";
+    obj.appendChild(loader);
+    obj.disabled=true;
+
+    var colorvalue = document.getElementById("colorvalue").value;
+    var colorname = encodeURIComponent(document.getElementById("colorname").value);
+    
+    setTimeout(function(){
+    $.ajax({
+       url:'/api/addColor',
+       data: {
+        colorvalue:colorvalue,
+        colorname:colorname
+       },
+       dataType:'text',
+       type: 'POST',
+       success: function(result){
+           let r = JSON.parse(result);
+          if(r.result=="Success"){
+             getColor();
+          }else{
+             alert("색상등록 실패");
+          }
+          obj.disabled=false;
+          $(obj).text("등록하기");
+          $(obj).children().remove();
+          color_flag=false;
+       }
+    });
+    },500);
+}
+
+function registerSpace(obj){
+    space_flag=true;
+    var loader = document.createElement('div');
+    loader.className = 'ui active inverted mini centered inline loader';
+    obj.innerHTML="";
+    obj.appendChild(loader);
+    obj.disabled=true;
+    
+    var spaceid = document.getElementById("spaceid").value;
+    var spacename = encodeURIComponent(document.getElementById("spacename").value);
+    
+    setTimeout(function(){
+    $.ajax({
+       url:'/api/addSpace',
+       data: {
+        spaceid:spaceid,
+        spacename:spacename
+       },
+       dataType:'text',
+       type: 'POST',
+       success: function(result){
+           let r = JSON.parse(result);
+          if(r.result=="Success"){
+             getSpace();
+          }else{
+             alert("태그등록 실패");
+          }
+          obj.disabled =false;
+          $(obj).text("등록하기");
+          $(obj).children().remove();
+          space_flag=false;
+       }
+    });
+    },500);
+}
+
+function delTag(tagid){
+    $.ajax({
+       url:'/api/delTag',
+       data: {
+        tagid:tagid
+       },
+       dataType:'text',
+       type: 'POST',
+       success: function(result){
+           let r = JSON.parse(result);
+          if(r.result=="Success"){
+             getTag();
+          }else{
+             alert("태그삭제 실패");
+          }
+       }
+    });
+}
+
+function delColor(colorvalue){
+    $.ajax({
+       url:'/api/delColor',
+       data: {
+        colorvalue:colorvalue
+       },
+       dataType:'text',
+       type: 'POST',
+       success: function(result){
+           let r = JSON.parse(result);
+          if(r.result=="Success"){
+             getColor();
+          }else{
+             alert("색상삭제 실패");
+          }
+       }
+    });
+}
+
+function delSpace(spaceid){
+    $.ajax({
+       url:'/api/delSpace',
+       data: {
+        spaceid:spaceid
+       },
+       dataType:'text',
+       type: 'POST',
+       success: function(result){
+           let r = JSON.parse(result);
+          if(r.result=="Success"){
+             getSpace();
+          }else{
+             alert("공간삭제 실패");
+          }
+       }
+    });
+}
+
+function getTag(){
+    $.ajax({
+       url:'/api/getTag',
+       type: 'GET',
+       success: function(result){
+          insertData(result.result)
+       }
+    });
+}
+
+
+function getColor(){
+    $.ajax({
+       url:'/api/getColor',
+       type: 'GET',
+       success: function(result){
+          insertData2(result.result)
+       }
+    });
+}
+
+function getSpace(){
+    $.ajax({
+       url:'/api/getSpace',
+       type: 'GET',
+       success: function(result){
+          insertData3(result.result)
+       }
+    });
+}
+
+
+function insertData(data){
+    var div = document.getElementsByClassName("tag_list")[0];
+    var table = div.getElementsByTagName("table")[0];
+    var tbody = table.getElementsByTagName("tbody")[0];
+    var code = "";
+    for(i in data){
+        code = code + "<tr><td>" + data[i].tagid + "</td><td>"+decodeURIComponent(data[i].tagname)+"</td><td><a href='#' onclick='delTag(\""+data[i].tagid+"\")'>삭제</a></td></tr>";
+    }
+    tbody.innerHTML = code;
+}
+
+function insertData2(data){
+    var div = document.getElementsByClassName("colorconfig_list")[0];
+    var table = div.getElementsByTagName("table")[0];
+    var tbody = table.getElementsByTagName("tbody")[0];
+    var code = "";
+    for(i in data){
+        code = code + "<tr><td><span style=\"background:"+data[i].colorvalue+";color:white;border-radius:5px;padding:5px;\">"+data[i].colorvalue+"</span></td><td>"+decodeURIComponent(data[i].colorname)+"</td><td><a href='#' onclick='delColor(\""+data[i].colorvalue+"\")'>삭제</a></td></tr>";
+    }
+    tbody.innerHTML = code;
+}
+
+function insertData3(data){
+    var div = document.getElementsByClassName("space_list")[0];
+    var table = div.getElementsByTagName("table")[0];
+    var tbody = table.getElementsByTagName("tbody")[0];
+    var code = "";
+    for(i in data){
+        code = code + "<tr><td>" + data[i].spaceid + "</td><td>"+decodeURIComponent(data[i].spacename)+"</td><td><a href='#' onclick='delSpace(\""+data[i].spaceid+"\")'>삭제</a></td></tr>";
+    }
+    tbody.innerHTML = code;
+}
+$(document).ready(function(){
+getTag();
+getColor();
+getSpace();
+});
+</script>
+  </body>
+</html>
