@@ -2,7 +2,7 @@ import React from 'react';
 import { Imgslider, Cardslider, Cardmenu, Shortcut } from '../components';
 import styles from "./css/index.module.css";
 
-export default function Home() {
+const Home: React.FC = () => {
 
 	return (
 		<div>
@@ -28,3 +28,4 @@ export default function Home() {
 	);
 }
 
+export default Home;
