@@ -30,10 +30,10 @@ const Shortcut: React.FC = () => {
                 </div>
                 <div className={styles.bottomlink_item}>
                     <div className={styles.bottomlink_item_left}>
-                        고객센터
+                        바로가기
                         </div>
                     <div className={styles.bottomlink_item_right}>
-                        <button className={styles.bottom_notice}>공지사항</button>&nbsp;<button className={styles.bottom_qna}>문의게시판</button>
+                        <button className={styles.bottom_notice}>제품소개</button>&nbsp;<button className={styles.bottom_qna}>시공모음</button>
                     </div>
                 </div>
             </div>

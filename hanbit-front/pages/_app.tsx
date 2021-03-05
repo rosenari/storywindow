@@ -3,7 +3,7 @@ import Head from 'next/head';
 import { AppProps } from "next/app";
 import { useRouter } from 'next/router';
 import NProgress from 'nprogress';
-import { Header } from "../components";
+import { Header, Footer } from "../components";
 import './css/global.css';
 import 'bootstrap/dist/css/bootstrap.min.css'
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -67,6 +67,7 @@ function App({ Component, pageProps }: AppProps) {
 			}}>
 				<Component {...pageProps} />
 			</div>
+			<Footer />
 		</React.Fragment>
 	);
 }
