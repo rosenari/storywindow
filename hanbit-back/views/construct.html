@@ -1,0 +1,95 @@
+<html>
+  <head>
+    <title>관리자페이지</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel='stylesheet' href='/stylesheets/header.css' />
+    <link rel='stylesheet' href='/stylesheets/index.css' />
+    <link rel='stylesheet' href='/stylesheets/construct.css' />
+  </head>
+  <body>
+      <% include ./header.html %>
+      <% include ./constructinsert.html %>
+    <script>
+      function getTag(){
+                  $.ajax({
+                    url:'/api/getTag',
+                    type: 'GET',
+                    success: function(result){
+                      console.log(result.result);
+                      insertData(result.result)
+                    }
+                  });
+      }
+      
+      function getSpace(){
+                  $.ajax({
+                    url:'/api/getSpace',
+                    type: 'GET',
+                    success: function(result){
+                        insertData3(result.result)
+                    }
+                  });
+      }
+
+
+      function insertData(data){
+                  var select = document.getElementById("tag_select");
+    
+                  var code = "";
+                  for(i in data){
+                      code = code + "<option value=\""+decodeURIComponent(data[i].tagname)+"\">"+decodeURIComponent(data[i].tagname)+"</option>";
+                  }
+                  select.innerHTML = select.innerHTML+code;
+      }
+      
+      function insertData3(data){
+                  var select = document.getElementById("space_select");
+    
+                  var code = "";
+                  for(i in data){
+                      code = code + "<option value=\""+decodeURIComponent(data[i].spacename)+"\">"+decodeURIComponent(data[i].spacename)+"</option>";
+                  }
+                  select.innerHTML = select.innerHTML+code;
+      }
+      
+      function readImage(input) {
+    console.log(input);
+  if (input.files && input.files[0]) {
+
+    var reader = new FileReader();
+
+    reader.onload = function(e) {
+      $('.image-upload-wrap').hide();
+
+      $('.file-upload-image').attr('src', e.target.result);
+      $('.file-upload-content').show();
+
+      $('.image-title').html(input.files[0].name);
+    };
+
+    reader.readAsDataURL(input.files[0]);
+
+  } else {
+    removeUpload();
+  }
+}
+function removeUpload() {
+    var agent = navigator.userAgent.toLowerCase();
+    if (agent.indexOf("msie") != -1) { 
+        $('.file-upload-input').replaceWith($('.file-upload-input').clone());
+    } else { 
+        $(".file-upload-input").val(""); 
+    }
+  $('.file-upload-content').hide();
+  $('.image-upload-wrap').show();
+}
+      
+      $(document).ready(function(){
+            $("#tag_select").dropdown();
+            $("#space_select").dropdown();
+            getTag();
+            getSpace();
+      });
+    </script>
+  </body>
+</html>
