@@ -1,11 +1,36 @@
-<!DOCTYPE html>
 <html>
   <head>
-    <title><%= title %></title>
+    <title>관리자페이지</title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel='stylesheet' href='/stylesheets/header.css' />
+    <link rel='stylesheet' href='/stylesheets/index.css' />
   </head>
   <body>
-    <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
+      <% include ./header.html %>
+      <div class="main">
+        <div class="descript">
+        <h1><font color="orange">노아의창</font> 관리자 페이지</h1>
+        <h2>상단메뉴를 선택하여 작업을 진행해주세요.</h2>
+        </div>
+        <div class="notice">
+          <div class="admin_label">시스템 공지</div>
+          <div class="content">
+            <ul>
+              <li>
+                2020-06-09 관리자 페이지 개발작업 착수
+              </li>
+              <li>
+                2020-06-08 네이버 클라우드 플랫폼으로 서버이전 완료
+              </li>
+            </ul>
+          </div>
+          <h4>※ 문제 발생시 시스템관리자에게 문의하시기 바랍니다.</h4>
+        </div>
+        <div class="visitor">
+          <div class="admin_label">방문자 추이</div>
+          <div class="content">
+          </div>
+        </div>
+      </div>
   </body>
 </html>
