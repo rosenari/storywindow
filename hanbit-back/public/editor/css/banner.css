@@ -1,0 +1,10 @@
+#testbanner{
+    width:450px;
+    height: 300px;
+    position: absolute;
+    display: none;
+    border: 0.2em inset #009688;
+	right:  50px;
+	bottom: 50px;
+	z-index: 3;
+}
