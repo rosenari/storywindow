@@ -1,0 +1,10 @@
+.label{
+    position:relative;
+    width:1124px;
+    font-size:0.8em;
+    height:40px;
+    line-height:40px;
+    color:#555;
+    font-weight:500;
+    padding-left:10px;
+}
