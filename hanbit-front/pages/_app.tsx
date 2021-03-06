@@ -1,15 +1,20 @@
 import React from 'react';
 import Head from 'next/head';
-import { AppProps } from "next/app";
+//import { AppProps } from "next/app";
 import { useRouter } from 'next/router';
 import NProgress from 'nprogress';
 import { Header, Footer } from "../components";
 import './css/global.css';
 import 'bootstrap/dist/css/bootstrap.min.css'
-import CssBaseline from '@material-ui/core/CssBaseline';
+import wrapper from '../store'
+import { NextComponentType } from 'next';
+import { AppContext, AppInitialProps } from 'next/app';
+import { AppProps } from 'next/dist/next-server/lib/router/router';
 
+const App: NextComponentType<AppContext, AppInitialProps, AppProps> = ({ Component, pageProps }) => {
 
-function App({ Component, pageProps }: AppProps) {
+	console.log("APp");
+	console.log(pageProps);
 
 	const router = useRouter()
 
@@ -72,4 +77,13 @@ function App({ Component, pageProps }: AppProps) {
 	);
 }
 
-export default App
+App.getInitialProps = async ({ Component, ctx }: AppContext): Promise<AppInitialProps> => {
+	let pageProps = {};
+	if (Component.getInitialProps) {
+		console.log("App getInital props");
+		pageProps = await Component.getInitialProps(ctx);
+	}
+	return { pageProps };
+};
+
+export default wrapper.withRedux(App);
