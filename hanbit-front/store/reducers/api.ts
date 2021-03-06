@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { ServerResponse } from 'http';
 import { call, put, takeEvery } from 'redux-saga/effects';
 
 function getRestApi(url: string) {
@@ -25,7 +26,7 @@ export const loading = () => ({ type: LOADING });
 function* getApiSaga(action: ActionProps) {
   try {
     console.log("getApiSaga")
-    const response = yield call((getRestApi as any), action.url);
+    const response: ServerResponse = yield call((getRestApi as any), action.url);
     console.log(response);
     yield put({ type: GET_SUCCESS, payload: response });
   } catch (e) {
