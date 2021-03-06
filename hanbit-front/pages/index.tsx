@@ -1,6 +1,7 @@
 import React from 'react';
 import { Imgslider, Cardslider, Cardmenu, Shortcut } from '../components';
 import styles from "./css/index.module.css";
+import Router from 'next/router';
 
 const Home: React.FC = () => {
 
@@ -13,7 +14,9 @@ const Home: React.FC = () => {
 				<strong> 한빛창
 					<span style={{ color: "#4ac6f5" }}> 베스트 시공</span>
 					</strong> 모음
-				<span className={styles.card_slider_header_more}>더보기</span>
+				<span className={styles.card_slider_header_more} onClick={() => {
+						Router.push('/construct/list');
+					}}>더보기</span>
 				</div>
 				<Cardslider />
 			</div>

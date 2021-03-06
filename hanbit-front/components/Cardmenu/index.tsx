@@ -24,7 +24,9 @@ const Cardmenu: React.FC<CardmenuProps> = (props) => {
                     {
                         props.data.map((v, i) => {
                             return (
-                                <div className={styles.space_item} key={"space_" + i} style={{ paddingRight: (i === props.data.length - 1) ? "0px" : "70px" }}>
+                                <div className={styles.space_item} key={"space_" + i} style={{ paddingRight: (i === props.data.length - 1) ? "0px" : "70px" }} onClick={() => {
+                                    alert('링크가 연결되지 않음. 상단메뉴를 이용해주세요.');
+                                }}>
                                     <img className={styles.space_img}
                                         src={v.img}
                                         width={img_width}
