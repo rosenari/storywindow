@@ -146,36 +146,36 @@ class Cardslider extends React.Component<CardsliderProps, CardsliderState> {
                         chevronWidth={chevronWidth}
                     >
                         <div className={styles.card_slider_item}>
-                            <Itemrank><Itemrankspan> 1번 </Itemrankspan></Itemrank>
+                            <Itemrank><Itemrankspan> 테스트데이터 </Itemrankspan></Itemrank>
                             <div className={styles.card_slider_img}><img src="/images/card_image_1.png" width="375" height="230" /></div>
                             <div className={styles.card_slider_item_description}>
-                                <div className={styles.card_slider_item_description_title}><strong>깔끔한 분위기의 식당으로 변신 !</strong></div>
+                                <div className={styles.card_slider_item_description_title}><strong>깔끔한 분위기의 식당으로 변신 ! - TestData</strong></div>
                                 <div className={styles.card_slider_item_description_content}>
                                     <Itemtagspan>상업공간</Itemtagspan><Itemtagspan>콤비블라인드</Itemtagspan>
                                 </div>
                             </div>
                         </div>
                         <div className={styles.card_slider_item}>
-                            <Itemrank><Itemrankspan> 2번 </Itemrankspan></Itemrank>
+                            <Itemrank><Itemrankspan> 테스트데이터 </Itemrankspan></Itemrank>
                             <div className={styles.card_slider_img}><img src="/images/card_image_2.png" width="375" height="230" /></div>
                             <div className={styles.card_slider_item_description}>
-                                <div className={styles.card_slider_item_description_title}><strong>거실창에 고급스러움을 더해봤어요</strong></div>
+                                <div className={styles.card_slider_item_description_title}><strong>거실창에 고급스러움을 더해봤어요 - TestData</strong></div>
                                 <div className={styles.card_slider_item_description_content}><Itemtagspan>주거공간</Itemtagspan><Itemtagspan>허니콤쉐이드</Itemtagspan></div>
                             </div>
                         </div>
                         <div className={styles.card_slider_item}>
-                            <Itemrank><Itemrankspan> 3번 </Itemrankspan></Itemrank>
+                            <Itemrank><Itemrankspan> 테스트데이터 </Itemrankspan></Itemrank>
                             <div className={styles.card_slider_img}><img src="/images/card_image_3.png" width="375" height="230" /></div>
                             <div className={styles.card_slider_item_description}>
-                                <div className={styles.card_slider_item_description_title}><strong>주방인터레어와 버티컬의 조화~</strong></div>
+                                <div className={styles.card_slider_item_description_title}><strong>주방인터레어와 버티컬의 조화~ - TestData</strong></div>
                                 <div className={styles.card_slider_item_description_content}><Itemtagspan>주거공간</Itemtagspan><Itemtagspan>버티컬</Itemtagspan></div>
                             </div>
                         </div>
                         <div className={styles.card_slider_item}>
-                            <Itemrank><Itemrankspan> 4번 </Itemrankspan></Itemrank>
+                            <Itemrank><Itemrankspan> 테스트데이터 </Itemrankspan></Itemrank>
                             <div className={styles.card_slider_img}><img src="/images/card_image_4.png" width="375" height="230" /></div>
                             <div className={styles.card_slider_item_description}>
-                                <div className={styles.card_slider_item_description_title}><strong>블라인드 하나로 분위기있는 카페연출</strong></div>
+                                <div className={styles.card_slider_item_description_title}><strong>블라인드 하나로 분위기있는 카페연출 - TestData</strong></div>
                                 <div className={styles.card_slider_item_description_content}><Itemtagspan>상업공간</Itemtagspan><Itemtagspan>우드블라인드</Itemtagspan></div>
                             </div>
                         </div>

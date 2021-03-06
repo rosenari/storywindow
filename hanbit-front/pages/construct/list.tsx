@@ -1,10 +1,10 @@
-import React from "react";
+import React from 'react';
 import styled from 'styled-components';
+import { Label, CFilter, CContents } from '../../components';
 import { connect } from 'react-redux';
 import * as apiActions from '../../store/reducers/api';
-import { Label, PFilter, PContents } from '../../components';
 import { NextPage } from 'next';
-import { Context } from "vm";
+import { Context } from 'vm';
 
 const Div = styled.div`
     position:relative;
@@ -13,12 +13,11 @@ const Div = styled.div`
 `;
 
 const List: NextPage = () => {
-
     return (
         <Div>
-            <Label position="제품소개" sub_position="" />
-            <PFilter />
-            <PContents />
+            <Label position="시공모음" sub_position="" />
+            <CFilter />
+            <CContents />
         </Div>
     )
 }
@@ -32,9 +31,13 @@ List.getInitialProps = async (ctx: Context) => {
     }
 };
 
-// props 값으로 넣어 줄 액션 함수들을 정의해줍니다
-const mapDispatchToProps = (dispatch: any) => ({
-    loading: () => dispatch(apiActions.loading())
-})
+const mapStateToProps = (state: any) => ({
+    datas: state.api.datas
+});
 
-export default connect(undefined, mapDispatchToProps)(List);
+const mapDispatchToProps = (dispatch: any) => ({
+    getApi: (url: string) => dispatch(apiActions.getApi(url)),
+    loading: () => dispatch(apiActions.loading())
+
+})
+export default connect(mapStateToProps, mapDispatchToProps)(List);
