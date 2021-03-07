@@ -2,7 +2,7 @@
 
 ## 사이트 (PC버전)
 
-[@사이트링크](https://hanbitwindow.com)
+[@사이트링크](https://hanbitwindow.com) - 개발진행중
 
 ## 팀원 소개
 
