@@ -67,7 +67,7 @@ export default class Navermap extends React.Component {
             let content_txt = '<div style="text-align:center;margin:auto">'
                 + '<div>'
                 + '<div class="' + styles.cs_mapbridge + '" style="width:60px;height:60px;text-align:center;height:60px;">'
-                + '<img src="/images/hanbitmarker.png" width="60" height="60" />'
+                + '<img src="/images/noahmarker.png" width="60" height="60" />'
                 + '</div>'
                 + '</div>'
                 + '<div>'
@@ -82,7 +82,7 @@ export default class Navermap extends React.Component {
             let marker = new naver.maps.Marker({
                 position: new naver.maps.LatLng("36.298278", "127.316382"),
                 map: map,
-                title: "한빛창 본점",
+                title: "노아의창 본점",
                 icon: {
                     content: [
                         content_txt

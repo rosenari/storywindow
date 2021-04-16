@@ -133,7 +133,7 @@ const Descript = styled.span`
     height:40px;
     border-radius:10px;
     line-height:40px;
-    background:#4ac6f5;
+    background:#f6ad26;
     font-size:0.9em;
     color:white;
     font-weight:bold;
@@ -172,7 +172,7 @@ const Detail: React.FC<DetailProps> = (props) => {
                     <Detailbox key={"detail_" + i}>
                         <Detailbox_left><Img src={v.Imgpath} /></Detailbox_left>
                         <Detailbox_center>
-                            <Detailbox_title><Icon src="/images/noah_icon.png" />{v.title} <span style={{ color: "#4ac6f5" }}>{v.title2}</span></Detailbox_title>
+                            <Detailbox_title><Icon src="/images/noah_icon.png" />{v.title} <span style={{ color: "#f6ad26" }}>{v.title2}</span></Detailbox_title>
                             <Detailbox_address><Icon2 src="/images/map_detailmarker.png" />{v.address}</Detailbox_address>
                             <Detailbox_tel><Icon2 src="/images/map_detailphone.png" />{v.tel}</Detailbox_tel>
                         </Detailbox_center>
@@ -194,16 +194,16 @@ class Hanbitmap extends React.Component {
         return (
             <Div>
                 <Label position="회사소개" sub_position="찾아오시는길" />
-                <Header><strong><span style={{ color: "#4ac6f5" }}>한빛창 </span></strong><strong>한눈에 보기</strong></Header>
+                <Header><strong><span style={{ color: "#f6ad26" }}>노아의 창 </span></strong><strong>한눈에 보기</strong></Header>
                 <hr />
                 <Mapcontainer><Navermap /></Mapcontainer>
                 <Detail data={
                     [
                         {
                             Imgpath: "/images/map_detail1.png",
-                            title: "한빛창",
-                            title2: "본사",
-                            address: "대전 유성구 진잠로 74 (1층, 한빛창 본사)",
+                            title: "노아의창",
+                            title2: "중부지사",
+                            address: "대전 유성구 진잠로 74 (1층, 노아의창 중부지사)",
                             tel: "042-581-2464",
                             region: "대전,충청"
                         }

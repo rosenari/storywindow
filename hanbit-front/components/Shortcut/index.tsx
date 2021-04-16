@@ -19,7 +19,7 @@ const Shortcut: React.FC = () => {
                 </div>
                 <div className={styles.bottomlink_item}>
                     <div className={styles.bottomlink_item_left}>
-                        한빛창 SNS
+                        노아의창 SNS
                         </div>
                     <div className={styles.bottomlink_item_right}>
                         <img src="/images/bottom_link1.png" width={SNS_WIDTH} height={SNS_HEIGHT} style={{ cursor: "pointer" }} onClick={() => {

@@ -7,7 +7,7 @@ const LOGO = styled.div`
 	    position:relative;
         z-index:12;
         float:left;
-        width:210px;
+        width:260px;
         margin-right:20px;
         height:60px;
         line-height:60px;
@@ -35,10 +35,9 @@ const LOGO_IMG_BOX = styled.div`
 		position:relative;
 		margin-top:7px;
 		margin-left:10px;
-		width:45px;
+		width:24px;
 		height:45px;
 		line-height:45px;
-		background:#4ac6f5;
 		border-radius:5px;
 		margin-right:5px;
 		animation: circleani 2s infinite;
@@ -48,7 +47,7 @@ const LOGO_IMG_BOX = styled.div`
 const LOGO_TEXT_BOX = styled.div`
 		position:relative;
 		display:inline-block;
-		width:130px;
+		width:200px;
 		height:60px;
         font-size:0.9em;
 `;
@@ -56,34 +55,38 @@ const LOGO_TEXT_BOX = styled.div`
 const LOGO_TEXT_TOP = styled.div`
 		position:relative;
 		display:block;
-		width:100px;
+		width:200px;
 		height:45px;
 		line-height:45px;
-        font-size:1.1em;
+		font-family: 'Russo One', sans-serif;
+        font-size:0.9em;
         font-weight:300;
+		letter-spacing:-1px;
 `;
 
 const LOGO_TEXT_BOTTOM = styled.div`
 		position:relative;
 		display:block;
-		width:100px;
+		width:200px;
 		height:15px;
 		line-height:2px;
 		font-size:5px;
 		letter-spacing:1px;
 		font-family:Nanum Gothic;
 		font-weight:bold;
+		text-align:right;
+		padding-right:5px;
 `;
 
 const STAMP = styled.div`
 		position:absolute;
 		z-index:12px;
-		top:8px;
-		right:10px;
-		width:33px;
-		height:18px;
-		line-height:18px;
-		background:#4ac6f5;
+		bottom:6px;
+		left:57px;
+		width:96px;
+		height:16px;
+		line-height:16px;
+		background:#f6ad26;
 		color:white;
 		animation: ${styles.circleani} 2s infinite;
 		border-radius:2px;
@@ -99,7 +102,7 @@ const CONSTRUCT_CIRCLE = styled.div`
 		right:20px;
 		width:11px;
 		height:11px;
-		background:#4ac6f5;
+		background:#f6ad26;
 		animation: ${styles.circleani} 2s infinite;
 		border-radius:50%;
 `;
@@ -135,9 +138,9 @@ const Navbar: React.FC<NavbarProps> = (props) => {
 				<LOGO onMouseOver={props.AllMenu_up}>
 					<Link href="/">
 						<a>
-							<LOGO_IMG_BOX><img src="/images/hanbitlogo.png" height="40" /></LOGO_IMG_BOX>
-							<LOGO_TEXT_BOX><LOGO_TEXT_TOP>한빛창</LOGO_TEXT_TOP><LOGO_TEXT_BOTTOM>인테리어의 완성</LOGO_TEXT_BOTTOM></LOGO_TEXT_BOX>
-							<STAMP>본사</STAMP>
+							<LOGO_IMG_BOX><img src="/images/noahlogo.png" height="40" /></LOGO_IMG_BOX>
+							<LOGO_TEXT_BOX><LOGO_TEXT_TOP>Noah's Window</LOGO_TEXT_TOP><LOGO_TEXT_BOTTOM>인테리어의 완성</LOGO_TEXT_BOTTOM></LOGO_TEXT_BOX>
+							<STAMP>대전ㆍ충청총판</STAMP>
 						</a>
 					</Link>
 				</LOGO>
@@ -145,10 +148,7 @@ const Navbar: React.FC<NavbarProps> = (props) => {
 					<li onMouseOver={props.Menu_down1}><Link href="/intro"><a>회사소개</a></Link></li>
 					<li onMouseOver={props.AllMenu_up}><Link href="/product/list"><a>제품소개</a></Link></li>
 					<li onMouseOver={props.AllMenu_up}><Link href="/construct/list"><a ><CONSTRUCT_CIRCLE />파트너 시공</a></Link></li>
-					<li onMouseOver={props.AllMenu_up}><Link href="#"><a onClick={(e) => {
-						e.preventDefault();
-						alert('준비중입니다.');
-					}}><FABRIC_STAMP>FABRIC</FABRIC_STAMP>크리스탈쏘잉<img src="/images/sewing.png" height="20" alt="hot" className={styles.sewing_icon} /></a></Link></li>
+
 					<li className={styles.consult_link}><Link href="#"><a onClick={(e) => {
 						e.preventDefault();
 						alert('준비중입니다.');

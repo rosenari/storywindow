@@ -60,11 +60,11 @@ const Intro: React.FC = () => {
             <Label position="회사소개" sub_position="한빛창" />
             <div className={styles.introbox}>
                 <FadeIn delay={300}>
-                    <Header><strong>대전ㆍ충청</strong> 블라인드 & 커튼 <strong><span style={{ color: "#4ac6f5" }}>한빛창 </span></strong>본사</Header>
+                    <Header><strong>대전ㆍ충청</strong> 블라인드 & 커튼 <strong><span style={{ color: "#f6ad26" }}>노아의 창</span></strong> 중부지사</Header>
                     <hr />
-                    <Imgbox><Img src="/images/introbox_img1.png" /></Imgbox>
-                    <Imgdescript1><strong><span style={{ color: "#4ac6f5" }}>한빛창</span></strong>은 고객님께 감동을 드리는 <strong>대전커튼블라인드 업체</strong>입니다.</Imgdescript1>
-                    <Imgdescript2><strong>친절한 서비스</strong>와 <strong>확실한 AS</strong>로 <strong><span style={{ color: "#4ac6f5" }}>100% 신뢰</span></strong>를 드립니다.</Imgdescript2>
+                    <Imgbox><Img src="/images/introbox1_img.png" /></Imgbox>
+                    <Imgdescript1><strong><span style={{ color: "#f6ad26" }}>노아의 창</span></strong>은 고객님께 감동을 드리는 <strong>대전커튼블라인드 업체</strong>입니다.</Imgdescript1>
+                    <Imgdescript2><strong>친절한 서비스</strong>와 <strong>확실한 AS</strong>로 <strong><span style={{ color: "#f6ad26" }}>100% 신뢰</span></strong>를 드립니다.</Imgdescript2>
                 </FadeIn>
             </div>
             <div className={styles.introbox}>
@@ -73,7 +73,7 @@ const Intro: React.FC = () => {
                     <hr />
                     <Imgbox><Img src="/images/introbox2_img.png" /></Imgbox>
                     <Imgdescript1>
-                        <strong><span style={{ color: "#4ac6f5" }}>한빛창</span></strong>은 <strong>대규모 공장</strong>에서 직접<strong> 블라인드</strong>를 <strong>
+                        <strong><span style={{ color: "#f6ad26" }}>노아의창</span></strong>은 <strong>대규모 공장</strong>에서 직접<strong> 블라인드</strong>를 <strong>
                             <span style={{ color: "skyblue" }}>맞춤제작</span></strong>합니다.
                     </Imgdescript1>
                 </FadeIn>

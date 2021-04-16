@@ -10,7 +10,7 @@
     display:block;
     position:absolute;
     top:8px;
-    left:228px;
+    left:278px;
     width:140px;
     height:80px;
     border:#aaa solid;
@@ -69,7 +69,7 @@
 }
 
 .submenu_item:hover{
-    color:#4ac6f5;
+    color:#f6ad26;
 }
 
 .submenu_item > a{
@@ -79,7 +79,7 @@
 
 .submenu_item > a:hover{
     font-weight:600;
-    color:#4ac6f5;
+    color:#f6ad26;
     text-decoration:none;
 }
 
