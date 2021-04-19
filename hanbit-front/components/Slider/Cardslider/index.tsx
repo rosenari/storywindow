@@ -6,33 +6,6 @@ import styled from 'styled-components';
 import styles from './index.module.css';
 import Card from "./Card";
 
-const Itemtagspan = styled.span`
-    background:#f6ad26;
-    padding:3px;
-    border-radius:3px;
-    margin-right:5px;
-    color:white;
-    font-size:0.9em;
-    font-weight:bold;
-`;
-const Itemrank = styled.div`
-    position:absolute;
-    top:5px;
-    left:5px;
-    font-size:0.8em;
-    height:30px;
-    color:white;
-    z-index:999;
-`;
-const Itemrankspan = styled.div`
-    background:#f6ad26;
-    padding:3px;
-    padding-left:5px;
-    padding-right:5px;
-    border-radius:3px;
-    color:white;
-`;
-
 interface CardsliderProps {
     data: any;
 }

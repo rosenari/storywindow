@@ -3,7 +3,7 @@ import styles from "./index.module.css";
 import styled from "styled-components";
 
 const Itemtagspan = styled.span`
-    background:#f6ad26;
+    background:var(--color-main);
     padding:3px;
     border-radius:3px;
     margin-right:5px;
@@ -21,12 +21,22 @@ const Itemrank = styled.div`
     z-index:999;
 `;
 const Itemrankspan = styled.div`
-    background:#f6ad26;
+    background:var(--color-main);
     padding:3px;
     padding-left:5px;
     padding-right:5px;
     border-radius:3px;
     color:white;
+`;
+
+const SHINY = styled.div`
+    position:absolute;
+    top: -180px;
+    left: 0;
+    width: 30px;
+    height: 100%;
+    background-color: #fff;
+    animation: ${styles.sparkle} 4s ease-in-out infinite;
 `;
 
 interface Props {
@@ -41,7 +51,7 @@ const Card: React.FC<Props> = ({ rank, imgUrl, title, tags }) => {
     return (
         <div className={styles.card_slider_item}>
             <Itemrank><Itemrankspan> {rank} </Itemrankspan></Itemrank>
-            <div className={styles.card_slider_img}><img src={imgUrl} width="375" height="230" /></div>
+            <div className={styles.card_slider_img}><img src={imgUrl} width="375" height="230" /><SHINY /></div>
             <div className={styles.card_slider_item_description}>
                 <div className={styles.card_slider_item_description_title}><strong>{title}</strong></div>
                 <div className={styles.card_slider_item_description_content}>

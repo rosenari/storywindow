@@ -7,12 +7,12 @@ const Home: React.FC = () => {
 
 	return (
 		<div>
-			<Imgslider Img={['/images/slide_three.png', '/images/slide_four.png']} />
+			<Imgslider Img={['/images/slide_one.png', '/images/slide_two.png']} />
 			<div className={styles.card_main}>
 				<div className={styles.card_slider_header}>
 					고객님께 추천하는
-				<strong> 노아의 창
-					<span style={{ color: "#f6ad26" }}> 베스트 시공</span>
+				<strong> 스토리 창
+					<span style={{ color: "var(--color-main)" }}> 베스트 시공</span>
 					</strong> 모음
 				<span className={styles.card_slider_header_more} onClick={() => {
 						Router.push('/construct/list');
@@ -20,25 +20,25 @@ const Home: React.FC = () => {
 				</div>
 				<Cardslider data={[
 					{
-						rank: "테스트데이터",
+						rank: "1위",
 						imgUrl: "/images/card_image_1.png",
 						title: "깔끔한 분위기의 식당으로 변신 ! - TestData",
 						tags: ["상업공간", "콤비블라인드"]
 					},
 					{
-						rank: "테스트데이터",
+						rank: "2위",
 						imgUrl: "/images/card_image_2.png",
 						title: "고급 가정집 분위기의 블라인드 - TestData",
 						tags: ["아파트", "허니콤쉐이드"]
 					},
 					{
-						rank: "테스트데이터",
+						rank: "3위",
 						imgUrl: "/images/card_image_3.png",
 						title: "부엌 인테리어 종결 블라인드 !! - TestData",
 						tags: ["아파트"]
 					},
 					{
-						rank: "테스트데이터",
+						rank: "4위",
 						imgUrl: "/images/card_image_4.png",
 						title: "카페분위기 제대로 내는 블라인드 - TestData",
 						tags: ["상업공간", "우드블라인드"]

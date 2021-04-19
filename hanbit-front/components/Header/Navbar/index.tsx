@@ -7,7 +7,7 @@ const LOGO = styled.div`
 	    position:relative;
         z-index:12;
         float:left;
-        width:260px;
+        width:210px;
         margin-right:20px;
         height:60px;
         line-height:60px;
@@ -35,7 +35,7 @@ const LOGO_IMG_BOX = styled.div`
 		position:relative;
 		margin-top:7px;
 		margin-left:10px;
-		width:24px;
+		width:45px;
 		height:45px;
 		line-height:45px;
 		border-radius:5px;
@@ -47,7 +47,7 @@ const LOGO_IMG_BOX = styled.div`
 const LOGO_TEXT_BOX = styled.div`
 		position:relative;
 		display:inline-block;
-		width:200px;
+		width:140px;
 		height:60px;
         font-size:0.9em;
 `;
@@ -55,19 +55,23 @@ const LOGO_TEXT_BOX = styled.div`
 const LOGO_TEXT_TOP = styled.div`
 		position:relative;
 		display:block;
-		width:200px;
+		width:140px;
 		height:45px;
 		line-height:45px;
-		font-family: 'Russo One', sans-serif;
+		font-family: 'Do Hyeon', sans-serif;
         font-size:0.9em;
-        font-weight:300;
-		letter-spacing:-1px;
+        font-weight:500;
+		letter-spacing:3px;
+		text-align:left;
+		padding-left:20px;
+		color:#312c90;
+		transform: scaleX(1.15);
 `;
 
 const LOGO_TEXT_BOTTOM = styled.div`
 		position:relative;
 		display:block;
-		width:200px;
+		width:140px;
 		height:15px;
 		line-height:2px;
 		font-size:5px;
@@ -82,11 +86,11 @@ const STAMP = styled.div`
 		position:absolute;
 		z-index:12px;
 		bottom:6px;
-		left:57px;
-		width:96px;
+		left:70px;
+		width:118px;
 		height:16px;
 		line-height:16px;
-		background:#f6ad26;
+		background:var(--color-main);
 		color:white;
 		animation: ${styles.circleani} 2s infinite;
 		border-radius:2px;
@@ -102,26 +106,34 @@ const CONSTRUCT_CIRCLE = styled.div`
 		right:20px;
 		width:11px;
 		height:11px;
-		background:#f6ad26;
+		background:var(--color-main);
 		animation: ${styles.circleani} 2s infinite;
 		border-radius:50%;
 `;
 
-const FABRIC_STAMP = styled.div`
+const CLICKME = styled.div`
+		z-index:100;
 		position:absolute;
-		z-index:12px;
-		top:7px;
-		right:0px;
-		width:45px;
-		height:15px;
-		line-height:15px;
-		background:#4ac6f5;
-		color:white;
-		animation: circleani 2s infinite;
-		border-radius:2px;
-		font-size:10px;
-		text-align:center;
-		font-weight:300;
+		right:200px;
+		top:0px;
+		width:40px;
+		height:40px;
+		background-image: url('/images/clickme.png');
+		animation: ${styles.bounce} 2s infinite;
+`;
+
+const CLICKME_TEXT = styled.div`
+		z-index:100;
+		position:absolute;
+		right:204px;
+		top:25px;
+		width:90px;
+		height:40px;
+		line-height:40px;
+		font-size:1.2em;
+		color:var(--color-main);
+		font-family:'Nanum Brush Script';
+		animation: ${styles.bounce} 2s infinite;
 `;
 
 interface NavbarProps {
@@ -138,9 +150,9 @@ const Navbar: React.FC<NavbarProps> = (props) => {
 				<LOGO onMouseOver={props.AllMenu_up}>
 					<Link href="/">
 						<a>
-							<LOGO_IMG_BOX><img src="/images/noahlogo.png" height="40" /></LOGO_IMG_BOX>
-							<LOGO_TEXT_BOX><LOGO_TEXT_TOP>Noah's Window</LOGO_TEXT_TOP><LOGO_TEXT_BOTTOM>인테리어의 완성</LOGO_TEXT_BOTTOM></LOGO_TEXT_BOX>
-							<STAMP>대전ㆍ충청총판</STAMP>
+							<LOGO_IMG_BOX><img src="/images/storylogo.png" height="45" /></LOGO_IMG_BOX>
+							<LOGO_TEXT_BOX><LOGO_TEXT_TOP>스토리창</LOGO_TEXT_TOP><LOGO_TEXT_BOTTOM>&nbsp;</LOGO_TEXT_BOTTOM></LOGO_TEXT_BOX>
+							<STAMP>창문인테리어의 완성</STAMP>
 						</a>
 					</Link>
 				</LOGO>
@@ -152,7 +164,10 @@ const Navbar: React.FC<NavbarProps> = (props) => {
 					<li className={styles.consult_link}><Link href="#"><a onClick={(e) => {
 						e.preventDefault();
 						alert('준비중입니다.');
-					}}><span>전국파트너모집</span><img src="/images/consult_img.png" height="28" width="28" className={styles.consult_img} /></a></Link></li>
+					}}><span>전국파트너모집</span><img src="/images/consult_img.png" height="28" width="28" className={styles.consult_img} /></a></Link>
+						<CLICKME />
+						<CLICKME_TEXT>클릭 !</CLICKME_TEXT>
+					</li>
 				</ul>
 			</nav>
 		</div>

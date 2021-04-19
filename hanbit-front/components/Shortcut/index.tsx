@@ -19,7 +19,7 @@ const Shortcut: React.FC = () => {
                 </div>
                 <div className={styles.bottomlink_item}>
                     <div className={styles.bottomlink_item_left}>
-                        노아의창 SNS
+                        스토리창 SNS
                         </div>
                     <div className={styles.bottomlink_item_right}>
                         <img src="/images/bottom_link1.png" width={SNS_WIDTH} height={SNS_HEIGHT} style={{ cursor: "pointer" }} onClick={() => {
@@ -39,13 +39,13 @@ const Shortcut: React.FC = () => {
             </div>
             <div className={styles.bottomlink_container}>
                 <div className={styles.bottomlink_item} style={{ cursor: "pointer" }} onClick={() => {
-                    alert('준비중입니다.');
+                    location.href = "https://smartstore.naver.com/cssewing";
                 }}>
                     <img src="/images/sewing_link.png" width={IMG_WIDTH} height={IMG_HEIGHT} />
                 </div>
                 <div className={styles.bottomlink_item}>
                     <div className={styles.bottomlink_item_left}>
-                        바로가기
+                        메뉴 바로가기
                         </div>
                     <div className={styles.bottomlink_item_right}>
                         <button className={styles.bottom_notice} onClick={() => {

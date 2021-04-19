@@ -10,6 +10,7 @@ import wrapper from '../store'
 import { NextComponentType } from 'next';
 import { AppContext, AppInitialProps } from 'next/app';
 import { AppProps } from 'next/dist/next-server/lib/router/router';
+import "./global.color.css";
 
 const App: NextComponentType<AppContext, AppInitialProps, AppProps> = ({ Component, pageProps }) => {
 
