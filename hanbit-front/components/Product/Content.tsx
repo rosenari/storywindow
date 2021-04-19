@@ -122,7 +122,7 @@ const Content: React.FC<ContentProps> = (props) => {
             </Imgbox>
             <Tagbox>
                 {
-                    props.tags.map((v, i) => {
+                    props.tags && props.tags.map((v, i) => {
                         return (
                             <Span key={i}>{decodeURIComponent(v)}</Span>
                         );
@@ -132,7 +132,7 @@ const Content: React.FC<ContentProps> = (props) => {
             <Colorbox>
                 <Colordescript>보유색상</Colordescript>
                 {
-                    props.colors.map((v, i) => {
+                    props.colors && props.colors.map((v, i) => {
                         return (
                             <ColorItem key={i} style={{ background: v }} />
                         );

@@ -147,6 +147,7 @@ const Itemtext = styled.div`
 interface FilterProps {
     loading: any;
     getApi: any;
+    datas: any;
 }
 
 interface Data {
@@ -219,7 +220,8 @@ class Filter extends React.Component<FilterProps, FilterState> {
 
     componentDidUpdate() {
         //전체보기 GET 로직추가
-        console.log("componentDidMount");
+        if (this.props.datas !== "loading") return;
+
         setTimeout(() => {
             this.handleGetapi(`https://${process.env.API_HOST}/api/getProducts/0/all/date`);
         }, 500);
@@ -256,7 +258,7 @@ class Filter extends React.Component<FilterProps, FilterState> {
                 <ButtonBox><LeftButton onClick={this.LeftClick}>{"<"}</LeftButton></ButtonBox>
                 <SelectContainer>
                     <ItemContainer ref={this.containerRef}>
-                        {this.state.datas.map((data, index) => {
+                        {this.state.datas && this.state.datas.map((data, index) => {
                             return (
                                 <Item key={index}>
                                     <Itemimgbox className={this.state.active == index ? 'active' : ''}>

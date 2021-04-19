@@ -123,7 +123,7 @@ class Detail extends React.Component<DetailProps> {
                     <Tagbox>
                         <Tag1>{decodeURIComponent(datas.data.result.space)}</Tag1>
                         {
-                            datas.data.result.tags.map((v: any, i: any) => {
+                            datas.data.result.tag && datas.data.result.tags.map((v: any, i: any) => {
                                 return (
                                     <Tag2 key={i}>{decodeURIComponent(v)}</Tag2>
                                 );

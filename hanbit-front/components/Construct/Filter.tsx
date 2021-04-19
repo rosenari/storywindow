@@ -124,6 +124,7 @@ const CheckedImg = styled.div`
 interface FilterProps {
     loading: any;
     getApi: any;
+    datas: any;
 }
 
 interface FilterState {
@@ -181,7 +182,8 @@ class Filter extends Component<FilterProps, FilterState> {
 
     componentDidUpdate() {
         //전체보기 GET 로직추가
-        console.log("componentDidMount");
+        if (this.props.datas !== "loading") return;
+
         setTimeout(() => {
             this.handleGetapi(`https://${process.env.API_HOST}/api/getConstructs/0/all/all/false/false/date`);
         }, 500);
