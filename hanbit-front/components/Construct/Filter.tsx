@@ -184,8 +184,9 @@ class Filter extends Component<FilterProps, FilterState> {
         //전체보기 GET 로직추가
         if (this.props.datas !== "loading") return;
 
+        let constructname = this.getConstructName(this.state.active);
         setTimeout(() => {
-            this.handleGetapi(`https://${process.env.API_HOST}/api/getConstructs/0/all/all/false/false/date`);
+            this.handleGetapi(`https://${process.env.API_HOST}/api/getConstructs/0/${constructname}/${this.state.product}/${this.state.checkedA}/${this.state.checkedB}/date`);
         }, 500);
     }
 

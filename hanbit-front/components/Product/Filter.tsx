@@ -222,8 +222,9 @@ class Filter extends React.Component<FilterProps, FilterState> {
         //전체보기 GET 로직추가
         if (this.props.datas !== "loading") return;
 
+        let productname = this.getProductName(this.state.active);
         setTimeout(() => {
-            this.handleGetapi(`https://${process.env.API_HOST}/api/getProducts/0/all/date`);
+            this.handleGetapi(`https://${process.env.API_HOST}/api/getProducts/0/${productname}/date`);
         }, 500);
     }
 
