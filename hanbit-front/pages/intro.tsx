@@ -57,7 +57,7 @@ const Imgdescript2 = styled.div`
 const Intro: React.FC = () => {
     return (
         <div className={styles.intro}>
-            <Label position="회사소개" sub_position="한빛창" />
+            <Label position="회사소개" sub_position="스토리창" />
             <div className={styles.introbox}>
                 <FadeIn delay={300}>
                     <Header><strong>대전ㆍ충청</strong> 블라인드 & 커튼 <strong><span style={{ color: "var(--color-main)" }}>스토리 창</span></strong></Header>

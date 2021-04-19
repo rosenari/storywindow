@@ -217,6 +217,14 @@ class Filter extends React.Component<FilterProps, FilterState> {
         }, 500);
     }
 
+    componentDidUpdate() {
+        //전체보기 GET 로직추가
+        console.log("componentDidMount");
+        setTimeout(() => {
+            this.handleGetapi(`https://${process.env.API_HOST}/api/getProducts/0/all/date`);
+        }, 500);
+    }
+
     LeftClick = () => {
         if (this.itemcontext > 0) {
             this.containerRef.current.style.marginLeft = ((this.itemcontext - 1) * -100) + "px";

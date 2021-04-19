@@ -179,6 +179,14 @@ class Filter extends Component<FilterProps, FilterState> {
         }, 500);
     }
 
+    componentDidUpdate() {
+        //전체보기 GET 로직추가
+        console.log("componentDidMount");
+        setTimeout(() => {
+            this.handleGetapi(`https://${process.env.API_HOST}/api/getConstructs/0/all/all/false/false/date`);
+        }, 500);
+    }
+
     setProduct = (v: string) => {
         this.setState({
             product: v
