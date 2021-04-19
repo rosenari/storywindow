@@ -60,7 +60,7 @@ const Intro: React.FC = () => {
             <Label position="회사소개" sub_position="한빛창" />
             <div className={styles.introbox}>
                 <FadeIn delay={300}>
-                    <Header><strong>대전ㆍ충청</strong> 블라인드 & 커튼 <strong><span style={{ color: "var(--color-main)" }}>스토리 창</span></strong> 중부지사</Header>
+                    <Header><strong>대전ㆍ충청</strong> 블라인드 & 커튼 <strong><span style={{ color: "var(--color-main)" }}>스토리 창</span></strong></Header>
                     <hr />
                     <Imgbox><Img src="/images/introbox1_img.png" /></Imgbox>
                     <Imgdescript1><strong><span style={{ color: "var(--color-main)" }}>스토리 창</span></strong>은 고객님께 감동을 드리는 <strong>대전커튼블라인드 업체</strong>입니다.</Imgdescript1>
