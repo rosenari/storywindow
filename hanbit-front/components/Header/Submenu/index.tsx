@@ -21,7 +21,7 @@ const Submenu: React.FC<SubmenuProps> = (props) => {
                     <Link href="/intro"><a>스토리창</a></Link>
                 </div>
                 <div className={styles.submenu_item}>
-                    <Link href="/noahmap"><a>찾아오시는길</a></Link>
+                    <Link href="/storymap"><a>찾아오시는길</a></Link>
                 </div>
             </div>
             <div className={styles.submenu_1_area} ref={props.submenu_1_area}>
