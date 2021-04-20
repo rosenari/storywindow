@@ -45,6 +45,7 @@ const More = styled.div`
 
 interface ContentsProps {
     datas: any;
+    getApi2: any;
 }
 
 class Contents extends Component<ContentsProps> {
@@ -91,7 +92,9 @@ class Contents extends Component<ContentsProps> {
                             line.push(data);
                         }
                     })}
-                    {remain && <More>더보기</More>}
+                    {remain && <More onClick={() => {
+                        this.props.getApi2(`https://${process.env.API_HOST}/api/getProducts/${datas.length}/all/date`);
+                    }}>더보기</More>}
                 </Div>
         );
     }
@@ -104,7 +107,8 @@ const mapStateToProps = (state: any) => ({
 
 // props 값으로 넣어 줄 액션 함수들을 정의해줍니다
 const mapDispatchToProps = (dispatch: any) => ({
-    getApi: (url: string) => dispatch(apiActions.getApi(url))
+    getApi: (url: string) => dispatch(apiActions.getApi(url)),
+    getApi2: (url: string) => dispatch(apiActions.getApi2(url)),
 })
 
 // 컴포넌트를 리덕스와 연동 할 떄에는 connect 를 사용합니다.

@@ -158,6 +158,7 @@ interface Data {
 interface FilterState {
     datas: Array<Data>;
     active: number;
+    index: number;
 }
 
 class Filter extends React.Component<FilterProps, FilterState> {
@@ -180,7 +181,8 @@ class Filter extends React.Component<FilterProps, FilterState> {
                 , { imgurl: "/images/product_verticul.png", text: "버티컬" }
                 , { imgurl: "/images/product_vene.png", text: "베니션" }
                 , { imgurl: "/images/product_holding.png", text: "홀딩도어" }],
-            active: 0
+            active: 0,
+            index: 0
         };
     }
 
