@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { ServerResponse } from 'http';
 import { isArray } from 'node:util';
-import { call, put, takeEvery } from 'redux-saga/effects';
+import { call, put, takeEvery, takeLatest } from 'redux-saga/effects';
 
 function getRestApi(url: string) {
   return axios.get(url);
@@ -59,11 +59,11 @@ const initialState: State = {
 };
 
 export function* getSaga() {
-  yield takeEvery(GET, getApiSaga);
+  yield takeLatest(GET, getApiSaga);
 }
 
 export function* getSaga2() {
-  yield takeEvery(GET2, getApiSaga2);
+  yield takeLatest(GET2, getApiSaga2);
 }
 
 // 리듀서를 만들어서 내보내줍니다.
