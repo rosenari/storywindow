@@ -204,9 +204,7 @@ class Filter extends React.Component<FilterProps, FilterState> {
         if (this.state.active !== nextState.active) {
             let productname = this.getProductName(nextState.active);
             this.props.loading();
-            setTimeout(() => {
-                this.handleGetapi(`https://${process.env.API_HOST}/api/getProducts/0/${productname}/date`);
-            }, 500);
+            this.handleGetapi(`https://${process.env.API_HOST}/api/getProducts/0/${productname}/date`);
         }
 
         return true;
@@ -215,9 +213,7 @@ class Filter extends React.Component<FilterProps, FilterState> {
     componentDidMount() {
         //전체보기 GET 로직추가
         console.log("componentDidMount");
-        setTimeout(() => {
-            this.handleGetapi(`https://${process.env.API_HOST}/api/getProducts/0/all/date`);
-        }, 500);
+        this.handleGetapi(`https://${process.env.API_HOST}/api/getProducts/0/all/date`);
     }
 
     componentDidUpdate() {
@@ -225,9 +221,7 @@ class Filter extends React.Component<FilterProps, FilterState> {
         if (this.props.datas !== "loading") return;
 
         let productname = this.getProductName(this.state.active);
-        setTimeout(() => {
-            this.handleGetapi(`https://${process.env.API_HOST}/api/getProducts/0/${productname}/date`);
-        }, 500);
+        this.handleGetapi(`https://${process.env.API_HOST}/api/getProducts/0/${productname}/date`);
     }
 
     LeftClick = () => {

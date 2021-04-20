@@ -183,17 +183,13 @@ class Detail extends Component<DetailProps> {
     }
 
     componentDidMount() {
-        setTimeout(() => {
-            this.handleGetapi(`https://${process.env.API_HOST}/api/getProduct/${this.props.query.id}`);
-        }, 500)
+        this.handleGetapi(`https://${process.env.API_HOST}/api/getProduct/${this.props.query.id}`);
     }
 
     componentDidUpdate() {
         if (this.props.datas !== "loading") return;
 
-        setTimeout(() => {
-            this.handleGetapi(`https://${process.env.API_HOST}/api/getProduct/${this.props.query.id}`);
-        }, 500)
+        this.handleGetapi(`https://${process.env.API_HOST}/api/getProduct/${this.props.query.id}`);
     }
 
     handleGetapi = (url: string) => {
