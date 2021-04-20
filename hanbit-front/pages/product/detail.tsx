@@ -205,10 +205,10 @@ class Detail extends Component<DetailProps> {
             datas == "loading" ? <Div><Label position="제품소개" sub_position="" /><Loading><CircularProgress /></Loading></Div> :
                 <Div>
                     <Label position="제품소개" sub_position="" />
-                    <Imgbox><img src={`http://${process.env.API_HOST}/uploads/${datas.data.result.imgurl == undefined ? '1593939918228construct.jpg' : datas.data.result.imgurl}`} width="1000" height="500" /></Imgbox>
+                    <Imgbox>{datas?.data?.result?.imgurl && <img src={`https://${process.env.API_HOST}/uploads/${datas.data.result.imgurl}`} width="1000" height="500" />}</Imgbox>
                     <Titledescript>제품종류</Titledescript>
                     <Title>
-                        {datas && datas.data.result.tags && datas.data.result.tags.map((v: any, i: any) => {
+                        {datas?.data?.result?.tags && datas.data.result.tags.map((v: any, i: any) => {
                             return (
                                 decodeURIComponent(v) + " "
                             )
@@ -218,7 +218,7 @@ class Detail extends Component<DetailProps> {
                     <Character>
                         <UL>
                             {
-                                datas && datas.data.result.note && datas.data.result.note.map((v: any, i: any) => {
+                                datas?.data?.result?.note && datas.data.result.note.map((v: any, i: any) => {
                                     return (
                                         <LI key={i}><Span>{decodeURIComponent(v)}</Span></LI>
                                     )
@@ -229,7 +229,7 @@ class Detail extends Component<DetailProps> {
                     <SubTitle>보유색상</SubTitle>
                     <Colorlist>
                         {
-                            datas && datas.data.result.colors && datas.data.result.colors.map((v: any, i: any) => {
+                            datas?.data?.result?.colors && datas.data.result.colors.map((v: any, i: any) => {
                                 return (
                                     <Color style={{ background: v }} key={i} />
                                 )
@@ -239,7 +239,7 @@ class Detail extends Component<DetailProps> {
                     <SubTitle>제품샘플</SubTitle>
                     <Samples>
                         {
-                            datas && datas.data.result.sample && datas.data.result.sample.map((v: any, i: any) => {
+                            datas?.data?.result?.sample && datas.data.result.sample.map((v: any, i: any) => {
                                 return (
                                     <Sample key={i}>
                                         <img src={`https://${process.env.API_HOST}/uploads/` + v} width="250" height="250" />
