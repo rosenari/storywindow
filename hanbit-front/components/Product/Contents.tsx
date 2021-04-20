@@ -65,7 +65,7 @@ class Contents extends Component<ContentsProps> {
             this.props.datas == "loading" ? <Div><Descript /><Loading><CircularProgress /></Loading></Div> :
                 <Div>
                     <Descript />
-                    {datas.map((data: any, index: any) => {
+                    {datas && datas.length > 0 && datas.map((data: any, index: any) => {
                         if (index % 4 == 3 || index == datas.length - 1) {
                             if (index % 4 == 0) {
                                 line = [];
