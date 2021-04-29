@@ -124,6 +124,7 @@ const CheckedImg = styled.div`
 interface FilterProps {
     loading: any;
     getApi: any;
+    datas: any;
 }
 
 interface FilterState {
@@ -164,9 +165,7 @@ class Filter extends Component<FilterProps, FilterState> {
         if (this.state.active !== nextState.active || this.state.checkedA !== nextState.checkedA || this.state.checkedB !== nextState.checkedB || this.state.product !== nextState.product) {
             let constructname = this.getConstructName(nextState.active);
             this.props.loading();
-            setTimeout(() => {
-                this.handleGetapi(`https://${process.env.API_HOST}/api/getConstructs/0/${constructname}/${nextState.product}/${nextState.checkedA}/${nextState.checkedB}/date`);
-            }, 500);
+            this.handleGetapi(`https://${process.env.API_HOST}/api/getConstructs/0/${constructname}/${nextState.product}/${nextState.checkedA}/${nextState.checkedB}/date`);
         }
         return true;
     }
@@ -174,9 +173,15 @@ class Filter extends Component<FilterProps, FilterState> {
     componentDidMount() {
         //전체보기 GET 로직추가
         console.log("componentDidMount");
-        setTimeout(() => {
-            this.handleGetapi(`https://${process.env.API_HOST}/api/getConstructs/0/all/all/false/false/date`);
-        }, 500);
+        this.handleGetapi(`https://${process.env.API_HOST}/api/getConstructs/0/all/all/false/false/date`);
+    }
+
+    componentDidUpdate() {
+        //전체보기 GET 로직추가
+        if (this.props.datas !== "loading") return;
+
+        let constructname = this.getConstructName(this.state.active);
+        this.handleGetapi(`https://${process.env.API_HOST}/api/getConstructs/0/${constructname}/${this.state.product}/${this.state.checkedA}/${this.state.checkedB}/date`);
     }
 
     setProduct = (v: string) => {

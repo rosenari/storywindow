@@ -69,7 +69,7 @@
 }
 
 .submenu_item:hover{
-    color:#4ac6f5;
+    color:var(--color-main);;
 }
 
 .submenu_item > a{
@@ -79,7 +79,7 @@
 
 .submenu_item > a:hover{
     font-weight:600;
-    color:#4ac6f5;
+    color:var(--color-main);
     text-decoration:none;
 }
 

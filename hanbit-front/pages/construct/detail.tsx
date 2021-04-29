@@ -100,9 +100,7 @@ class Detail extends React.Component<DetailProps> {
     }
 
     componentDidMount() {
-        setTimeout(() => {
-            this.handleGetapi(`https://${process.env.API_HOST}/api/getConstruct/${this.props.query.id}`);
-        }, 500)
+        this.handleGetapi(`https://${process.env.API_HOST}/api/getConstruct/${this.props.query.id}`);
     }
 
     handleGetapi = (url: string) => {
@@ -118,17 +116,16 @@ class Detail extends React.Component<DetailProps> {
             datas == "loading" ? <Div><Label position="시공모음" sub_position="" /><Loading><CircularProgress /></Loading></Div> :
                 <Div>
                     <Label position="시공모음" sub_position="" />
-                    <Imgbox><img src={`https://${process.env.API_HOST}/uploads/${datas.data.result.imgurl}`} width="1000" height="500" /></Imgbox>
-                    <Title>{decodeURIComponent(datas.data.result.title)}</Title>
+                    <Imgbox>{datas?.data?.result?.imgurl && <img src={`https://${process.env.API_HOST}/uploads/${datas.data.result.imgurl}`} width="1000" height="500" />}</Imgbox>
+                    <Title>{datas?.data?.result?.title && decodeURIComponent(datas.data.result.title)}</Title>
                     <Tagbox>
-                        <Tag1>{decodeURIComponent(datas.data.result.space)}</Tag1>
+                        <Tag1>{datas?.data?.result?.space && decodeURIComponent(datas.data.result.space)}</Tag1>
                         {
-                            datas.data.result.tags.map((v: any, i: any) => {
+                            datas?.data?.result?.tag && datas.data.result.tags.map((v: any, i: any) => {
                                 return (
                                     <Tag2 key={i}>{decodeURIComponent(v)}</Tag2>
                                 );
                             })
-
                         }
                     </Tagbox>
                     <Content dangerouslySetInnerHTML={{ __html: decodeURIComponent(datas.data.result.contents) }}>

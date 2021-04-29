@@ -18,12 +18,12 @@
     height:150px;
 }
 .footer_inner_container_left{
-    width:900px;
+    width:674px;
     height:100%;
     float:left;
 }
 .footer_inner_container_right{
-     width:224px;
+     width:450px;
     height:100%;
     float:left;
     text-align:center;
@@ -50,5 +50,5 @@
     color:gray;
 }
 .footer_logo{
-    margin-top:10px;
+    margin-top:5px;
 }

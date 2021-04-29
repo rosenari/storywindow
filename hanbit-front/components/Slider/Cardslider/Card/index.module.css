@@ -1,0 +1,45 @@
+.card_slider_item{
+    position:relative;
+    width:372px;
+    height:280px;
+    border:#aaa solid;
+    border-width:0px;
+    text-align:center;
+    overflow:hidden;
+}
+.card_slider_img{
+    position:relative;
+    width:100%;
+    height:230px;
+    border-radius:5px;
+    overflow:hidden;
+}
+.card_slider_item_description{
+    position:relative;
+    width:100%;
+    height:50px;
+    opacity:0.9;
+    text-align:left;
+    padding:0 15px;
+    color:black;
+}
+.card_slider_item_description_title{
+    width:100%;
+    height:25px;
+    line-height:25px;
+    font-size:0.9em;
+}
+.card_slider_item_description_content{
+    width:100%;
+    height:25px;
+    line-height:25px;
+    font-size:0.8em;
+}
+
+@keyframes sparkle {
+    0% { transform: scale(0) rotate(45deg); opacity: 0; }
+    10% { transform: scale(0) rotate(45deg); opacity: 0.2; }
+    11% { transform: scale(4) rotate(45deg); opacity: 0.7; }
+    20% { transform: scale(30) rotate(45deg); opacity: 0; }
+    100% { transform: scale(30) rotate(45deg); opacity: 0; }
+}

@@ -1,0 +1,14 @@
+:root {
+    /* Color */
+    --color-main: #47a0f2;
+    --color-main-rgba: 51, 131, 202;
+    --color-red: rgb(255, 0, 0);
+    --color-blue: rgb(215, 226, 243);
+    --color-bright-purple: rgb(145, 53, 218);
+    --color-dark-purple: rgb(94, 80, 113);
+    --color-light-gray: rgb(187, 187, 187);
+    --color-white: white;
+    --color-black: black;
+    --color-light-mint: rgb(205, 219, 155);
+    --color-light-blue: rgba(196, 198, 226, 0.808);
+}

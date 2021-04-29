@@ -147,6 +147,7 @@ const Itemtext = styled.div`
 interface FilterProps {
     loading: any;
     getApi: any;
+    datas: any;
 }
 
 interface Data {
@@ -157,6 +158,7 @@ interface Data {
 interface FilterState {
     datas: Array<Data>;
     active: number;
+    index: number;
 }
 
 class Filter extends React.Component<FilterProps, FilterState> {
@@ -179,7 +181,8 @@ class Filter extends React.Component<FilterProps, FilterState> {
                 , { imgurl: "/images/product_verticul.png", text: "버티컬" }
                 , { imgurl: "/images/product_vene.png", text: "베니션" }
                 , { imgurl: "/images/product_holding.png", text: "홀딩도어" }],
-            active: 0
+            active: 0,
+            index: 0
         };
     }
 
@@ -201,9 +204,7 @@ class Filter extends React.Component<FilterProps, FilterState> {
         if (this.state.active !== nextState.active) {
             let productname = this.getProductName(nextState.active);
             this.props.loading();
-            setTimeout(() => {
-                this.handleGetapi(`https://${process.env.API_HOST}/api/getProducts/0/${productname}/date`);
-            }, 500);
+            this.handleGetapi(`https://${process.env.API_HOST}/api/getProducts/0/${productname}/date`);
         }
 
         return true;
@@ -212,9 +213,15 @@ class Filter extends React.Component<FilterProps, FilterState> {
     componentDidMount() {
         //전체보기 GET 로직추가
         console.log("componentDidMount");
-        setTimeout(() => {
-            this.handleGetapi(`https://${process.env.API_HOST}/api/getProducts/0/all/date`);
-        }, 500);
+        this.handleGetapi(`https://${process.env.API_HOST}/api/getProducts/0/all/date`);
+    }
+
+    componentDidUpdate() {
+        //전체보기 GET 로직추가
+        if (this.props.datas !== "loading") return;
+
+        let productname = this.getProductName(this.state.active);
+        this.handleGetapi(`https://${process.env.API_HOST}/api/getProducts/0/${productname}/date`);
     }
 
     LeftClick = () => {
@@ -248,7 +255,7 @@ class Filter extends React.Component<FilterProps, FilterState> {
                 <ButtonBox><LeftButton onClick={this.LeftClick}>{"<"}</LeftButton></ButtonBox>
                 <SelectContainer>
                     <ItemContainer ref={this.containerRef}>
-                        {this.state.datas.map((data, index) => {
+                        {this.state.datas && this.state.datas.map((data, index) => {
                             return (
                                 <Item key={index}>
                                     <Itemimgbox className={this.state.active == index ? 'active' : ''}>

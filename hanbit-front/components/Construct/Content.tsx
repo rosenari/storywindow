@@ -120,7 +120,7 @@ const Content: React.FC<ContentProps> = (props) => {
                     </Titlebox>
                     <Tagbox>
                         {
-                            props.tags.map((v, i) => {
+                            props.tags && props.tags.map((v, i) => {
                                 return (
                                     <Span key={i}>{decodeURIComponent(v)}</Span>
                                 );
