@@ -127,7 +127,7 @@ const Content: React.FC<ContentProps> = (props) => {
                             })
                         }
                     </Tagbox>
-                    <Likebox>조회 {props.views}회 / <strong>{props.date}</strong> 등록됨</Likebox>
+                    <Likebox><strong>{props.date}</strong> 등록됨</Likebox>
                 </Descriptbox_left>
             </Descriptbox>
         </Div>
