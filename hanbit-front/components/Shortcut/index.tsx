@@ -13,7 +13,7 @@ const Shortcut: React.FC = () => {
         <div className={styles.bottomlink}>
             <div className={styles.bottomlink_container}>
                 <div className={styles.bottomlink_item} style={{ cursor: "pointer" }} onClick={() => {
-                    alert('준비중입니다.');
+                    Router.push('/product/list');
                 }}>
                     <img src="/images/bottom_apply.png" width={IMG_WIDTH} height={IMG_HEIGHT} />
                 </div>
