@@ -116,7 +116,7 @@ const Content: React.FC<ContentProps> = (props) => {
                     query: { id: props.idx }
                 }}>
                     <a>
-                        <img src={`https://${process.env.API_HOST}/uploads/` + props.imgurl} height="338" />
+                        <img src={`https://${process.env.API_HOST}/uploads/` + props.imgurl} width="338" />
                     </a>
                 </Link>
             </Imgbox>
