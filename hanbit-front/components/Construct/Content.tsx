@@ -107,7 +107,7 @@ const Content: React.FC<ContentProps> = (props) => {
             <Imgbox>
                 <Link href={{ pathname: '/construct/detail', query: { id: props.idx } }}>
                     <a>
-                        <img src={`http://${process.env.API_HOST}/uploads/${props.imgurl}`} width="270" />
+                        <img src={`http://${process.env.API_HOST}/uploads/${props.imgurl}`} height="180" />
                     </a>
                 </Link>
             </Imgbox>
