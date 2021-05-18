@@ -77,7 +77,7 @@ class Contents extends Component<ContentsProps> {
                                     {
                                         line.map((v, i) => {
                                             return (
-                                                <Content key={i} idx={v.id} imgurl={v.imgurl} tags={v.tags} colors={v.colors} like={v.like} views={v.views} date={v.date} />
+                                                <Content key={v.id} idx={v.id} imgurl={v.imgurl} tags={v.tags} colors={v.colors} like={v.like} views={v.views} date={v.date} />
                                             );
                                         })
                                     }

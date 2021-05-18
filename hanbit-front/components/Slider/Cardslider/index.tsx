@@ -62,52 +62,6 @@ class Cardslider extends React.Component<CardsliderProps, CardsliderState> {
 
         return (
             <>
-                {/*<div className={styles.card_descript + ' ' + (this.state.active1 === true ? styles.active : '')}>
-                    <div className={styles.card_descript_title}>
-                        <div className={styles.card_descript_title_image}></div>
-                        <div className={styles.card_descript_title_center}>
-                            &nbsp;<span style={{ color: "#f6ad26" }}><strong>베스트</strong></span>
-                        &nbsp;블라인드시공&nbsp;
-                    </div>
-                        <div className={styles.card_descript_title_right}><FiMoreHorizontal /></div>
-                    </div>
-                    <div className={styles.card_descript_picture}>
-                        {(() => {
-                            switch (this.state.count % 4) {
-                                case 0:
-                                    return <img src="/images/card_image_4_mini.png" width="272" height="181" />;
-                                case 1:
-                                    return <img src="/images/card_image_1_mini.png" width="272" height="181" />;
-                                case 2:
-                                    return <img src="/images/card_image_2_mini.png" width="272" height="181" />;
-                                case 3:
-                                    return <img src="/images/card_image_3_mini.png" width="272" height="181" />;
-                                default:
-                                    return null;
-                            }
-                        })()}
-                    </div>
-                    <div className={styles.card_descript_like}>
-                        <div className={styles.card_descript_like_item}>
-                            <img src="/images/instagram_heart.png" width="24" height="24" />
-                        </div>
-                        <div className={styles.card_descript_like_item}>
-                            &nbsp;<img src="/images/instagram_bubble.png" width="24" height="24" />
-                        </div>
-                        <div className={styles.card_descript_like_item}>
-                            &nbsp;<img src="/images/instagram_paper.png" width="24" height="24" />
-                        </div>
-                        <div className={styles.card_descript_like_item}>
-                            &nbsp;<img src="/images/instagram_flag.png" width="24" height="24" />
-                        </div>
-                    </div>
-                    <div className={styles.card_descript_hashtag_1}>
-                        좋아요 999개
-                </div>
-                    <div className={styles.card_descript_hashtag_2}>
-                        <strong>한빛창</strong>&nbsp;<span style={{ color: "#466184" }}>#한빛창 #블라인드 #커튼</span>
-                    </div>
-                    </div>*/}
                 <div className={styles.card_slider + ' ' + (this.state.active2 === true ? styles.active : '')}>
                     <ItemsCarousel
                         infiniteLoop
@@ -121,7 +75,7 @@ class Cardslider extends React.Component<CardsliderProps, CardsliderState> {
                         {
                             this.props.data.map((v: any, i: any) => {
                                 return (
-                                    <Card key={"card_" + i} rank={v.rank} imgUrl={v.imgUrl} title={v.title} tags={v.tags} />
+                                    <Card key={v.rank} rank={v.rank} imgUrl={v.imgUrl} title={v.title} tags={v.tags} />
                                 );
                             })
                         }

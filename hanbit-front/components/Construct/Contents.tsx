@@ -72,7 +72,7 @@ class Contents extends Component<{
                                     {
                                         line.map((v, i) => {
                                             return (
-                                                <Content key={i} idx={v.id} imgurl={v.imgurl} title={v.title} tags={v.tags} like={v.like} views={v.views} date={v.date} space={v.space} />
+                                                <Content key={v.id} idx={v.id} imgurl={v.imgurl} title={v.title} tags={v.tags} like={v.like} views={v.views} date={v.date} space={v.space} />
                                             );
                                         })
                                     }
