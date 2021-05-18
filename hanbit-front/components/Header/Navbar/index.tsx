@@ -64,7 +64,7 @@ const LOGO_TEXT_TOP = styled.div`
 		letter-spacing:3px;
 		text-align:left;
 		padding-left:20px;
-		color:#312c90;
+		color:#555;
 		transform: scaleX(1.15);
 `;
 
@@ -165,8 +165,8 @@ const Navbar: React.FC<NavbarProps> = (props) => {
 						e.preventDefault();
 						alert('준비중입니다.');
 					}}><span>전국파트너모집</span><img src="/images/consult_img.png" height="28" width="28" className={styles.consult_img} /></a></Link>
-						<CLICKME />
-						<CLICKME_TEXT>클릭 !</CLICKME_TEXT>
+						{/*<CLICKME />
+						<CLICKME_TEXT>클릭 !</CLICKME_TEXT>*/}
 					</li>
 				</ul>
 			</nav>

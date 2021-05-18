@@ -107,7 +107,7 @@ const Content: React.FC<ContentProps> = (props) => {
             <Imgbox>
                 <Link href={{ pathname: '/construct/detail', query: { id: props.idx } }}>
                     <a>
-                        <img src={`http://${process.env.API_HOST}/uploads/${props.imgurl}`} width="270" />
+                        <img src={`http://${process.env.API_HOST}/uploads/${props.imgurl}`} height="180" />
                     </a>
                 </Link>
             </Imgbox>
@@ -127,7 +127,7 @@ const Content: React.FC<ContentProps> = (props) => {
                             })
                         }
                     </Tagbox>
-                    <Likebox>조회 {props.views}회 / <strong>{props.date}</strong> 등록됨</Likebox>
+                    <Likebox><strong>{props.date}</strong> 등록됨</Likebox>
                 </Descriptbox_left>
             </Descriptbox>
         </Div>
