@@ -2,8 +2,14 @@ import React from 'react';
 import { Imgslider, Cardslider, Cardmenu, Shortcut } from '../components';
 import styles from "./css/index.module.css";
 import Router from 'next/router';
+import { NextPage } from 'next';
+import { Context } from 'vm';
 
-const Home: React.FC = () => {
+interface HomeProps {
+	rankData: any
+}
+
+const Home: NextPage<HomeProps> = (props) => {
 
 	return (
 		<div>
@@ -18,32 +24,7 @@ const Home: React.FC = () => {
 						Router.push('/construct/list');
 					}}>더보기</span>
 				</div>
-				<Cardslider data={[
-					{
-						rank: "1위",
-						imgUrl: "/images/card_image_1.png",
-						title: "깔끔한 분위기의 식당으로 변신 ! - TestData",
-						tags: ["상업공간", "콤비블라인드"]
-					},
-					{
-						rank: "2위",
-						imgUrl: "/images/card_image_2.png",
-						title: "고급 가정집 분위기의 블라인드 - TestData",
-						tags: ["아파트", "허니콤쉐이드"]
-					},
-					{
-						rank: "3위",
-						imgUrl: "/images/card_image_3.png",
-						title: "부엌 인테리어 종결 블라인드 !! - TestData",
-						tags: ["아파트"]
-					},
-					{
-						rank: "4위",
-						imgUrl: "/images/card_image_4.png",
-						title: "카페분위기 제대로 내는 블라인드 - TestData",
-						tags: ["상업공간", "우드블라인드"]
-					}
-				]} />
+				<Cardslider data={props.rankData.result} />
 			</div>
 			<Cardmenu data={[
 				{ img: '/images/spaceimg_1.png', text: '아파트/빌라/다가구' },
@@ -54,6 +35,18 @@ const Home: React.FC = () => {
 			<Shortcut />
 		</div>
 	);
+}
+
+Home.getInitialProps = async (ctx: Context) => {
+
+	console.log("Home getInitialProps !");
+	const response = await fetch(`https://${process.env.API_HOST}/api/getLikeConstructs`);
+	const data = await response.json();
+
+	return {
+		rankData: data
+	}
+
 }
 
 export default Home;

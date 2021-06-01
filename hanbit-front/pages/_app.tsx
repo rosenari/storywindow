@@ -15,7 +15,6 @@ import "./global.color.css";
 const App: NextComponentType<AppContext, AppInitialProps, AppProps> = ({ Component, pageProps }) => {
 
 	console.log("APp");
-	console.log(pageProps);
 
 	const router = useRouter()
 

@@ -75,7 +75,7 @@ class Cardslider extends React.Component<CardsliderProps, CardsliderState> {
                         {
                             this.props.data.map((v: any, i: any) => {
                                 return (
-                                    <Card key={v.rank} rank={v.rank} imgUrl={v.imgUrl} title={v.title} tags={v.tags} />
+                                    <Card key={v.id} rank={(i + 1) + "위"} imgUrl={v.imgurl} title={v.title} tags={v.tags} />
                                 );
                             })
                         }

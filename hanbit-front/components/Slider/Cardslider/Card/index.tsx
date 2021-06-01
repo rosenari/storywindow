@@ -51,14 +51,14 @@ const Card: React.FC<Props> = ({ rank, imgUrl, title, tags }) => {
     return (
         <div className={styles.card_slider_item}>
             <Itemrank><Itemrankspan> {rank} </Itemrankspan></Itemrank>
-            <div className={styles.card_slider_img}><img src={imgUrl} width="375" height="230" /><SHINY /></div>
+            <div className={styles.card_slider_img}><img src={`https://${process.env.API_HOST}/uploads/${imgUrl}`} height="230" /><SHINY /></div>
             <div className={styles.card_slider_item_description}>
-                <div className={styles.card_slider_item_description_title}><strong>{title}</strong></div>
+                <div className={styles.card_slider_item_description_title}><strong>{decodeURIComponent(title)}</strong></div>
                 <div className={styles.card_slider_item_description_content}>
                     {
                         tags.map((v, i) => {
                             return (
-                                <Itemtagspan key={"tag_" + i}>{v}</Itemtagspan>
+                                <Itemtagspan key={"tag_" + i}>{decodeURIComponent(v)}</Itemtagspan>
                             )
                         })
                     }
