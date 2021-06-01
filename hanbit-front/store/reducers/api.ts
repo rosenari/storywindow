@@ -1,6 +1,5 @@
 import axios from 'axios';
 import { ServerResponse } from 'http';
-import { isArray } from 'node:util';
 import { call, put, takeEvery, takeLatest } from 'redux-saga/effects';
 
 function getRestApi(url: string) {
