@@ -4,6 +4,7 @@ import styles from "./css/index.module.css";
 import Router from 'next/router';
 import { NextPage } from 'next';
 import { Context } from 'vm';
+import axios from 'axios';
 
 interface HomeProps {
 	rankData: any
@@ -40,8 +41,9 @@ const Home: NextPage<HomeProps> = (props) => {
 Home.getInitialProps = async (ctx: Context) => {
 
 	console.log("Home getInitialProps !");
-	const response = await fetch(`https://${process.env.API_HOST}/api/getLikeConstructs`);
-	const data = await response.json();
+	const response = await axios.get(`https://${process.env.API_HOST}/api/getLikeConstructs`);
+	console.log("response");
+	const data = response.data;
 
 	return {
 		rankData: data
