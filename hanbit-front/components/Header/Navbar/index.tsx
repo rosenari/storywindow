@@ -161,10 +161,13 @@ const Navbar: React.FC<NavbarProps> = (props) => {
 					<li onMouseOver={props.AllMenu_up}><Link href="/product/list"><a>제품소개</a></Link></li>
 					<li onMouseOver={props.AllMenu_up}><Link href="/construct/list"><a ><CONSTRUCT_CIRCLE />파트너 시공</a></Link></li>
 
-					<li className={styles.consult_link}><Link href="#"><a onClick={(e) => {
-						e.preventDefault();
-						alert('준비중입니다.');
-					}}><span>전국파트너모집</span><img src="/images/consult_img.png" height="28" width="28" className={styles.consult_img} /></a></Link>
+					<li className={styles.consult_link}>
+						<Link href="/apply">
+							<a>
+								<span>전국파트너모집</span>
+								<img src="/images/consult_img.png" height="28" width="28" className={styles.consult_img} />
+							</a>
+						</Link>
 						{/*<CLICKME />
 						<CLICKME_TEXT>클릭 !</CLICKME_TEXT>*/}
 					</li>
