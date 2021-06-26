@@ -1,12 +1,15 @@
 var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
+var dotenv = require('dotenv');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var cors = require('cors');
 
 var indexRouter = require('./routes/index');
 var apiRouter = require('./routes/api');
+
+dotenv.config({ path: '.env' });
 
 var app = express();
 

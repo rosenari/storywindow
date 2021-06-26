@@ -1,11 +1,11 @@
 var mysql = require('mysql');
 
 var config = {
-	host: '192.168.50.44',
-	user: 'root',
-	password: 'chaintoor1!',
-	port: 3306,
-	database: 'noahswindow',
+	host: `${process.env.db_host}`,
+	user: `${process.env.db_user}`,
+	password: `${process.env.db_password}`,
+	port: `${process.env.db_port}`,
+	database: `${process.env.db_schema}`,
 	connectionLimit: 15,
 	waitForConnections: true
 };
