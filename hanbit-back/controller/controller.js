@@ -3,6 +3,8 @@ var productconfig = require("../model/productconfig");
 var product = require("../model/product");
 var constructconfig = require("../model/constructconfig");
 var construct = require("../model/construct");
+var sms = require('../lib/sms');
+
 
 module.exports = (function () {
 
@@ -245,6 +247,34 @@ module.exports = (function () {
 
         etcconfig.getSpace(req, res, handler, errhandler);
     }
+
+
+    /* *********************** */
+    /* API - SMS */
+    /* *********************** */
+
+    controller.pushSMS = (req, res) => {
+        console.log(sms.from);
+        sms.push([removeHyphen(req.body.phonenumber)], `[스토리창] 파트너 신청이 접수되었습니다.`)
+            .then((resp) => {
+                console.log(resp);
+                return sms.push(sms.storyPhoneList(),
+                    `업체명:${req.body.companyname},대표명:${req.body.ceoname},지역:${req.body.area},연락처:${req.body.phonenumber},이메일:${req.body.email}`)
+            })
+            .then((resp) => {
+                console.log(resp);
+                res.json({ "result": "success" });
+            })
+            .catch((err) => {
+                console.log(err);
+                res.json({ "result": "fail" });
+            })
+
+        function removeHyphen(phonenumber) {
+            return phonenumber.split('-').join('');
+        }
+    }
+
     return controller;
 
 })();

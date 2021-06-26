@@ -105,4 +105,11 @@ router.post('/delSpace', function (req, res, next) {
 router.get('/getSpace', function (req, res, next) {
    controller.getSpace(req, res);
 });
+
+//SMS
+
+router.post('/sms', function (req, res, next) {
+   controller.pushSMS(req, res);
+});
+
 module.exports = router;
