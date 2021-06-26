@@ -1,5 +1,4 @@
 var mysql = require('mysql');
-
 var config = {
 	host: `${process.env.db_host}`,
 	user: `${process.env.db_user}`,
