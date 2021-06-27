@@ -63,7 +63,7 @@ const Img = styled.img`
 const Detailbox_center = styled.div`
     position:relative;
     float:left;
-    width:624px;
+    width:834px;
     height:210px;
     padding-left:50px;
 `;
@@ -170,7 +170,6 @@ const Detail: React.FC<DetailProps> = (props) => {
             {props.data.map((v, i) => {
                 return (
                     <Detailbox key={"detail_" + i}>
-                        <Detailbox_left><Img src={v.Imgpath} /></Detailbox_left>
                         <Detailbox_center>
                             <Detailbox_title><Icon src="/images/noah_icon.png" />{v.title} <span style={{ color: "var(--color-main)" }}>{v.title2}</span></Detailbox_title>
                             <Detailbox_address><Icon2 src="/images/map_detailmarker.png" />{v.address}</Detailbox_address>

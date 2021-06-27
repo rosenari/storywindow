@@ -25,6 +25,7 @@ class MyDocument extends Document {
         return (
             <Html lang="en">
                 <Head>
+                    <link rel="canonical" href="https://storywindow.co.kr/" />
                     <link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&family=Jua&family=Noto+Sans+KR&family=Nanum+Brush+Script&display=swap" rel="stylesheet" />
                     <link rel="stylesheet" type="text/css" href="/css/nprogress.css" />
                 </Head>

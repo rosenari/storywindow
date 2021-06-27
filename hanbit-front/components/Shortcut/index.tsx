@@ -20,19 +20,19 @@ const Shortcut: React.FC = () => {
                 <div className={styles.bottomlink_item}>
                     <div className={styles.bottomlink_item_left}>
                         스토리창 SNS
-                        </div>
+                    </div>
                     <div className={styles.bottomlink_item_right}>
                         <img src="/images/bottom_link1.png" width={SNS_WIDTH} height={SNS_HEIGHT} style={{ cursor: "pointer" }} onClick={() => {
-                            location.href = "https://www.instagram.com/hanbitwindow/";
+                            alert("준비중입니다.");
                         }} />
                         <img src="/images/bottom_link2.png" width={SNS_WIDTH} height={SNS_HEIGHT} style={{ cursor: "pointer" }} onClick={() => {
-                            location.href = "https://blog.naver.com/limwj2464";
+                            alert("준비중입니다.");
                         }} />
                         <img src="/images/bottom_link3.png" width={SNS_WIDTH} height={SNS_HEIGHT} style={{ cursor: "pointer" }} onClick={() => {
-                            location.href = "https://www.pinterest.co.kr/limwj826";
+                            alert("준비중입니다.");
                         }} />
                         <img src="/images/bottom_link4.png" width={SNS_WIDTH} height={SNS_HEIGHT} style={{ cursor: "pointer" }} onClick={() => {
-                            location.href = "https://limwj2464.tistory.com/";
+                            alert("준비중입니다.");
                         }} />
                     </div>
                 </div>
@@ -46,7 +46,7 @@ const Shortcut: React.FC = () => {
                 <div className={styles.bottomlink_item}>
                     <div className={styles.bottomlink_item_left}>
                         메뉴 바로가기
-                        </div>
+                    </div>
                     <div className={styles.bottomlink_item_right}>
                         <button className={styles.bottom_notice} onClick={() => {
                             Router.push('/product/list');

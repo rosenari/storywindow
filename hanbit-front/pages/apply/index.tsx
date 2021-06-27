@@ -5,11 +5,12 @@ import * as apiActions from '../../store/reducers/api';
 import { NextPage } from 'next';
 import FadeIn from 'react-fade-in';
 import { useRouter } from 'next/router';
+import Link from 'next/link';
 
 const Div = styled.div`
     position:relative;
     width:100%;
-    height:1060px;
+    height:1100px;
 `;
 
 const Notice = styled.div`
@@ -61,7 +62,7 @@ const Input = styled.input`
 `;
 
 const ButtonBox = styled.div`
-    margin-top:30px;
+    margin-top:0px;
     position:relative;
     width:100%;
     text-align:center;
@@ -91,6 +92,15 @@ const DescBox = styled.div`
     text-align:center;
 `;
 
+const PrivacyBox = styled.div`
+    position:relative;
+    width:100;
+    height:80px;
+    line-height:80px;
+    font-size:0.9em;
+    text-align:center;
+`;
+
 interface ApplyProps {
     sms: any;
     pushSms: any;
@@ -105,11 +115,11 @@ interface IUserData {
 }
 
 const Apply: NextPage<ApplyProps> = (props) => {
-    const [userData, setUserData] = useState<IUserData>({});
+    const [userData, setUserData] = useState<IUserData>({ email: "" });
+    const [privacy, setPrivacy] = useState(false);
     const router = useRouter();
 
-    console.log(props);
-    console.log(userData);
+    console.log(privacy);
 
     if (props.sms?.data?.result === "success") {
         router.push('/apply/complete');
@@ -121,6 +131,11 @@ const Apply: NextPage<ApplyProps> = (props) => {
     }
 
     const BtnClick = useCallback(() => {
+        if (!privacy) {
+            alert('개인정보수집에 동의해주세요.')
+            return;
+        }
+
         if (!userData.phonenumber) {
             alert('연락처를 입력해주세요.');
             return;
@@ -137,13 +152,9 @@ const Apply: NextPage<ApplyProps> = (props) => {
             alert('지역을 입력해주세요.');
             return;
         }
-        if (!userData.email) {
-            alert('이메일을 입력해주세요.');
-            return;
-        }
 
         props.pushSms("https://api.storywindow.co.kr/api/sms", userData);
-    }, [userData]);
+    }, [userData, privacy]);
 
     const createChangeHandler = useCallback((category) => {
 
@@ -171,18 +182,19 @@ const Apply: NextPage<ApplyProps> = (props) => {
                         <Input placeholder="지역명을 입력해주세요." onChange={createChangeHandler("area")} />
                         <Category>연락처 <Orange>*</Orange></Category>
                         <Input placeholder="연락처를 입력해주세요." onChange={createChangeHandler("phonenumber")} />
-                        <Category>이메일 <Orange>*</Orange></Category>
+                        <Category>이메일</Category>
                         <Input type="email" placeholder="이메일을 입력해주세요." onChange={createChangeHandler("email")} />
                     </FadeIn>
                 </Box>
                 <DescBox>
-                    <p style={{ fontSize: "0.9em", fontWeight: 400, color: "#4D4D4D", fontFamily: "Noto Sans KR", fontStyle: "italic" }}>최고의 자재를 최저가격에 제공해드립니다</p>
+                    <p style={{ fontSize: "0.9em", fontWeight: 400, color: "#4D4D4D", fontFamily: "Noto Sans KR", fontStyle: "italic" }}>최고의 제품을 최저가격에 제공해드립니다</p>
                     <p style={{ fontSize: "0.9em", fontWeight: 400, color: "#4D4D4D", fontFamily: "Noto Sans KR", fontStyle: "italic" }}>지속적으로 성장할 플랫폼의 이점을 공유합니다</p>
                     <p style={{ fontSize: "0.9em", fontWeight: 400, color: "#4D4D4D", fontFamily: "Noto Sans KR", fontStyle: "italic" }}>노력과 땀을 공유합니다</p>
                 </DescBox>
+                <PrivacyBox><input type="checkbox" checked={privacy} onChange={() => setPrivacy(!privacy)} /> <Link href="/apply/privacy"><a>개인정보수집 및 이용</a></Link>에 동의합니다.</PrivacyBox>
                 <ButtonBox><Button onClick={BtnClick}>신청하기</Button></ButtonBox>
-            </FadeIn>
-        </Div>
+            </FadeIn >
+        </Div >
     )
 }
 
