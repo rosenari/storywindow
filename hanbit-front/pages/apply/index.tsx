@@ -1,10 +1,10 @@
-import React from 'react';
+import React, { useCallback, useState } from 'react';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
 import * as apiActions from '../../store/reducers/api';
 import { NextPage } from 'next';
 import FadeIn from 'react-fade-in';
-import { fontStyle } from '@material-ui/system';
+import { useRouter } from 'next/router';
 
 const Div = styled.div`
     position:relative;
@@ -91,7 +91,68 @@ const DescBox = styled.div`
     text-align:center;
 `;
 
-const Apply: NextPage = () => {
+interface ApplyProps {
+    sms: any;
+    pushSms: any;
+}
+
+interface IUserData {
+    phonenumber?: string;
+    companyname?: string;
+    ceoname?: string;
+    area?: string;
+    email?: string;
+}
+
+const Apply: NextPage<ApplyProps> = (props) => {
+    const [userData, setUserData] = useState<IUserData>({});
+    const router = useRouter();
+
+    console.log(props);
+    console.log(userData);
+
+    if (props.sms?.data?.result === "success") {
+        router.push('/apply/complete');
+    }
+
+    if (props.sms?.data?.result === "fail") {
+        props.sms.data.result = null;
+        alert('입력값을 제대로 확인해주세요.');
+    }
+
+    const BtnClick = useCallback(() => {
+        if (!userData.phonenumber) {
+            alert('연락처를 입력해주세요.');
+            return;
+        }
+        if (!userData.companyname) {
+            alert('회사명을 입력해주세요.');
+            return;
+        }
+        if (!userData.ceoname) {
+            alert('대표자명을 입력해주세요.');
+            return;
+        }
+        if (!userData.area) {
+            alert('지역을 입력해주세요.');
+            return;
+        }
+        if (!userData.email) {
+            alert('이메일을 입력해주세요.');
+            return;
+        }
+
+        props.pushSms("https://api.storywindow.co.kr/api/sms", userData);
+    }, [userData]);
+
+    const createChangeHandler = useCallback((category) => {
+
+        return function (e: any) {
+            setUserData({ ...userData, [category]: e.target.value });
+        }
+
+    }, [userData]);
+
     return (
         <Div>
             <FadeIn delay={300}>
@@ -103,15 +164,15 @@ const Apply: NextPage = () => {
                     <FadeIn delay={100}>
                         <Note>* 표시된 항목은 필수입력항목 입니다.</Note>
                         <Category>업체명 <Orange>*</Orange></Category>
-                        <Input placeholder="업체명을 입력해주세요." />
+                        <Input placeholder="업체명을 입력해주세요." onChange={createChangeHandler("companyname")} />
                         <Category>대표명 <Orange>*</Orange></Category>
-                        <Input placeholder="대표명을 입력해주세요." />
+                        <Input placeholder="대표명을 입력해주세요." onChange={createChangeHandler("ceoname")} />
                         <Category>지역 <Orange>*</Orange></Category>
-                        <Input placeholder="지역명을 입력해주세요." />
+                        <Input placeholder="지역명을 입력해주세요." onChange={createChangeHandler("area")} />
                         <Category>연락처 <Orange>*</Orange></Category>
-                        <Input placeholder="연락처를 입력해주세요." />
+                        <Input placeholder="연락처를 입력해주세요." onChange={createChangeHandler("phonenumber")} />
                         <Category>이메일 <Orange>*</Orange></Category>
-                        <Input placeholder="이메일을 입력해주세요." />
+                        <Input type="email" placeholder="이메일을 입력해주세요." onChange={createChangeHandler("email")} />
                     </FadeIn>
                 </Box>
                 <DescBox>
@@ -119,10 +180,20 @@ const Apply: NextPage = () => {
                     <p style={{ fontSize: "0.9em", fontWeight: 400, color: "#4D4D4D", fontFamily: "Noto Sans KR", fontStyle: "italic" }}>지속적으로 성장할 플랫폼의 이점을 공유합니다</p>
                     <p style={{ fontSize: "0.9em", fontWeight: 400, color: "#4D4D4D", fontFamily: "Noto Sans KR", fontStyle: "italic" }}>노력과 땀을 공유합니다</p>
                 </DescBox>
-                <ButtonBox><Button>신청하기</Button></ButtonBox>
+                <ButtonBox><Button onClick={BtnClick}>신청하기</Button></ButtonBox>
             </FadeIn>
         </Div>
     )
 }
 
-export default Apply;
+// props 값으로 넣어 줄 상태를 정의해줍니다.
+const mapStateToProps = (state: any) => ({
+    sms: state.api.sms
+});
+
+// props 값으로 넣어 줄 액션 함수들을 정의해줍니다
+const mapDispatchToProps = (dispatch: any) => ({
+    pushSms: (url: string, userData: object) => dispatch(apiActions.pushSms(url, userData))
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(Apply);

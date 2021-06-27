@@ -1,9 +1,13 @@
-import axios from 'axios';
+import axios, { AxiosResponse } from 'axios';
 import { ServerResponse } from 'http';
 import { call, put, takeEvery, takeLatest } from 'redux-saga/effects';
 
 function getRestApi(url: string) {
   return axios.get(url);
+}
+
+function postRestApi(...args: any[]) {
+  return axios.post((args as [string, object])[0], (args as [string, object])[1]);
 }
 
 // 액션 타입을 정의해줍니다.
@@ -13,6 +17,9 @@ const GET2 = 'api/GET2';
 const GET_SUCCESS = 'api/GET_SUCCESS';
 const GET_SUCCESS2 = 'api/GET_SUCCESS2'; //추가적으로 데이터 받아올때 성공
 const GET_FAILURE = 'api/GET_FAILURE';
+const SMS_POST = 'api/SMS_POST';
+const SMS_SUCCESS = 'api/SMS_SUCCESS';
+const SMS_FAILURE = 'api/SMS_FAILURE';
 
 export interface ActionProps {
   type?: string;
@@ -25,6 +32,23 @@ export interface ActionProps {
 export const getApi = (url: string) => ({ type: GET, url });
 export const getApi2 = (url: string) => ({ type: GET2, url });
 export const loading = () => ({ type: LOADING });
+export const pushSms = (url: string, userData: object) => ({ type: SMS_POST, url, payload: userData });
+
+interface Sms {
+  result: string;
+}
+
+function* postSmsHandler(action: ActionProps) {
+  try {
+    console.log("postSmsHandler");
+    console.log(action.url);
+    console.log(action.payload);
+    const response: ReturnType<typeof postRestApi> = yield call(postRestApi, action.url, action.payload);
+    yield put({ type: SMS_SUCCESS, payload: response });
+  } catch (e) {
+    yield put({ type: SMS_FAILURE, payload: e });
+  }
+}
 
 function* getApiSaga(action: ActionProps) {
   try {
@@ -50,11 +74,13 @@ function* getApiSaga2(action: ActionProps) {
 
 interface State {
   datas: any;
+  sms: any;
 }
 
 // 모듈의 초기 상태를 정의합니다.
 const initialState: State = {
   datas: "loading",
+  sms: null
 };
 
 export function* getSaga() {
@@ -65,6 +91,10 @@ export function* getSaga2() {
   yield takeLatest(GET2, getApiSaga2);
 }
 
+export function* getSmsSaga() {
+  yield takeLatest(SMS_POST, postSmsHandler);
+}
+
 // 리듀서를 만들어서 내보내줍니다.
 export default function reducer(state = initialState, action: ActionProps) {
   console.log(action);
@@ -73,14 +103,18 @@ export default function reducer(state = initialState, action: ActionProps) {
   switch (action.type) {
     case LOADING:
       const loading = "loading";
-      return { datas: loading };
+      return { ...state, datas: loading };
     case GET_SUCCESS:
       const datas = action.payload;
-      return { datas: datas };
+      return { ...state, datas: datas };
     case GET_SUCCESS2:
-      const result = { datas: action.payload };
+      const result = { ...state, datas: action.payload };
       result.datas.data.result = [...state.datas.data.result, ...result.datas.data.result];
       return result;
+    case SMS_SUCCESS:
+      return { ...state, sms: action.payload };
+    case SMS_FAILURE:
+      return { ...state, sms: { "result": "fail" } };
     case GET_FAILURE:
       console.log(action);
       return state;
