@@ -115,7 +115,7 @@ interface IUserData {
 }
 
 const Apply: NextPage<ApplyProps> = (props) => {
-    const [userData, setUserData] = useState<IUserData>({});
+    const [userData, setUserData] = useState<IUserData>({ email: "" });
     const [privacy, setPrivacy] = useState(false);
     const router = useRouter();
 
@@ -150,10 +150,6 @@ const Apply: NextPage<ApplyProps> = (props) => {
         }
         if (!userData.area) {
             alert('지역을 입력해주세요.');
-            return;
-        }
-        if (!userData.email) {
-            alert('이메일을 입력해주세요.');
             return;
         }
 
