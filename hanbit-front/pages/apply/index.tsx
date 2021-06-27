@@ -182,12 +182,12 @@ const Apply: NextPage<ApplyProps> = (props) => {
                         <Input placeholder="지역명을 입력해주세요." onChange={createChangeHandler("area")} />
                         <Category>연락처 <Orange>*</Orange></Category>
                         <Input placeholder="연락처를 입력해주세요." onChange={createChangeHandler("phonenumber")} />
-                        <Category>이메일 <Orange>*</Orange></Category>
+                        <Category>이메일</Category>
                         <Input type="email" placeholder="이메일을 입력해주세요." onChange={createChangeHandler("email")} />
                     </FadeIn>
                 </Box>
                 <DescBox>
-                    <p style={{ fontSize: "0.9em", fontWeight: 400, color: "#4D4D4D", fontFamily: "Noto Sans KR", fontStyle: "italic" }}>최고의 자재를 최저가격에 제공해드립니다</p>
+                    <p style={{ fontSize: "0.9em", fontWeight: 400, color: "#4D4D4D", fontFamily: "Noto Sans KR", fontStyle: "italic" }}>최고의 제품을 최저가격에 제공해드립니다</p>
                     <p style={{ fontSize: "0.9em", fontWeight: 400, color: "#4D4D4D", fontFamily: "Noto Sans KR", fontStyle: "italic" }}>지속적으로 성장할 플랫폼의 이점을 공유합니다</p>
                     <p style={{ fontSize: "0.9em", fontWeight: 400, color: "#4D4D4D", fontFamily: "Noto Sans KR", fontStyle: "italic" }}>노력과 땀을 공유합니다</p>
                 </DescBox>
