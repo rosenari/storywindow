@@ -255,7 +255,7 @@ module.exports = (function () {
 
     controller.pushSMS = (req, res) => {
         console.log(sms.from);
-        console.log(req.body);
+        console.log(req.body.phonenumber);
         sms.push([removeHyphen(req.body.phonenumber)], `[스토리창] 파트너 신청이 접수되었습니다.`)
             .then((resp) => {
                 console.log(resp);
