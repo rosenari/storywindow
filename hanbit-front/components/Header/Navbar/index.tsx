@@ -152,7 +152,7 @@ const Navbar: React.FC<NavbarProps> = (props) => {
 						<a>
 							<LOGO_IMG_BOX><img src="/images/storylogo.png" height="45" /></LOGO_IMG_BOX>
 							<LOGO_TEXT_BOX><LOGO_TEXT_TOP>스토리창</LOGO_TEXT_TOP><LOGO_TEXT_BOTTOM>&nbsp;</LOGO_TEXT_BOTTOM></LOGO_TEXT_BOX>
-							<STAMP>창문인테리어의 완성</STAMP>
+							<STAMP>전국 블라인드 도매</STAMP>
 						</a>
 					</Link>
 				</LOGO>
