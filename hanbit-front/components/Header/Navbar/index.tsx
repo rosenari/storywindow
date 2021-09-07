@@ -103,7 +103,7 @@ const CONSTRUCT_CIRCLE = styled.div`
 		position:absolute;
 		z-index:12px;
 		top:13px;
-		right:20px;
+		right:5px;
 		width:11px;
 		height:11px;
 		background:var(--color-main);
@@ -158,8 +158,8 @@ const Navbar: React.FC<NavbarProps> = (props) => {
 				</LOGO>
 				<ul className={styles.pc_menu}>
 					<li onMouseOver={props.Menu_down1}><Link href="/intro"><a>회사소개</a></Link></li>
-					<li onMouseOver={props.AllMenu_up}><Link href="/product/list"><a>제품소개</a></Link></li>
-					<li onMouseOver={props.AllMenu_up}><Link href="/construct/list"><a ><CONSTRUCT_CIRCLE />파트너 시공</a></Link></li>
+					<li onMouseOver={props.AllMenu_up}><Link href="/product/list"><a><CONSTRUCT_CIRCLE />파트너 시공모음</a></Link></li>
+					{/*<li onMouseOver={props.AllMenu_up}><Link href="/construct/list"><a ><CONSTRUCT_CIRCLE />파트너 시공</a></Link></li>*/}
 
 					<li className={styles.consult_link}>
 						<Link href="/apply">
