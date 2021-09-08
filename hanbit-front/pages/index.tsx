@@ -17,10 +17,9 @@ const Home: NextPage<HomeProps> = (props) => {
 			<Imgslider Img={['/images/slide_one.png', '/images/slide_two.png']} />
 			<div className={styles.card_main}>
 				<div className={styles.card_slider_header}>
-					고객님께 추천하는
 				<strong> 스토리 창
-					<span style={{ color: "var(--color-main)" }}> 베스트 시공</span>
-					</strong> 모음
+					<span style={{ color: "var(--color-main)" }}> 파트너 시공</span>
+				</strong>
 				<span className={styles.card_slider_header_more} onClick={() => {
 						Router.push('/construct/list');
 					}}>더보기</span>
