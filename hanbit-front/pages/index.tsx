@@ -14,7 +14,6 @@ const Home: NextPage<HomeProps> = (props) => {
 
 	return (
 		<div>
-			<Imgslider Img={['/images/slide_one.png', '/images/slide_two.png']} />
 			<div className={styles.card_main}>
 				<div className={styles.card_slider_header}>
 				<strong> 스토리 창
