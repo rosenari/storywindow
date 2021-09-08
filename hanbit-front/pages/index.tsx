@@ -1,5 +1,5 @@
 import React from 'react';
-import { Imgslider, Cardslider, Cardmenu, Shortcut } from '../components';
+import { Imgslider, Cardslider, Cardmenu } from '../components';
 import styles from "./css/index.module.css";
 import Router from 'next/router';
 import { NextPage } from 'next';
@@ -32,7 +32,6 @@ const Home: NextPage<HomeProps> = (props) => {
 				{ img: '/images/spaceimg_3.png', text: '상업공간' },
 				{ img: '/images/spaceimg_4.png', text: '사무실/관공서 기타' }
 			]} />
-			<Shortcut />
 		</div>
 	);
 }
