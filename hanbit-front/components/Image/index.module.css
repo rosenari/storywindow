@@ -1,0 +1,25 @@
+.image_ani {
+    animation: translate_animation infinite alternate 1s;
+}
+
+.shadow_ani {
+    animation: scale_animation infinite alternate 1s;
+}
+
+@keyframes translate_animation {
+    0%{
+		transform:  translateY(3px) ;
+	}
+	100%{
+		transform: translateY(-50px);
+	}
+}
+
+@keyframes scale_animation {
+    0%{
+		transform: scale(1);
+	}
+	100%{
+		transform: scale(0.7);
+	}
+}
