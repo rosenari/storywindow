@@ -14,15 +14,15 @@ const IMG_URL = {
 	BLIND_VECTOR: '/images/blind_vector.png'
 }
 
-const TAGS = ['#전국블라인드도매', '#공장제작', '#전국최저가', '#소량납품환영'].map((tag, i) => ({ id: i + 1, tag}));
+const TAGS = ['#전국블라인드도매', '#공장제작', '#전국최저가', '#소량주문환영'].map((tag, i) => ({ id: i + 1, tag}));
 
 const INTERIOR_DESCRIPTION = [
 	'ㆍ인테리어 완성을 위한 고품질의 블라인드를 전국 최저가에 제공해드립니다.',
-	'ㆍ공장에서 정확한 치수로 직접 제작하여, 인테리어의 완성도를 높여드립니다.'
+	'ㆍ공장에서 정확한 치수로 맞춤제작하여, 인테리어의 완성도를 높여드립니다.'
 ].map((desc, i) => ({ id: i + 1, desc}));
 
 const BLIND_DESCRIPTION = [
-	'ㆍ소규모 블라인드 파트너를 적극 지원합니다.',
+	'ㆍ소규모 블라인드, 커튼업체를 적극 지원해드립니다.',
 	'ㆍ단 한개의 납품도 최선을 다해 진행합니다.',
 	'ㆍ함께하는 성장을 추구합니다.'
 ].map((desc, i) => ({ id: i + 1, desc}));
@@ -38,6 +38,7 @@ interface RoundProps {
 
 const ROUND = styled.div<RoundProps>`
 		position: absolute;
+		opacity: 0;
 		top: ${props => props.top}px;
 		left: calc(50% + ${props => props.left}px);
 		width: ${props => props.width}px;
@@ -68,10 +69,10 @@ const Home: NextPage<HomeProps> = (props) => {
 					ㆍ <span className={styles.main}>공장</span>에서 블라인드를 직접 제작하여, <span className={styles.main}>전국 최저가</span>로 납품해드립니다
 				</div>
 				<div className={styles.recruit_description}>
-					ㆍ <span className={styles.main}>신생</span> 또는 <span className={styles.main}>소량 납품받는 업체</span>도 감사한 마음으로 친절하게 모십니다.
+					ㆍ <span className={styles.main}>신생</span> 또는 <span className={styles.main}>소량 발주하는 업체</span>도 감사한 마음으로 친절하게 모십니다.
 				</div>
 				<div className={styles.recruit_description}>
-					ㆍ <span className={styles.main}>건설업체, 관공서, 공공기관</span>에 다량 납품 가능합니다.
+					ㆍ <span className={styles.main}>건설업체, 관공서, 공공기관</span>에 대량 납품 가능합니다.
 				</div>
 				</FadeIn>
 				<div className={styles.logo_box}>
@@ -79,9 +80,12 @@ const Home: NextPage<HomeProps> = (props) => {
 				</div>
 			</div>
 			<div className={styles.card_main}>
+				<div className={styles.card_slider_subheader}>
+					현재 다수의 업체가 스토리창과 함께하고 있습니다.
+				</div>
 				<div className={styles.card_slider_header}>
 					<strong> 스토리 창
-						<span style={{ color: "var(--color-main)" }}> 파트너 시공</span>
+						<span style={{ color: "var(--color-main)" }}> 파트너 시공사례</span>
 					</strong>
 				<span className={styles.card_slider_header_more} onClick={() => {
 						Router.push('/construct/list');
@@ -134,9 +138,7 @@ const Home: NextPage<HomeProps> = (props) => {
 
 Home.getInitialProps = async (ctx: Context) => {
 
-	console.log("Home getInitialProps !");
 	const response = await axios.get(`https://${process.env.API_HOST}/api/getLikeConstructs`);
-	console.log("response");
 	const data = response.data;
 
 	return {
