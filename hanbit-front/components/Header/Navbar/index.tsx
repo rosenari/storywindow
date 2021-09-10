@@ -162,9 +162,9 @@ const Navbar: React.FC<NavbarProps> = (props) => {
 					{/*<li onMouseOver={props.AllMenu_up}><Link href="/construct/list"><a ><CONSTRUCT_CIRCLE />파트너 시공</a></Link></li>*/}
 
 					<li className={styles.consult_link}>
-						<Link href="/apply">
+						<Link href="/">
 							<a>
-								<span>전국파트너모집</span>
+								<span>전국파트너문의</span>
 								<img src="/images/consult_img.png" height="28" width="28" className={styles.consult_img} />
 							</a>
 						</Link>
