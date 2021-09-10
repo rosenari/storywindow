@@ -27,6 +27,41 @@ const BLIND_DESCRIPTION = [
 	'ㆍ함께하는 성장을 추구합니다.'
 ].map((desc, i) => ({ id: i + 1, desc}));
 
+const rounds = [
+	{
+		top: 300,
+		left: 700,
+		width: 500,
+		height: 500,
+		duration: 3.0,
+		delay: 1.0
+	},
+	{
+		top: 100,
+		left: 100,
+		width: 300,
+		height: 300,
+		duration: 4.2,
+		delay: 0.0
+	},
+	{
+		top: 0,
+		left: -500,
+		width: 200,
+		height: 200,
+		duration: 2.0,
+		delay: 2.0
+	},
+	{
+		top: 200,
+		left: -900,
+		width: 300,
+		height: 300,
+		duration: 3.2,
+		delay: 0.0
+	},
+];
+
 interface RoundProps {
 	top: number;
 	left: number;
@@ -63,7 +98,7 @@ const Home: NextPage<HomeProps> = (props) => {
 					스토리창 <span className={styles.main}>전국 파트너</span> 모집
 				</div>
 				<div className={styles.tag_main}>
-					{TAGS.map(v => <span key={v.id} className={styles.tag}>{v.tag}</span>)}
+					{TAGS.map(({ id, tag }) => <span key={id} className={styles.tag}>{tag}</span>)}
 				</div>
 				<div className={styles.recruit_description} style={{ marginTop:'100px' }}>
 					ㆍ <span className={styles.main}>공장</span>에서 블라인드를 직접 제작하여, <span className={styles.main}>전국 최저가</span>로 납품해드립니다
@@ -106,7 +141,7 @@ const Home: NextPage<HomeProps> = (props) => {
 						</div>
 						<div className={styles.body}>
 							<div className={styles.description_box}>
-								{INTERIOR_DESCRIPTION.map(v => <div key={v.id} className={styles.description}>{v.desc}</div>)}
+								{INTERIOR_DESCRIPTION.map(({ id, desc }) => <div key={id} className={styles.description}>{desc}</div>)}
 							</div>
 							<div className={styles.img_box}>
 								<img src={IMG_URL.INTERIOR_VECTOR} width={200} />
@@ -128,10 +163,8 @@ const Home: NextPage<HomeProps> = (props) => {
 					</div>
 				</div>
 			</div>
-			<ROUND top={300} left={700} width={500} height={500} duration={3.0} delay={1.0} />
-			<ROUND top={100} left={100} width={300} height={300} duration={4.2} delay={0.0} />
-			<ROUND top={0} left={-500} width={200} height={200} duration={2.0} delay={2.0} />
-			<ROUND top={200} left={-900} width={300} height={300} duration={3.2} delay={0.0} />
+			{rounds.map(({ top, left, width, height, duration, delay}) => 
+				<ROUND top={top} left={left} width={width} height={height} duration={duration} delay={delay} />)}
 		</div>
 	);
 }
