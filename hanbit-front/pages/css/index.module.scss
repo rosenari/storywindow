@@ -164,3 +164,18 @@
     color: var(--color-main);
     transition: ease-in-out 0.1s;
 }
+
+@keyframes zoom_animation {
+	0%{
+		opacity:0;
+		transform: scale(0.6);
+	}
+	80%{
+        opacity:1;
+		transform: scale(1.2);
+	}
+	100%{
+        opacity:0;
+		transform: scale(1);
+	}
+}

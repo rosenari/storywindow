@@ -5,6 +5,7 @@ import { NextPage } from "next";
 import { Context } from "vm";
 import axios from "axios";
 import FadeIn from "react-fade-in";
+import styled from 'styled-components';
 import styles from "./css/index.module.scss";
 
 const IMG_URL = {
@@ -12,16 +13,40 @@ const IMG_URL = {
 	INTERIOR_VECTOR: '/images/interior_vector.png',
 	BLIND_VECTOR: '/images/blind_vector.png'
 }
+
 const TAGS = ['#전국블라인드도매', '#공장제작', '#전국최저가', '#소량납품환영'].map((tag, i) => ({ id: i + 1, tag}));
+
 const INTERIOR_DESCRIPTION = [
 	'ㆍ인테리어 완성을 위한 고품질의 블라인드를 전국 최저가에 제공해드립니다.',
 	'ㆍ공장에서 정확한 치수로 직접 제작하여, 인테리어의 완성도를 높여드립니다.'
 ].map((desc, i) => ({ id: i + 1, desc}));
+
 const BLIND_DESCRIPTION = [
 	'ㆍ소규모 블라인드 파트너를 적극 지원합니다.',
 	'ㆍ단 한개의 납품도 최선을 다해 진행합니다.',
 	'ㆍ함께하는 성장을 추구합니다.'
 ].map((desc, i) => ({ id: i + 1, desc}));
+
+interface RoundProps {
+	top: number;
+	left: number;
+	width: number;
+	height: number;
+	duration: number;
+	delay: number;
+}
+
+const ROUND = styled.div<RoundProps>`
+		position: absolute;
+		top: ${props => props.top}px;
+		left: calc(50% + ${props => props.left}px);
+		width: ${props => props.width}px;
+		height: ${props => props.height}px;
+		background-image:url('/images/round01.png');
+		background-size: ${props => props.width}px ${props => props.height}px;
+		animation:${styles.zoom_animation} ${props => props.duration}s ${props => props.delay}s ease-in-out infinite;
+		z-index: -10;
+`;
 
 interface HomeProps {
 	rankData: any
@@ -99,6 +124,10 @@ const Home: NextPage<HomeProps> = (props) => {
 					</div>
 				</div>
 			</div>
+			<ROUND top={300} left={700} width={500} height={500} duration={3.0} delay={1.0} />
+			<ROUND top={100} left={100} width={300} height={300} duration={4.2} delay={0.0} />
+			<ROUND top={0} left={-500} width={200} height={200} duration={2.0} delay={2.0} />
+			<ROUND top={200} left={-900} width={300} height={300} duration={3.2} delay={0.0} />
 		</div>
 	);
 }
