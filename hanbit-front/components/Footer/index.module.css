@@ -31,6 +31,16 @@
 .footer_menu_1{
     margin-top:5px;
 }
+
+.footer_menu_1 > a {
+    color:black;
+}
+
+.footer_menu_1 > a:hover {
+    color: var(--color-main);
+    text-decoration: none;
+}
+
 .footer_menu_2{
     margin-top:15px;
     font-size:0.9em;
