@@ -1,5 +1,5 @@
 import React from "react";
-import { Cardslider, Image } from "../components";
+import { Cardslider, Image, PulseBox } from "../components";
 import Router from "next/router";
 import { NextPage } from "next";
 import { Context } from "vm";
@@ -15,6 +15,7 @@ const IMG_URL = {
 }
 
 const TAGS = ['#전국블라인드도매', '#공장제작', '#전국최저가', '#소량주문환영'].map((tag, i) => ({ id: i + 1, tag}));
+const AD_TAGS = ['#블라인드모터판매', '#모터최저가', '#장착형모터'].map((tag, i) => ({ id: i + 1, tag}));
 
 const INTERIOR_DESCRIPTION = [
 	'ㆍ인테리어 완성을 위한 고품질의 블라인드를 전국 최저가에 제공해드립니다.',
@@ -60,6 +61,30 @@ const rounds = [
 		duration: 3.2,
 		delay: 0.0
 	},
+	{
+		top: 700,
+		left: -700,
+		width: 500,
+		height: 500,
+		duration: 2.2,
+		delay: 2.2
+	},
+	{
+		top: 1200,
+		left: 700,
+		width: 350,
+		height: 350,
+		duration: 3.2,
+		delay: 1.2
+	},
+	{
+		top: 1300,
+		left: -900,
+		width: 200,
+		height: 200,
+		duration: 2.2,
+		delay: 3.2
+	}
 ];
 
 interface RoundProps {
@@ -92,6 +117,15 @@ const Home: NextPage<HomeProps> = (props) => {
 
 	return (
 		<div>
+			<div className={styles.advertise_main}>
+				<div className={styles.advertise_box}>
+					<PulseBox text={'DC모터'} top={9} left={110}  />
+					<PulseBox text={'AC모터'} top={9} left={183}  />
+					<img src='/images/leftmenu_img1.png' width={50} height={50} />
+					<div className={styles.advertise_title}><span style={{ marginLeft:'70px', marginRight: '20px' }}>충전식ㆍ전기식 커튼, 블라인드 모터 판매합니다 !</span></div>
+					<div>{AD_TAGS.map(({ id, tag }) => <span key={id} className={styles.tag_small}>{tag}</span>)}</div>
+				</div>
+			</div>
 			<div className={styles.recruit_main}>
 				<FadeIn delay={300}>
 				<div className={styles.recruit_title}>
@@ -123,9 +157,10 @@ const Home: NextPage<HomeProps> = (props) => {
 						<span style={{ color: "var(--color-main)" }}> 파트너 시공사례</span>
 					</strong>
 				<span className={styles.card_slider_header_more} onClick={() => {
-						Router.push('/construct/list');
+						Router.push('/product/list');
 					}}>더보기</span>
 				</div>
+				<Cardslider data={props.rankData.result} />
 				<Cardslider data={props.rankData.result} />
 			</div>
 			<div className={styles.industry_main}>

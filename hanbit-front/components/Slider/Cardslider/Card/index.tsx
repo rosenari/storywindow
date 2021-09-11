@@ -1,6 +1,7 @@
 import React from "react";
 import styles from "./index.module.css";
 import styled from "styled-components";
+import Router from "next/router";
 
 const Itemtagspan = styled.span`
     background:var(--color-main);
@@ -21,12 +22,13 @@ const Itemrank = styled.div`
     z-index:999;
 `;
 const Itemrankspan = styled.div`
-    background:var(--color-main);
+    background: linear-gradient(45deg, #FFB15E 0%, #F8FF3F 100%);
     padding:3px;
     padding-left:5px;
     padding-right:5px;
     border-radius:3px;
-    color:white;
+    font-family: 'SBAggroM', sans-serif;
+    color: #444;
 `;
 
 const SHINY = styled.div`
@@ -50,20 +52,10 @@ const Card: React.FC<Props> = ({ rank, imgUrl, title, tags }) => {
 
     return (
         <div className={styles.card_slider_item}>
-            <Itemrank><Itemrankspan> {rank} </Itemrankspan></Itemrank>
-            <div className={styles.card_slider_img}><img src={`https://${process.env.API_HOST}/uploads/${imgUrl}`} height="230" /><SHINY /></div>
-            <div className={styles.card_slider_item_description}>
-                <div className={styles.card_slider_item_description_title}><strong>{decodeURIComponent(title)}</strong></div>
-                <div className={styles.card_slider_item_description_content}>
-                    {
-                        tags.map((v, i) => {
-                            return (
-                                <Itemtagspan key={"tag_" + i}>{decodeURIComponent(v)}</Itemtagspan>
-                            )
-                        })
-                    }
-                </div>
-            </div>
+            <Itemrank><Itemrankspan> {decodeURIComponent(tags[0])} </Itemrankspan></Itemrank>
+            <div className={styles.card_slider_img} onClick={() => {
+                Router.push('/product/list');
+            }}><img src={`https://${process.env.API_HOST}/uploads/${imgUrl}`} height="230" /><SHINY /></div>
         </div>
     )
 }
