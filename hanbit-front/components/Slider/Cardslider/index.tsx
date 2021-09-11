@@ -4,16 +4,19 @@ import ItemsCarousel from 'react-items-carousel';
 import styles from './index.module.css';
 import Card from "./Card";
 
-interface CardsliderProps {
-    data: any;
+interface DelayProps {
+    startDelay: number;
     delay: number;
 }
 
-interface CardsliderState {
+interface CardsliderProps extends DelayProps {
+    data: any;
+}
+
+interface CardsliderState extends DelayProps {
     count: number;
     active1: boolean;
     active2: boolean;
-    delay: number;
 }
 
 class Cardslider extends React.Component<CardsliderProps, CardsliderState> {
@@ -25,6 +28,7 @@ class Cardslider extends React.Component<CardsliderProps, CardsliderState> {
             count: 0,
             active1: false,
             active2: false,
+            startDelay: props.startDelay,
             delay: props.delay
         };
     }
@@ -33,7 +37,10 @@ class Cardslider extends React.Component<CardsliderProps, CardsliderState> {
         if (!this.state.active1) {
             this.setActive();
         }
-        this.timerID = setInterval(() => this.tick(), this.state.delay);
+        
+        setTimeout(() => {
+            this.timerID = setInterval(() => this.tick(), this.state.delay);
+        }, this.state.startDelay);
     }
 
     componentWillUnmount() {
