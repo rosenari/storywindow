@@ -160,8 +160,8 @@ const Home: NextPage<HomeProps> = (props) => {
 						Router.push('/product/list');
 					}}>더보기</span>
 				</div>
-				<Cardslider data={props.rankData.result} />
-				<Cardslider data={props.rankData.result} />
+				<Cardslider data={props.rankData.result} delay={3000} />
+				<Cardslider data={props.rankData.result} delay={4000} />
 			</div>
 			<div className={styles.industry_main}>
 				<div className={styles.industry_header}>

@@ -1,19 +1,19 @@
 import React from "react";
 // @ts-ignore
 import ItemsCarousel from 'react-items-carousel';
-import { FiMoreHorizontal } from 'react-icons/fi';
-import styled from 'styled-components';
 import styles from './index.module.css';
 import Card from "./Card";
 
 interface CardsliderProps {
     data: any;
+    delay: number;
 }
 
 interface CardsliderState {
     count: number;
     active1: boolean;
     active2: boolean;
+    delay: number;
 }
 
 class Cardslider extends React.Component<CardsliderProps, CardsliderState> {
@@ -24,7 +24,8 @@ class Cardslider extends React.Component<CardsliderProps, CardsliderState> {
         this.state = {
             count: 0,
             active1: false,
-            active2: false
+            active2: false,
+            delay: props.delay
         };
     }
 
@@ -32,7 +33,7 @@ class Cardslider extends React.Component<CardsliderProps, CardsliderState> {
         if (!this.state.active1) {
             this.setActive();
         }
-        this.timerID = setInterval(() => this.tick(), 4000);
+        this.timerID = setInterval(() => this.tick(), this.state.delay);
     }
 
     componentWillUnmount() {
