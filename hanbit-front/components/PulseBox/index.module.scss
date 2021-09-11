@@ -1,0 +1,27 @@
+.main {
+    position: absolute;
+    background: #333;
+    color:white;
+    font-family: 'SBAggroL', sans-serif;
+    font-size: 0.3em;
+    padding-left: 5px;
+    padding-right: 17px;
+    height: 15px;
+    line-height: 16px;
+    border-radius: 2px;
+}
+
+@keyframes circle_animation {
+    0% {
+        -moz-box-shadow: 0 0 0 0 rgba(var(--color-red-rgba), 0.5);
+        box-shadow: 0 0 0 0 rgba(var(--color-red-rgba), 0.5);
+      }
+      50% {
+        -moz-box-shadow: 0 0 0 20px rgba(var(--color-red-rgba), 0.0);
+        box-shadow: 0 0 0 20px rgba(var(--color-red-rgba), 0.0);
+      }
+      100% {
+        -moz-box-shadow: 0 0 0 0px rgba(var(--color-red-rgba), 0.0);
+        box-shadow: 0 0 0 0px rgba(var(--color-red-rgba), 0.0);
+      }
+}
