@@ -12,6 +12,7 @@ import { AppContext, AppInitialProps } from 'next/app';
 import { AppProps } from 'next/dist/next-server/lib/router/router';
 import './global.color.css';
 import './global.font.css';
+import './firework.scss';
 
 const App: NextComponentType<AppContext, AppInitialProps, AppProps> = ({ Component, pageProps }) => {
 

@@ -1,5 +1,5 @@
 import React from "react";
-import { Cardslider, Image, PulseBox } from "../components";
+import { Cardslider, Image, PulseBox, NoticePopup } from "../components";
 import Router from "next/router";
 import { NextPage } from "next";
 import { Context } from "vm";
@@ -199,6 +199,7 @@ const Home: NextPage<HomeProps> = (props) => {
 			</div>
 			{rounds.map(({ top, left, width, height, duration, delay}) => 
 				<ROUND top={top} left={left} width={width} height={height} duration={duration} delay={delay} />)}
+			<NoticePopup />
 		</div>
 	);
 }
