@@ -161,7 +161,6 @@ const Home: NextPage<HomeProps> = (props) => {
 					}}>더보기</span>
 				</div>
 				<Cardslider data={props.rankData.result} startDelay={0} delay={3000} />
-				<Cardslider data={props.rankData.result} startDelay={1000} delay={3000} />
 			</div>
 			<div className={styles.industry_main}>
 				<div className={styles.industry_header}>
@@ -206,7 +205,7 @@ const Home: NextPage<HomeProps> = (props) => {
 
 Home.getInitialProps = async (ctx: Context) => {
 
-	const response = await axios.get(`https://${process.env.API_HOST}/api/getLikeConstructs`);
+	const response = await axios.get(`https://${process.env.API_HOST}/api/getProducts/0/all/date`);
 	const data = response.data;
 
 	return {

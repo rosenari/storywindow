@@ -33,7 +33,7 @@ const Descript: React.FC<DescriptProps> = (props) => {
     return (
         <Div>
             <Leftdiv>
-                총 <span style={{ color: "orange" }}>{products}</span>개의 제품
+                총 <span style={{ color: "orange" }}>{products}</span>개의 시공사례
             </Leftdiv>
         </Div>
     );

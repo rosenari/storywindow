@@ -16,7 +16,7 @@ const List: NextPage = () => {
 
     return (
         <Div>
-            <Label position="제품소개" sub_position="" />
+            <Label position="파트너 시공모음" sub_position="" />
             <PFilter />
             <PContents />
         </Div>
