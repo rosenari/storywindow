@@ -11,7 +11,7 @@
 .navmenu {
     position:relative;
     margin:0 auto;
-    width:1124px;
+    width:1134px;
     height:60px;
     z-index:10;
 }
@@ -42,7 +42,7 @@
 .consult_img{
     position:absolute;
     top:15px;
-    left:60px;
+    left:74px;
 }
 
 .sns_link > img {
@@ -95,7 +95,7 @@
     float:right;
     width:240px; 
     text-align:right;
-    padding-right:15px;
+    padding-right:0px;
     color:white;
 }
   

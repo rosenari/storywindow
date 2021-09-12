@@ -10,5 +10,6 @@ export { default as Navermap } from './Navermap';
 export { default as PContents } from './Product/Contents';
 export { default as PFilter } from './Product/Filter';
 export { default as PulseBox } from './PulseBox';
+export { default as NoticePopup } from './Popup/NoticePopup';
 export { default as CContents } from './Construct/Contents';
 export { default as CFilter } from './Construct/Filter';
