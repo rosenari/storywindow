@@ -3,8 +3,8 @@ import styles from './index.module.scss';
 import Popup, { FooterPopupProps } from '../index';
 
 const NoticePopup: React.FC = () => {
-    const width = '400px';
-    const height = '230px';
+    const width = '600px';
+    const height = '290px';
 
     const Header: React.FC = () => {
         return (
