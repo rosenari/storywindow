@@ -19,13 +19,14 @@ const Div = styled.div`
     position:relative;
     width:1114px;
     min-height:500px;
+    margin-bottom:30px;
 `;
 const Line = styled.div`
     clear:both;
     position:relative;
     width:1114px;
-    height:270px;
-    margin-bottom:33px;
+    height:180px;
+    margin-bottom:10px;
 `;
 
 const More = styled.div`

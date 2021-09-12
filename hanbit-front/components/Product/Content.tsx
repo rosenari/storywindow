@@ -5,7 +5,7 @@ const Div = styled.div`
     position:relative;
     float:left;
     width:270px;
-    height:270px;
+    height:200px;
     
     & + Div{
         margin-left:11px;
@@ -41,10 +41,11 @@ const Imgbox = styled.div`
 `;
 
 const Tagbox = styled.div`
-    margin-top:5px;
-    position:relative;
-    width:270px;
+    position:absolute;
+    bottom:5px;
+    right:5px;
     height:25px;
+    z-index: 50;
 `;
 
 const Colorbox = styled.div`
@@ -119,8 +120,7 @@ const Content: React.FC<ContentProps> = (props) => {
                         <img src={`https://${process.env.API_HOST}/uploads/` + props.imgurl} width="338" />
                     </a>
                 </Link>
-            </Imgbox>
-            <Tagbox>
+                <Tagbox>
                 {
                     props.tags && props.tags.map((v, i) => {
                         return (
@@ -128,18 +128,8 @@ const Content: React.FC<ContentProps> = (props) => {
                         );
                     })
                 }
-            </Tagbox>
-            <Colorbox>
-                <Colordescript>보유색상</Colordescript>
-                {
-                    props.colors && props.colors.map((v, i) => {
-                        return (
-                            <ColorItem key={i} style={{ background: v }} />
-                        );
-                    })
-                }
-            </Colorbox>
-            <Likebox><strong>{props.date}</strong> 등록됨</Likebox>
+                </Tagbox>
+            </Imgbox>
         </Div>
     );
 }
