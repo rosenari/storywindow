@@ -1,10 +1,10 @@
-$count: 15;
+$count: 20;
 $frame-list: firework-sm, firework-md, firework-lg;
 @for $i from 1 through $count {
   .firework-#{$i} {
     animation: nth($frame-list, random(3)) 1.2s both infinite;
     animation-delay: #{random($count) * 0.2}s;
-    top: random(18) * 5%;
+    top: random(16) * 5%;
     left: random(18) * 5%;
   }
 }
