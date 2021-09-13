@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import styles from './index.module.scss';
 
 export interface FooterPopupProps{
+    storeExpireData: (name: String, setVisible: React.Dispatch<React.SetStateAction<boolean>>) => void;
     setVisible: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
@@ -13,13 +14,16 @@ interface PopupSize{
 interface PopupProps {
     name: String;
     Header: React.FunctionComponent;
-    Body: React.FunctionComponent;
+    Body: React.FunctionComponent<{ setVisible?: any }>;
     Footer: React.FunctionComponent<FooterPopupProps>;
-    size?: PopupSize
+    size?: PopupSize;
+    visible: Boolean;
+    setVisible: React.Dispatch<React.SetStateAction<Boolean>>;
 }
 
-const setBackgroundVisibility = (power: Boolean) => {
-    const background = document.querySelector<HTMLElement>(`.${styles.main}`);
+const setBackgroundVisibility = (name: String, power: Boolean) => {
+    const background = document.querySelector<HTMLElement>(`.${name}.${styles.main}`);
+    console.log(background);
     if(power){
         background && (background.style.visibility = 'visible');
     }else {
@@ -27,8 +31,8 @@ const setBackgroundVisibility = (power: Boolean) => {
     }
 }
 
-const setPopupVisibility = (power: Boolean, height: string) => {
-    const popup = document.querySelector<HTMLElement>(`.${styles.popup}`);
+const setPopupVisibility = (name: String, power: Boolean, height: string) => {
+    const popup = document.querySelector<HTMLElement>(`.${name}.${styles.popup}`);
     if(power){
         popup && (popup.style.height = height);
     }else {
@@ -44,6 +48,13 @@ const validExpireDate = (name: String) => {
     return currentTime < expireDate;
 }
 
+const storeExpireData = (name: String, setVisible: React.Dispatch<React.SetStateAction<boolean>>) => {
+    const expireTime = new Date();
+    expireTime.setHours(expireTime.getHours() + 24);
+    localStorage.setItem(`${name}_POPUP_CLOSE_EXPIRE`, `${expireTime.getTime()}`);
+    setVisible(false);
+}
+
 const Fireworks: React.FC = () => {
     return (
         <div>
@@ -52,30 +63,28 @@ const Fireworks: React.FC = () => {
     )
 }
 
-const Popup: React.FC<PopupProps> = ({ name, Header, Body, Footer, size = { width: '400px', height: '150px'} }) => {
-    const [visible, setVisible] = useState(true);
-
+const Popup: React.FC<PopupProps> = ({ name, Header, Body, Footer, size = { width: '400px', height: '150px'}, visible, setVisible }) => {
     useEffect(() => {
         if(validExpireDate(name)) setVisible(false); //현재시간이 닫힘유효시간보다 작다면, 팝업 숨기기
     
-        setPopupVisibility(visible, size.height);
-        setBackgroundVisibility(visible);
+        setPopupVisibility(name, visible, size.height);
+        setBackgroundVisibility(name, visible);
     }, [visible]);
 
     return (
-        <div className={styles.main} onClick={() => setVisible(false)}>
-            <div className={styles.popup} onClick={(e) => e.stopPropagation()} style={{ width: size.width, height: '0px'}}>
-                <div className={styles.popup_header}>
+        <div className={name + ' ' + styles.main} onClick={() => setVisible(false)}>
+            <div className={name + ' ' + styles.popup} onClick={(e) => e.stopPropagation()} style={{ width: size.width, height: '0px'}}>
+                <div>
                     <Header />
                 </div>
-                <div className={styles.popup_body}>
-                    <Body />
+                <div>
+                    <Body setVisible={setVisible} />
                 </div>
-                <div className={styles.popup_footer}>
-                    <Footer setVisible={setVisible} />
+                <div>
+                    <Footer storeExpireData={storeExpireData} setVisible={setVisible} />
                 </div>
             </div>
-            <Fireworks />
+            {name === 'notice' && <Fireworks /> }
         </div>
     )   
 }
