@@ -47,6 +47,7 @@ module.exports = (function(){
                 let obj = new Object();
                 obj.id = result[i].id;
                 obj.imgurl = result[i].thumbnail;
+		obj.mainImgurl = result[i].mainimage;
                 obj.tags = result[i].tags.split(",");
                 obj.colors = result[i].colors.split(",");
                 obj.like = result[i].like;
