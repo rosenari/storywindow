@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import React, { useRef } from 'react';
 import Link from 'next/link';
 
 const Div = styled.div`
@@ -100,23 +101,27 @@ const ColorItem = styled.div`
 
 interface ContentProps {
     idx: number;
+    mainImgurl: string;
     imgurl: string;
     tags: Array<string>;
     colors: Array<string>;
     views: number;
     like: number;
     date?: string;
+    popupRef?: any;
 }
 
 const Content: React.FC<ContentProps> = (props) => {
+
     return (
         <Div>
             <Imgbox>
-                <Link href={{
-                    pathname: '/product/detail',
-                    query: { id: props.idx }
-                }}>
-                    <a>
+                <Link href='/'>
+                    <a onClick={(e) => {
+                        e.preventDefault();
+                        props.popupRef.current.setVisible(true);
+                        props.popupRef.current.setImageUrl(`https://api.storywindow.co.kr/uploads/${props.mainImgurl}`);
+                    }}>
                         <img src={`https://${process.env.API_HOST}/uploads/` + props.imgurl} width="338" />
                     </a>
                 </Link>

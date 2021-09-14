@@ -9,3 +9,13 @@ export const useVisible =  (init = false) => {
 
     return [visible, handler];
 }
+
+export const useImageUrl = (init = '') => {
+    const [imageUrl, setImageUrl] = useState(init);
+
+    const handler = useCallback((url) => {
+        setImageUrl(url);
+    }, []);
+
+    return [imageUrl, setImageUrl];
+}
