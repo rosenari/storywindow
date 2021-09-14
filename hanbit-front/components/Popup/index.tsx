@@ -14,16 +14,16 @@ interface PopupSize{
 interface PopupProps {
     name: String;
     Header: React.FunctionComponent;
-    Body: React.FunctionComponent<{ setVisible?: any }>;
+    Body: React.FunctionComponent<{ setVisible?: any, imageUrl?: String, visible: Boolean }>;
     Footer: React.FunctionComponent<FooterPopupProps>;
     size?: PopupSize;
     visible: Boolean;
     setVisible: React.Dispatch<React.SetStateAction<Boolean>>;
+    imageUrl?: String;
 }
 
 const setBackgroundVisibility = (name: String, power: Boolean) => {
     const background = document.querySelector<HTMLElement>(`.${name}.${styles.main}`);
-    console.log(background);
     if(power){
         background && (background.style.visibility = 'visible');
     }else {
@@ -63,7 +63,7 @@ const Fireworks: React.FC = () => {
     )
 }
 
-const Popup: React.FC<PopupProps> = ({ name, Header, Body, Footer, size = { width: '400px', height: '150px'}, visible, setVisible }) => {
+const Popup: React.FC<PopupProps> = ({ name, Header, Body, Footer, size = { width: '400px', height: '150px'}, visible, setVisible, imageUrl }) => {
     useEffect(() => {
         if(validExpireDate(name)) setVisible(false); //현재시간이 닫힘유효시간보다 작다면, 팝업 숨기기
     
@@ -78,7 +78,7 @@ const Popup: React.FC<PopupProps> = ({ name, Header, Body, Footer, size = { widt
                     <Header />
                 </div>
                 <div>
-                    <Body setVisible={setVisible} />
+                    <Body setVisible={setVisible} imageUrl={imageUrl} visible={visible} />
                 </div>
                 <div>
                     <Footer storeExpireData={storeExpireData} setVisible={setVisible} />

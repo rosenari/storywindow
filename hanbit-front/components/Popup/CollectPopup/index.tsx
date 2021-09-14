@@ -58,6 +58,9 @@ const Body: React.FC<{ setVisible?: any }> = ({ setVisible }) => {
                 &nbsp;&nbsp;&nbsp;📱 카카오문의) ID: limwj826
                 📞 전화문의) TEL: 010 - 0000 - 0000
             </div>
+            <div className={styles.opentime}>
+                영업시간 : 월-토 09:00 - 21:00 | 일요일 휴무
+            </div>
         </div>
     )
 }

@@ -14,14 +14,19 @@
 }
 
 .popup{
-    margin-top:-50px;
     position:relative;
     background: white;
     border:1px solid #ddd;
     border-radius: 5px;
     overflow: hidden;
+    overflow-y: auto;
     transition: all 0.5s;
     z-index: 1500;
+    -ms-overflow-style: none;
+}
+
+.popup::-webkit-scrollbar {
+    display: none;
 }
 
 .firework {
