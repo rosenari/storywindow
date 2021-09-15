@@ -26,7 +26,7 @@ const Line = styled.div`
     clear:both;
     position:relative;
     width:1114px;
-    height:180px;
+    height:150px;
     margin-bottom:10px;
 `;
 
@@ -60,11 +60,13 @@ class Contents extends Component<ContentsProps> {
 
     render() {
         let datas = [];
+        let tag: String = 'all';
         let remain = false;
         if (this.props.datas !== "loading") {
+            console.log(this.props.datas.config.url.split('/')[6]);
             datas = this.props.datas.data.result;
             remain = this.props.datas.data.remain;
-            console.log(datas);
+            tag = this.props.datas.config?.url?.split('/')?.[6] || tag;
         }
 
 
@@ -101,7 +103,7 @@ class Contents extends Component<ContentsProps> {
                         }
                     })}
                     {remain && <More onClick={() => {
-                        this.props.getApi2(`https://${process.env.API_HOST}/api/getProducts/${datas.length}/all/date`);
+                        this.props.getApi2(`https://${process.env.API_HOST}/api/getProducts/${datas.length}/${tag}/date`);
                     }}>더보기</More>}
                     <ImagePopup ref={this.popupRef} />
                 </Div>
