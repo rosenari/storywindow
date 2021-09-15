@@ -1,10 +1,11 @@
-import { Component } from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import * as apiActions from '../../store/reducers/api';
 import styled from 'styled-components';
 import Descript from './Descript';
 import Content from './Content';
 import CircularProgress from '@material-ui/core/CircularProgress';
+import ImagePopup from '../Popup/ImagePopup';
 
 
 const Loading = styled.div`
@@ -25,21 +26,21 @@ const Line = styled.div`
     clear:both;
     position:relative;
     width:1114px;
-    height:180px;
+    height:150px;
     margin-bottom:10px;
 `;
 
 const More = styled.div`
+    display:flex;
+    justify-content: center;
+    align-items:center;
     position:relative;
     width:1114px;
     height:50px;
-    line-height:50px;
-    margin-bottom:40px;
     color:white;
     background:orange;
     font-size:1.2em;
     font-weight:bold;
-    text-align:center;
     border-radius:5px;
     cursor:pointer;
 `;
@@ -50,14 +51,22 @@ interface ContentsProps {
 }
 
 class Contents extends Component<ContentsProps> {
+    private popupRef: React.RefObject<{ setVisible?: any }>;
+
+    constructor(props: ContentsProps){
+        super(props);
+        this.popupRef = React.createRef();
+    }
 
     render() {
         let datas = [];
+        let tag: String = 'all';
         let remain = false;
         if (this.props.datas !== "loading") {
+            console.log(this.props.datas.config.url.split('/')[6]);
             datas = this.props.datas.data.result;
             remain = this.props.datas.data.remain;
-            console.log(datas);
+            tag = this.props.datas.config?.url?.split('/')?.[6] || tag;
         }
 
 
@@ -78,7 +87,7 @@ class Contents extends Component<ContentsProps> {
                                     {
                                         line.map((v, i) => {
                                             return (
-                                                <Content key={v.id} idx={v.id} imgurl={v.imgurl} tags={v.tags} colors={v.colors} like={v.like} views={v.views} date={v.date} />
+                                                <Content key={v.id} popupRef={this.popupRef} mainImgurl={v.mainImgurl} idx={v.id} imgurl={v.imgurl} tags={v.tags} colors={v.colors} like={v.like} views={v.views} date={v.date} />
                                             );
                                         })
                                     }
@@ -94,8 +103,9 @@ class Contents extends Component<ContentsProps> {
                         }
                     })}
                     {remain && <More onClick={() => {
-                        this.props.getApi2(`https://${process.env.API_HOST}/api/getProducts/${datas.length}/all/date`);
+                        this.props.getApi2(`https://${process.env.API_HOST}/api/getProducts/${datas.length}/${tag}/date`);
                     }}>더보기</More>}
+                    <ImagePopup ref={this.popupRef} />
                 </Div>
         );
     }

@@ -9,19 +9,24 @@
     width: 100%;
     height: 100%;
     z-index: 1400;
-    background-color: rgba(0,0,0, 0.1);
+    background-color: rgba(0,0,0, 0.3);
     visibility: hidden;
 }
 
 .popup{
-    margin-top:-50px;
     position:relative;
     background: white;
     border:1px solid #ddd;
     border-radius: 5px;
     overflow: hidden;
+    overflow-y: auto;
     transition: all 0.5s;
     z-index: 1500;
+    -ms-overflow-style: none;
+}
+
+.popup::-webkit-scrollbar {
+    display: none;
 }
 
 .firework {

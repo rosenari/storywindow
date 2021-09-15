@@ -1,0 +1,138 @@
+.header{
+    position: relative;
+    padding-left:10px;
+    width: 100%;
+    height: 48px;
+    line-height: 48px;
+    background: linear-gradient(45deg, #F2709C 0%, #ffbca7 100%) 0 0 / 300% no-repeat;
+    color:white;
+    font-family: 'SBAggroM', sans-serif;
+    font-size:1.5em;
+}
+
+.body{
+    position:relative;
+    padding:5px;
+    width:100%;
+    height: 150px;
+    line-height: 50px;
+    color:#555;
+    font-family: 'SBAggroL', sans-serif;
+    font-size: 1.1em;
+}
+
+.body > .desc {
+    margin-top:5px;
+    width:100%;
+    height:20px;
+    line-height: 20px;
+    font-size:0.8em;
+    color:#333;
+}
+
+.body > .input_box{
+    margin-top:15px;
+    width:100%;
+    height:40px;
+    line-height: 40px;
+}
+
+.body > .input_box > input {
+    width:100%;
+    height:40px;
+    font-size:1.0em;
+    text-align: center;
+}
+
+.body .state {
+    flex: 1;
+    padding-left: 5px;
+    height:30px;
+    line-height: 30px;
+    font-size:1.0em;
+    color: rgb(0, 153, 255);
+}
+
+.body > .submit_box {
+    margin-top:3px;
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    padding-left: 5px;
+    width: 100%;
+    height:30px;
+    line-height: 30px;
+    font-size:0.8em;
+}
+
+.body > .submit_box > .input_box {
+    position: relative;
+    height:30px;
+}
+
+.body > .submit_box > .input_box > input {
+    position: relative;
+    width: 18px;
+    height: 18px;
+    margin-top: 4px;
+    margin-right:10px;
+}
+
+.body > .submit_box > .text{
+    margin-right: 20px;
+    height:30px;
+    line-height: 30px;
+}
+
+.body > .submit_box > .input_box > button {
+    background: linear-gradient(45deg, #F2709C 0%, #ffbca7 100%) 0 0 / 300% no-repeat;
+    color:white;
+    height: 30px;
+    line-height: 30px;
+}
+
+.body > .submit_box > .input_box > button:hover{
+    background: white;
+    color:#555;
+}
+
+.body > .question {
+    margin-top:10px;
+    width: 100%;
+    height: 30px;
+    line-height: 30px;
+    font-size: 0.8em;
+}
+
+.body > .opentime {
+    height:30px;
+    line-height: 30px;
+    font-size:0.8em;
+    color: #F2709C;
+}
+
+.footer{
+    position:relative;
+    padding:5px;
+    width:100%;
+    height: 40px;
+    line-height: 40px;
+    font-family: 'SBAggroM', sans-serif;
+    text-align: right;
+}
+
+.footer button {
+    height: 33px;
+    line-height: 33px;
+    font-size: 1.3em;
+    background: linear-gradient(45deg, #F2709C 0%, #ffbca7 100%) 0 0 / 300% no-repeat;
+    color:white;
+    border:#eee 2px solid;
+    transition:all ease 0.1s;
+}
+
+.footer button:hover{
+    background: white;
+    color:#555;
+}

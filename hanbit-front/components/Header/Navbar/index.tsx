@@ -1,7 +1,8 @@
-import React from 'react';
+import React, {useRef} from 'react';
 import styles from './index.module.css';
 import styled from 'styled-components';
 import Link from 'next/link';
+import { CollectPopup } from '../..';
 
 const LOGO = styled.div`
 	    position:relative;
@@ -143,6 +144,7 @@ interface NavbarProps {
 }
 
 const Navbar: React.FC<NavbarProps> = (props) => {
+	const popupRef = useRef<{ setVisible?: any}>({});
 
 	return (
 		<div className={styles.nav_container}>
@@ -162,8 +164,11 @@ const Navbar: React.FC<NavbarProps> = (props) => {
 					{/*<li onMouseOver={props.AllMenu_up}><Link href="/construct/list"><a ><CONSTRUCT_CIRCLE />파트너 시공</a></Link></li>*/}
 
 					<li className={styles.consult_link}>
-						<Link href="/">
-							<a>
+						<Link href='/'>
+							<a onClick={(e) => {
+								e.preventDefault();
+								popupRef.current.setVisible(true);
+							}}>
 								<span>전국파트너문의</span>
 								<img src="/images/consult_img.png" height="28" width="28" className={styles.consult_img} />
 							</a>
@@ -173,6 +178,7 @@ const Navbar: React.FC<NavbarProps> = (props) => {
 					</li>
 				</ul>
 			</nav>
+			<CollectPopup ref={popupRef} />
 		</div>
 	)
 
