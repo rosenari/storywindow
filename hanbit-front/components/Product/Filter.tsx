@@ -171,7 +171,6 @@ class Filter extends React.Component<FilterProps, FilterState> {
         this.itemcontext = 0;
         this.state = {
             datas: [{ imgurl: "/images/product_all.png", text: "모두보기" }
-                , { imgurl: "/images/leftmenu_img1.png", text: "전동제품" }
                 , { imgurl: "/images/product_curtain.png", text: "커튼" }
                 , { imgurl: "/images/product_combi.png", text: "콤비블라인드" }
                 , { imgurl: "/images/product_wood.png", text: "우드블라인드" }
@@ -187,16 +186,15 @@ class Filter extends React.Component<FilterProps, FilterState> {
     }
 
     getProductName(active: number): string {
-        if (active === 1) return "전동제품";
-        else if (active === 2) return "커튼";
-        else if (active === 3) return "콤비블라인드";
-        else if (active === 4) return "우드블라인드";
-        else if (active === 5) return "롤스크린";
-        else if (active === 6) return "허니콤쉐이드";
-        else if (active === 7) return "트리플쉐이드";
-        else if (active === 8) return "버티컬";
-        else if (active === 9) return "베니션";
-        else if (active === 10) return "홀딩도어";
+        if (active === 1) return "커튼";
+        else if (active === 2) return "콤비블라인드";
+        else if (active === 3) return "우드블라인드";
+        else if (active === 4) return "롤스크린";
+        else if (active === 5) return "허니콤쉐이드";
+        else if (active === 6) return "트리플쉐이드";
+        else if (active === 7) return "버티컬";
+        else if (active === 8) return "베니션";
+        else if (active === 9) return "홀딩도어";
         else return "all";
     }
 
