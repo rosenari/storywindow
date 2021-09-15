@@ -31,16 +31,16 @@ const Line = styled.div`
 `;
 
 const More = styled.div`
+    display:flex;
+    justify-content: center;
+    align-items:center;
     position:relative;
     width:1114px;
     height:50px;
-    line-height:50px;
-    margin-bottom:40px;
     color:white;
     background:orange;
     font-size:1.2em;
     font-weight:bold;
-    text-align:center;
     border-radius:5px;
     cursor:pointer;
 `;
