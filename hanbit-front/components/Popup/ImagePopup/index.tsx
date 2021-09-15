@@ -63,11 +63,11 @@ const Body: React.FC<{ visible?: Boolean, setVisible?: any, imageUrl?: String }>
                 </div>
                 <div className={styles.question}>
                     <span style={{ padding:'3px', background:'purple', color:'white', borderRadius: '3px'}}>직접 문의하기</span>
-                    &nbsp;&nbsp;&nbsp;📱 카카오문의) ID: limwj826
-                    📞 전화문의) TEL: 010 - 0000 - 0000
+                    &nbsp;&nbsp;&nbsp;📱 카카오문의) ID: 준비중
+                    📞 전화문의) 010 - 4414 - 2464
                 </div>
                 <div className={styles.opentime}>
-                    영업시간 : 월-토 09:00 - 21:00 | 일요일 휴무
+                    영업시간 : 월-금 09:00 - 17:00 | 토-일 휴무
                 </div>
             </div>
         </>
