@@ -6,7 +6,7 @@ const Div = styled.div`
     position:relative;
     float:left;
     width:270px;
-    height:200px;
+    height:170px;
     
     & + Div{
         margin-left:11px;
@@ -16,7 +16,7 @@ const Div = styled.div`
 const Imgbox = styled.div`
     position:relative;
     width:270px;
-    height:180px;
+    height:150px;
     border-radius:5px;
     background:#aaa;
     overflow:hidden;
