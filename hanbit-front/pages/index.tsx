@@ -85,7 +85,7 @@ const rounds = [
 		duration: 2.2,
 		delay: 3.2
 	}
-];
+].map((round, index) => ({...round, id: index}));
 
 interface RoundProps {
 	top: number;
@@ -197,8 +197,8 @@ const Home: NextPage<HomeProps> = (props) => {
 					</div>
 				</div>
 			</div>
-			{rounds.map(({ top, left, width, height, duration, delay}) => 
-				<ROUND top={top} left={left} width={width} height={height} duration={duration} delay={delay} />)}
+			{rounds.map(({ top, left, width, height, duration, delay, id}) => 
+				<ROUND key={id} top={top} left={left} width={width} height={height} duration={duration} delay={delay} />)}
 			<NoticePopup />
 		</div>
 	);

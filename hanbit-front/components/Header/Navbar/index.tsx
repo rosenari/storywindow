@@ -173,8 +173,6 @@ const Navbar: React.FC<NavbarProps> = (props) => {
 								<img src="/images/consult_img.png" height="28" width="28" className={styles.consult_img} />
 							</a>
 						</Link>
-						{/*<CLICKME />
-						<CLICKME_TEXT>클릭 !</CLICKME_TEXT>*/}
 					</li>
 				</ul>
 			</nav>
