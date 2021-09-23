@@ -1,29 +1,18 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect, forwardRef, useImperativeHandle } from 'react';
+import { CollectBody, ImageBody, NoticeBody } from './Body';
+import Footer, { ExpireFooter } from './Footer';
+import Header from './Header';
 import styles from './index.module.scss';
 
-export interface FooterPopupProps{
-    storeExpireData: (name: String, setVisible: React.Dispatch<React.SetStateAction<boolean>>) => void;
-    setVisible: React.Dispatch<React.SetStateAction<boolean>>;
+const storeExpireDate = (type: String, setVisible: React.Dispatch<React.SetStateAction<boolean>>) => {
+    const expireTime = new Date();
+    expireTime.setHours(expireTime.getHours() + 24);
+    localStorage.setItem(`${type}_POPUP_CLOSE_EXPIRE`, `${expireTime.getTime()}`);
+    setVisible(false);
 }
 
-interface PopupSize{
-    width: string;
-    height: string;
-}
-
-interface PopupProps {
-    name: String;
-    Header: React.FunctionComponent;
-    Body: React.FunctionComponent<{ setVisible?: any, imageUrl?: String, visible: Boolean }>;
-    Footer: React.FunctionComponent<FooterPopupProps>;
-    size?: PopupSize;
-    visible: Boolean;
-    setVisible: React.Dispatch<React.SetStateAction<Boolean>>;
-    imageUrl?: String;
-}
-
-const setBackgroundVisibility = (name: String, power: Boolean) => {
-    const background = document.querySelector<HTMLElement>(`.${name}.${styles.main}`);
+const setBackgroundVisibility = (type: String, power: Boolean) => {
+    const background = document.querySelector<HTMLElement>(`.${type}.${styles.main}`);
     if(power){
         background && (background.style.visibility = 'visible');
     }else {
@@ -31,8 +20,8 @@ const setBackgroundVisibility = (name: String, power: Boolean) => {
     }
 }
 
-const setPopupVisibility = (name: String, power: Boolean, height: string) => {
-    const popup = document.querySelector<HTMLElement>(`.${name}.${styles.popup}`);
+const setPopupVisibility = (type: String, power: Boolean, height: string) => {
+    const popup = document.querySelector<HTMLElement>(`.${type}.${styles.popup}`);
     if(power){
         popup && (popup.style.height = height);
     }else {
@@ -40,19 +29,12 @@ const setPopupVisibility = (name: String, power: Boolean, height: string) => {
     }
 }
 
-const validExpireDate = (name: String) => {
+const validExpireDate = (type: String) => {
     const currentTime = new Date().getTime();
-    const storeExpireData = localStorage.getItem(`${name}_POPUP_CLOSE_EXPIRE`);
+    const storeExpireData = localStorage.getItem(`${type}_POPUP_CLOSE_EXPIRE`);
     const expireDate = storeExpireData ? parseInt(storeExpireData) : 0;
     
     return currentTime < expireDate;
-}
-
-const storeExpireData = (name: String, setVisible: React.Dispatch<React.SetStateAction<boolean>>) => {
-    const expireTime = new Date();
-    expireTime.setHours(expireTime.getHours() + 24);
-    localStorage.setItem(`${name}_POPUP_CLOSE_EXPIRE`, `${expireTime.getTime()}`);
-    setVisible(false);
 }
 
 const Fireworks: React.FC = () => {
@@ -63,30 +45,101 @@ const Fireworks: React.FC = () => {
     )
 }
 
-const Popup: React.FC<PopupProps> = ({ name, Header, Body, Footer, size = { width: '400px', height: '150px'}, visible, setVisible, imageUrl }) => {
-    useEffect(() => {
-        if(validExpireDate(name)) setVisible(false); //현재시간이 닫힘유효시간보다 작다면, 팝업 숨기기
-    
-        setPopupVisibility(name, visible, size.height);
-        setBackgroundVisibility(name, visible);
-    }, [visible]);
+interface PopupSize{
+    width: string;
+    height: string;
+}
+
+interface PopupProps {
+    type: String;
+    size: PopupSize;
+    firework: Boolean;
+    visible: Boolean;
+    setVisible: any;
+}
+
+const Popup: React.FC<PopupProps> = ({ type, size = { width: '400px', height: '150px'}, children, firework = false, visible, setVisible }) => {
 
     return (
-        <div className={name + ' ' + styles.main} onClick={() => setVisible(false)}>
-            <div className={name + ' ' + styles.popup} onClick={(e) => e.stopPropagation()} style={{ width: size.width, height: '0px'}}>
-                <div>
-                    <Header />
-                </div>
-                <div>
-                    <Body setVisible={setVisible} imageUrl={imageUrl} visible={visible} />
-                </div>
-                <div>
-                    <Footer storeExpireData={storeExpireData} setVisible={setVisible} />
-                </div>
+        <div className={[type, styles.main].join(' ')} onClick={() => setVisible(false)}>
+            <div className={[type, styles.popup].join(' ')} onClick={(e) => e.stopPropagation()} style={{ width: size.width, height: '0px'}}>
+                {children}
             </div>
-            {name === 'notice' && <Fireworks /> }
+            {firework && <Fireworks /> }
         </div>
     )   
 }
 
-export default Popup;
+export const NoticePopup: React.FC = () => {
+        const [visible, setVisible] = useState(true);
+        const type = 'notice';
+        const width = '600px';
+        const height = '290px';
+
+        useEffect(() => {
+            if(validExpireDate(type)) setVisible(false); //현재시간이 닫힘유효시간보다 작다면, 팝업 숨기기
+        
+            setPopupVisibility(type, visible, height);
+            setBackgroundVisibility(type, visible);
+        }, [visible]);
+    
+        return (
+                <Popup type={type} size={{
+                    width,
+                    height
+                }} visible={visible} setVisible={setVisible} firework={true}>
+                    <div><Header title={'🌈 전국블라인드 도매 스토리창 오픈 !!'} /></div>
+                    <div><NoticeBody type={type} /></div>
+                    <div><ExpireFooter setVisible={setVisible} storeExpireDate={storeExpireDate} /></div>
+                </Popup>
+        )
+}
+
+export const CollectPopup = forwardRef((_, ref) => {
+    const [visible, setVisible] = useState(false);
+    const type = 'collect';
+    const width = '600px';
+    const height = '240px';
+    useImperativeHandle(ref, () => ({ setVisible }));
+
+    useEffect(() => {
+        setPopupVisibility(type, visible, height);
+        setBackgroundVisibility(type, visible);
+    });
+
+    return (
+            <Popup type={type} size={{
+                width,
+                height
+            }} visible={visible} setVisible={setVisible} firework={false}>
+                <div><Header title={'🌏 전국파트너문의'} /></div>
+                <div><CollectBody type={type} visible={visible} setVisible={setVisible} /></div>
+                <div><Footer setVisible={setVisible} /></div>
+            </Popup>
+    )
+});
+
+export const ImagePopup = forwardRef((_, ref) => {
+    const [visible, setVisible] = useState(false);
+    const [imageUrl, setImageUrl] = useState('');
+    const type = 'image';
+    const width = '1000px';
+    const height = '740px';
+    useImperativeHandle(ref, () => ({ setVisible, setImageUrl }));
+
+    useEffect(() => {
+        setPopupVisibility(type, visible, height);
+        setBackgroundVisibility(type, visible);
+    });
+
+    return (
+            <Popup type={type} size={{
+                width,
+                height
+            }} visible={visible} setVisible={setVisible} firework={false}>
+                <div><Header title={'🖼️ 시공사진 자세히 보기'} /></div>
+                <div><ImageBody type={type} visible={visible} setVisible={setVisible} imageUrl={imageUrl} /></div>
+                <div><Footer setVisible={setVisible} /></div>
+            </Popup>
+    )
+});
