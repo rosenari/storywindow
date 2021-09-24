@@ -1,6 +1,7 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import axios from 'axios';
 import Link from 'next/link';
+import { getInputCursorCoordinate } from '../../../util';
 import styles from './index.module.scss';
 
 const MESSAGE = {
@@ -46,17 +47,39 @@ const InputBody: React.FC<InputBodyProps> = ({ type, visible, setVisible }) => {
     const [privacy, setPrivacy] = useState(false);
     const [phonenumber, setPhonenumber] = useState('');
     const inputRef = useRef<HTMLInputElement>(null);
+    const cursorRef = useRef<HTMLDivElement>(null);
+    const cursorTriger = useCallback((e) => {
+        const input: HTMLInputElement = e.target as HTMLInputElement;
+        const coordinate = getInputCursorCoordinate(input, input.selectionEnd);
+        if(!coordinate) return;                    
+        
+        (input as HTMLInputElement).placeholder = '';
+        const top = coordinate.top - 10;
+        const left = coordinate.left + 10;
+
+        (cursorRef?.current as HTMLDivElement).style.top = `${top}px`;
+        (cursorRef?.current as HTMLDivElement).style.left = `${left}px`;
+        (cursorRef?.current as HTMLDivElement).style.visibility = 'visible';
+    },[]);
 
     useEffect(() => {
         setPrivacy(false);
         setPhonenumber('');
         (inputRef?.current as HTMLInputElement).value = '';
+        (cursorRef?.current as HTMLDivElement).style.visibility = 'hidden';
     }, [visible]);
     
     return (
             <div className={[styles[`${type}`], styles.body].join(' ')}>
                 <div className={styles.desc}>{MESSAGE.CONSULT}</div>
-                <div className={styles.input_box}><input type='text' placeholder='010-0000-0000' ref={inputRef} onChange={(e) => setPhonenumber(e.target.value)} /></div>
+                <div className={styles.input_box}>
+                    <input type='text' maxLength={13} placeholder={'연락가능한 번호를 입력해주세요.'} ref={inputRef} onBlur={() => {
+                        (inputRef?.current as HTMLInputElement).placeholder = '연락가능한 번호를 입력해주세요.';
+                        (cursorRef?.current as HTMLDivElement).style.visibility = 'hidden';
+                     }
+                    } onFocus={cursorTriger} onKeyUp={cursorTriger} onChange={(e) => setPhonenumber(e.target.value)} />
+                    <div ref={cursorRef} className={styles.input_cursor}>👈 <span className={styles.desc}>번호를 입력해주세요.</span> 
+                    <br /> <span className={styles.number}>예) 010-0000-0000&nbsp;</span></div></div>
                 <div className={styles.submit_box}>
                     <div className={styles.state}>{MESSAGE.Q_INPUT}</div>
                     <div className={styles.input_box}>
