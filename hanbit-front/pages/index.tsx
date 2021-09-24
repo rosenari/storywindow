@@ -23,7 +23,7 @@ const INTERIOR_DESCRIPTION = [
 ].map((desc, i) => ({ id: i + 1, desc}));
 
 const BLIND_DESCRIPTION = [
-	'ㆍ소규모 블라인드, 커튼업체를 적극 지원해드립니다.',
+	'ㆍ소규모 블라인드,커튼, 인테리어 업체도 적극 지원해드립니다.',
 	'ㆍ단 한개의 납품도 최선을 다해 진행합니다.',
 	'ㆍ함께하는 성장을 추구합니다.'
 ].map((desc, i) => ({ id: i + 1, desc}));

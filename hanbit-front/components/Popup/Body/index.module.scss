@@ -11,7 +11,7 @@
 }
 
 .notice.body > .opentime{
-    font-size:0.8em;
+    font-size:0.9em;
     color: #F2709C;
 }
 
@@ -21,7 +21,7 @@
     position:relative;
     padding:5px;
     width:100%;
-    height: 150px;
+    height: 190px;
     line-height: 50px;
     color:#555;
     font-family: 'SBAggroL', sans-serif;
@@ -38,6 +38,7 @@
 }
 
 .collect.body > .input_box{
+    position:relative;
     margin-top:15px;
     width:100%;
     height:40px;
@@ -49,6 +50,33 @@
     height:40px;
     font-size:1.0em;
     text-align: center;
+    caret-color: #F2709C;
+}
+
+.collect.body > .input_box > .input_cursor{
+    position: absolute;
+    top: 0;
+    left: 0;
+    visibility: hidden;
+    font-size:0.8em;
+    line-height: 22px;
+    z-index:1100;
+}
+
+.collect.body > .input_box > .input_cursor > .desc {
+    background: #F2709C;
+    color: white;
+    padding:3px;
+    border-radius: 5px;
+}
+
+.collect.body > .input_box > .input_cursor > .number{
+    margin-left:22px;
+    background: orange;
+    color:#111;
+    padding:3px;
+    border-radius: 5px;
+    font-size:0.8em;
 }
 
 .collect.body .state {
@@ -107,15 +135,16 @@
 .collect.body > .question {
     margin-top:10px;
     width: 100%;
-    height: 30px;
+    height: 70px;
     line-height: 30px;
     font-size: 0.8em;
 }
 
 .collect.body > .opentime {
+    position: relative;
     height:30px;
     line-height: 30px;
-    font-size:0.8em;
+    font-size:0.9em;
     color: #F2709C;
 }
 
@@ -131,7 +160,7 @@
     position:relative;
     padding:5px;
     width:100%;
-    height: 150px;
+    height: 190px;
     line-height: 50px;
     color:#555;
     font-family: 'SBAggroL', sans-serif;
@@ -148,6 +177,7 @@
 }
 
 .image.body > .input_box{
+    position:relative;
     margin-top:15px;
     width:100%;
     height:40px;
@@ -159,6 +189,33 @@
     height:40px;
     font-size:1.0em;
     text-align: center;
+    caret-color: #F2709C;
+}
+
+.image.body > .input_box > .input_cursor{
+    position: absolute;
+    top: 0;
+    left: 0;
+    visibility: hidden;
+    font-size:0.8em;
+    line-height: 22px;
+    z-index:1100;
+}
+
+.image.body > .input_box > .input_cursor > .desc {
+    background: #F2709C;
+    color: white;
+    padding:3px;
+    border-radius: 5px;
+}
+
+.image.body > .input_box > .input_cursor > .number{
+    margin-left:22px;
+    background: orange;
+    color:#111;
+    padding:3px;
+    border-radius: 5px;
+    font-size:0.8em;
 }
 
 .image.body .state {
@@ -217,7 +274,7 @@
 .image.body > .question {
     margin-top:10px;
     width: 100%;
-    height: 30px;
+    height: 70px;
     line-height: 30px;
     font-size: 0.8em;
 }
@@ -225,6 +282,6 @@
 .image.body > .opentime {
     height:30px;
     line-height: 30px;
-    font-size:0.8em;
+    font-size:0.9em;
     color: #F2709C;
 }
