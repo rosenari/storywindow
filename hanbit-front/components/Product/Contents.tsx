@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import Descript from './Descript';
 import Content from './Content';
 import CircularProgress from '@material-ui/core/CircularProgress';
-import ImagePopup from '../Popup/ImagePopup';
+import { ImagePopup } from '../Popup';
 
 
 const Loading = styled.div`
