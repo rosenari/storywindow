@@ -5,13 +5,14 @@ import styles from './index.module.scss';
 
 const MESSAGE = {
     NOTICE : ['ㆍ🎉 전국 블라인드 도매업체 스토리창이 오픈되었습니다 !',
-            'ㆍ🏭 현재 다수의 인테리어, 블라인드 업체가 이용 중입니다 !',
-            'ㆍ👍 소규모 주문하는 업체도 적극 환영합니다 !'],
-    CONSULT: '👩‍💼 상담원이 연락을 드립니다.',
+            'ㆍ🏭 현재 다수의 인테리어, 블라인드, 커튼 업체가 이용 중입니다 !',
+            'ㆍ👍 소량의 주문업체도 환영합니다 !'],
+    CONSULT: '👩‍💼 연락받으실 번호를 입력해 주시면 상답원이 연락드립니다.',
     APPROVE_PRIV : '개인정보수집이용동의',
     Q_INPUT : '연락가능한 휴대폰번호를 입력해주세요.',
-    Q_KAKAO : '📱 카카오문의) ID: 준비중',
-    Q_TEL : '📞 전화문의) 010 - 4414 - 2464',
+    Q_KAKAO : '📱 카카오ID) limwj2464',
+    Q_TEL : '📞 휴대폰번호) 010 - 4414 - 2464',
+    Q_RTEL : '📞 대표번호) 1588 - 0475',
     Q_APPROVE_PRIV : '개인정보수집 이용에 동의해주세요.',
     Q_TEL_INPUT : '휴대폰 번호를 입력해주세요.',
     DIRECT_CONTACT : '직접 문의하기',
@@ -31,7 +32,7 @@ export const NoticeBody: React.FC<NoticeBodyProps> = ({ type }) => {
     return (
             <div className={[styles[`${type}`], styles.body].join(' ')}>
                 {MESSAGE.NOTICE.map(notice => <div key={notice}>{notice}</div>)}
-                &nbsp;{MESSAGE.Q_TEL} <span className={styles.opentime}>({MESSAGE.BUSINESS_TIME})</span>
+                &nbsp;{MESSAGE.Q_RTEL} <span className={styles.opentime}>({MESSAGE.BUSINESS_TIME})</span>
             </div>
     )
 }
@@ -88,9 +89,9 @@ const InputBody: React.FC<InputBodyProps> = ({ type, visible, setVisible }) => {
                     </div>
                 </div>
                 <div className={styles.question}>
-                    <span style={{ padding:'3px', background:'purple', color:'white', borderRadius: '3px'}}>{MESSAGE.DIRECT_CONTACT}</span>
-                    &nbsp;&nbsp;&nbsp;{MESSAGE.Q_KAKAO}
-                    {MESSAGE.Q_TEL}
+                    <div><span style={{ padding:'3px', background:'purple', color:'white', borderRadius: '3px'}}>{MESSAGE.DIRECT_CONTACT}</span></div>
+                    <div>{MESSAGE.Q_KAKAO}
+                    &nbsp;{MESSAGE.Q_TEL}&nbsp;{MESSAGE.Q_RTEL}</div>
                 </div>
                 <div className={styles.opentime}>
                     {MESSAGE.BUSINESS_TIME}

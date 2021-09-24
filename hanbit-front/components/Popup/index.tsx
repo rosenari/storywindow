@@ -99,7 +99,7 @@ export const CollectPopup = forwardRef((_, ref) => {
     const [visible, setVisible] = useState(false);
     const type = 'collect';
     const width = '600px';
-    const height = '240px';
+    const height = '280px';
     useImperativeHandle(ref, () => ({ setVisible }));
 
     useEffect(() => {
@@ -124,7 +124,7 @@ export const ImagePopup = forwardRef((_, ref) => {
     const [imageUrl, setImageUrl] = useState('');
     const type = 'image';
     const width = '1000px';
-    const height = '740px';
+    const height = '780px';
     useImperativeHandle(ref, () => ({ setVisible, setImageUrl }));
 
     useEffect(() => {
@@ -137,7 +137,7 @@ export const ImagePopup = forwardRef((_, ref) => {
                 width,
                 height
             }} visible={visible} setVisible={setVisible} firework={false}>
-                <div><Header title={'🖼️ 시공사진 자세히 보기'} /></div>
+                <div><Header title={'🖼️ 파트너 시공사진'} /></div>
                 <div><ImageBody type={type} visible={visible} setVisible={setVisible} imageUrl={imageUrl} /></div>
                 <div><Footer setVisible={setVisible} /></div>
             </Popup>
