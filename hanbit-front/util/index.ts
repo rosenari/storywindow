@@ -65,3 +65,7 @@ export function getInputCursorCoordinate(element: HTMLInputElement, position: nu
 
       return coordinates;
 }
+
+export function deepArrayCopy<T>(arr: Array<T>): Array<T>{
+  return JSON.parse(JSON.stringify(arr));
+}

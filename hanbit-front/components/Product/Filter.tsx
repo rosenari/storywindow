@@ -1,7 +1,8 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { connect } from 'react-redux';
 import * as apiActions from '../../store/reducers/api';
+import { deepArrayCopy } from '../../util';
 
 const Div = styled.div`
     position:relative;
@@ -23,25 +24,14 @@ const ButtonBox = styled.div`
     color:#aaa;
     background:white;
 `;
-const LeftButton = styled.button`
-    position:relative;
-    width:40px;
-    height:40px;
-    line-height:40px;
-    background:white;
-    border-width:0px;
-    border-radius:50%;
-    box-shadow:3px 3px 3px #ddd;
-    font-size:1.1em;
-    font-weight:bold;
-    color:#aaa;
-    cursor:pointer;
-    
+
+const ButtonActive = css`
     &:active{
         box-shadow:1px 1px 1px #ddd;
     }
 `;
-const RightButton = styled.button`
+
+const Button = styled.button`
     position:relative;
     width:40px;
     height:40px;
@@ -49,15 +39,12 @@ const RightButton = styled.button`
     background:white;
     border-width:0px;
     border-radius:50%;
-    box-shadow:-3px 3px 3px #ddd;
     font-size:1.1em;
     font-weight:bold;
     color:#aaa;
     cursor:pointer;
-    
-    &:active{
-        box-shadow:-1px 1px 1px #ddd;
-    }
+    box-shadow:3px 3px 3px #ddd;
+    ${ButtonActive}
 `;
 
 const SelectContainer = styled.div`
@@ -85,13 +72,8 @@ const Item = styled.div`
     line-height:100px;
     text-align:center;
 `;
-const Itemimgbox = styled.div`
-    position:relative;
-    width:100px;
-    height:80px;
-    line-height:80px;
-    text-align:center;
-    
+
+const ItemImage = css`
     & img{
         border:white solid;
         border-width:3px;
@@ -101,27 +83,40 @@ const Itemimgbox = styled.div`
         transition: all 0.1s ease-in-out;
         cursor:pointer
     }
+`;
+
+const ItemImageHover = css`
     & img:hover{
-        width:75px;
-        height:75px;
         border:orange solid;
         border-width:3px;
     }
-    
+`;
+
+const ItemImageActive = css`
     & img:active{
-        width:75px;
-        height:75px;
         border:#ffc451 solid;
         border-width:3px;
     }
-    
+`;
+
+const ItemImageForBoxActive = css`
     &.active img{
-        width:75px;
-        height:75px;
         border:black solid;
         border-width:0px;
         filter:brightness(50%);
     }
+`;
+
+const Itemimgbox = styled.div`
+    position:relative;
+    width:100px;
+    height:80px;
+    line-height:80px;
+    text-align:center;
+    ${ItemImage}
+    ${ItemImageHover}
+    ${ItemImageActive}
+    ${ItemImageForBoxActive}
 `;
 
 const Itemselected = styled.div`
@@ -150,18 +145,34 @@ interface FilterProps {
     datas: any;
 }
 
-interface Data {
+interface FilterItem {
+    id: number;
     imgurl: string;
     text: string;
+    parameter: string;
+    active: boolean;
 }
 
-interface FilterState {
-    datas: Array<Data>;
-    active: number;
-    index: number;
+interface FilterState<T> {
+    items: Array<T>;
 }
 
-class Filter extends React.Component<FilterProps, FilterState> {
+const PRODUCT_TEXT = {
+    ALL: '모두보기',
+    CURTAIN: '커튼',
+    COMBI: '콤비블라인드',
+    WOOD: '우드블라인드',
+    ROLL: '롤스크린',
+    HONEY: '허니콤쉐이드',
+    TRIPLE: '트리플쉐이드',
+    VERTICUL: '버티컬',
+    VENE: '베니션',
+    HOLDING: '홀딩도어',
+}
+
+class Filter extends React.Component<FilterProps, FilterState<FilterItem>> {
+    width = '75';
+    height = '75';
     itemcontext: number;
     containerRef: any;
 
@@ -170,76 +181,64 @@ class Filter extends React.Component<FilterProps, FilterState> {
         this.containerRef = React.createRef();
         this.itemcontext = 0;
         this.state = {
-            datas: [{ imgurl: "/images/product_all.png", text: "모두보기" }
-                , { imgurl: "/images/product_curtain.png", text: "커튼" }
-                , { imgurl: "/images/product_combi.png", text: "콤비블라인드" }
-                , { imgurl: "/images/product_wood.png", text: "우드블라인드" }
-                , { imgurl: "/images/product_roll.png", text: "롤스크린" }
-                , { imgurl: "/images/product_honey.png", text: "허니콤쉐이드" }
-                , { imgurl: "/images/product_triple.png", text: "트리플쉐이드" }
-                , { imgurl: "/images/product_verticul.png", text: "버티컬" }
-                , { imgurl: "/images/product_vene.png", text: "베니션" }
-                , { imgurl: "/images/product_holding.png", text: "홀딩도어" }],
-            active: 0,
-            index: 0
+            items: [{ imgurl: '/images/product_all.png', text: PRODUCT_TEXT.ALL, parameter: 'all', active: true }
+                , { imgurl: '/images/product_curtain.png', text: PRODUCT_TEXT.CURTAIN, parameter: PRODUCT_TEXT.CURTAIN }
+                , { imgurl: '/images/product_combi.png', text: PRODUCT_TEXT.COMBI, parameter: PRODUCT_TEXT.COMBI }
+                , { imgurl: '/images/product_wood.png', text: PRODUCT_TEXT.WOOD, parameter: PRODUCT_TEXT.WOOD }
+                , { imgurl: '/images/product_roll.png', text: PRODUCT_TEXT.ROLL, parameter: PRODUCT_TEXT.ROLL }
+                , { imgurl: '/images/product_honey.png', text: PRODUCT_TEXT.HONEY, parameter: PRODUCT_TEXT.HONEY }
+                , { imgurl: '/images/product_triple.png', text: PRODUCT_TEXT.TRIPLE, parameter: PRODUCT_TEXT.TRIPLE }
+                , { imgurl: '/images/product_verticul.png', text: PRODUCT_TEXT.VERTICUL, parameter: PRODUCT_TEXT.VERTICUL }
+                , { imgurl: '/images/product_vene.png', text: PRODUCT_TEXT.VENE, parameter: PRODUCT_TEXT.VENE }
+                , { imgurl: '/images/product_holding.png', text: PRODUCT_TEXT.HOLDING, parameter: PRODUCT_TEXT.HOLDING }]
+                .map(({ imgurl = '', text = '', parameter = 'all', active = false }, index) => ({id: index, imgurl, text, parameter, active})),
         };
     }
 
-    getProductName(active: number): string {
-        if (active === 1) return "커튼";
-        else if (active === 2) return "콤비블라인드";
-        else if (active === 3) return "우드블라인드";
-        else if (active === 4) return "롤스크린";
-        else if (active === 5) return "허니콤쉐이드";
-        else if (active === 6) return "트리플쉐이드";
-        else if (active === 7) return "버티컬";
-        else if (active === 8) return "베니션";
-        else if (active === 9) return "홀딩도어";
-        else return "all";
-    }
-
-    shouldComponentUpdate(nextProps: any, nextState: any) {
-        if (this.state.active !== nextState.active) {
-            let productname = this.getProductName(nextState.active);
-            this.props.loading();
-            this.handleGetapi(`https://${process.env.API_HOST}/api/getProducts/0/${productname}/date`);
-        }
-
-        return true;
-    }
-
     componentDidMount() {
-        //전체보기 GET 로직추가
-        console.log("componentDidMount");
         this.handleGetapi(`https://${process.env.API_HOST}/api/getProducts/0/all/date`);
     }
 
-    componentDidUpdate() {
-        //전체보기 GET 로직추가
-        if (this.props.datas !== "loading") return;
-
-        let productname = this.getProductName(this.state.active);
-        this.handleGetapi(`https://${process.env.API_HOST}/api/getProducts/0/${productname}/date`);
-    }
-
-    LeftClick = () => {
+    LeftClick() {
         if (this.itemcontext > 0) {
-            this.containerRef.current.style.marginLeft = ((this.itemcontext - 1) * -100) + "px";
+            this.containerRef.current.style.marginLeft = ((this.itemcontext - 1) * -100) + 'px';
             this.itemcontext = this.itemcontext - 1;
         }
     }
 
-    RightClick = () => {
-        if (this.itemcontext < 11 - 9) {
-            this.containerRef.current.style.marginLeft = ((this.itemcontext + 1) * -100) + "px";
+    RightClick() {
+        if (this.itemcontext < this.state.items.length - 9) {
+            this.containerRef.current.style.marginLeft = ((this.itemcontext + 1) * -100) + 'px';
             this.itemcontext = this.itemcontext + 1;
         }
     }
 
-    MenuClick = (index: number) => {
+    MenuClick (index: number) {
+        this.props.loading();
+
+        const copyItems = deepArrayCopy<FilterItem>(this.state.items);
+        copyItems.forEach(item => item.active = false);
+        copyItems[index] = { ...copyItems[index], active: true };
+
         this.setState({
-            active: index
-        })
+            items: copyItems
+        });
+
+        const activeItem = this.getActiveItem(copyItems);
+        this.callGetProductApi(activeItem);
+    }
+
+    isStateChange(curDatas: Array<FilterItem>, nextDatas: Array<FilterItem>): boolean {
+        return curDatas !== nextDatas;
+    }
+
+    getActiveItem(items: Array<FilterItem>): FilterItem{
+        return items.filter(item => item.active === true)[0];
+    }
+
+    callGetProductApi(item: FilterItem) {
+        const productName = item.parameter;
+        this.handleGetapi(`https://${process.env.API_HOST}/api/getProducts/0/${productName}/date`);
     }
 
     handleGetapi = (url: string) => {
@@ -250,18 +249,18 @@ class Filter extends React.Component<FilterProps, FilterState> {
 
         return (
             <Div>
-                <ButtonBox><LeftButton onClick={this.LeftClick}>{"<"}</LeftButton></ButtonBox>
+                <ButtonBox><Button onClick={() => this.LeftClick()}>{"<"}</Button></ButtonBox>
                 <SelectContainer>
                     <ItemContainer ref={this.containerRef}>
-                        {this.state.datas && this.state.datas.map((data, index) => {
+                        {this.state.items?.map((item, index) => {
                             return (
-                                <Item key={index}>
-                                    <Itemimgbox className={this.state.active == index ? 'active' : ''}>
-                                        <img src={data.imgurl} width="75" height="75" onClick={() => this.MenuClick(index)} />
-                                        {this.state.active == index && <Itemselected>선택됨</Itemselected>}
+                                <Item key={item.id}>
+                                    <Itemimgbox className={item.active ? 'active' : ''}>
+                                        <img src={item.imgurl} width={this.width} height={this.height} onClick={() => this.MenuClick(index)} />
+                                        {item.active && <Itemselected>선택됨</Itemselected>}
                                     </Itemimgbox>
                                     <Itemtext>
-                                        {data.text}
+                                        {item.text}
                                     </Itemtext>
                                 </Item>
                             );
@@ -269,7 +268,7 @@ class Filter extends React.Component<FilterProps, FilterState> {
                         }
                     </ItemContainer>
                 </SelectContainer>
-                <ButtonBox><RightButton onClick={this.RightClick}>{">"}</RightButton></ButtonBox>
+                <ButtonBox><Button onClick={() => this.RightClick()}>{">"}</Button></ButtonBox>
             </Div>
         );
     }
