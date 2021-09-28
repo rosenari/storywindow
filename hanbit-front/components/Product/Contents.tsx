@@ -2,13 +2,14 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import * as apiActions from '../../store/reducers/api';
 import styled from 'styled-components';
-import Descript from './Descript';
+import Descript from './Summary';
 import Content from './Content';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import { ImagePopup } from '../Popup';
+import { deepArrayCopy } from '../../util';
 
 
-const Loading = styled.div`
+const ProgressBox = styled.div`
     position:relative;
     width:1114px;
     height:450px;
@@ -22,6 +23,7 @@ const Div = styled.div`
     min-height:500px;
     margin-bottom:30px;
 `;
+
 const Line = styled.div`
     clear:both;
     position:relative;
@@ -30,7 +32,7 @@ const Line = styled.div`
     margin-bottom:10px;
 `;
 
-const More = styled.div`
+const MoreButton = styled.div`
     display:flex;
     justify-content: center;
     align-items:center;
@@ -50,61 +52,62 @@ interface ContentsProps {
     getApi2: any;
 }
 
+interface ProductItem {
+    id: number;
+    mainImgurl: string;
+    imgurl: string;
+    tags: Array<string>;
+    colors: Array<string>;
+    like: number;
+    views: number;
+    date: string;
+}
+
 class Contents extends Component<ContentsProps> {
     private popupRef: React.RefObject<{ setVisible?: any }>;
+    private countPerLine = 4;
 
     constructor(props: ContentsProps){
         super(props);
         this.popupRef = React.createRef();
     }
 
+    renderContentFromLine(line: Array<ProductItem>){
+        return line.map(product => <Content key={product.id} popupRef={this.popupRef} 
+            mainImgurl={product.mainImgurl} idx={product.id} 
+            imgurl={product.imgurl} tags={product.tags} colors={product.colors} 
+            like={product.like} views={product.views} date={product.date} />);
+    }
+
+    renderLinesFromProducts(products: any, countPerLine: number, id: number = 0){
+        const result = [];
+        const copyProducts = deepArrayCopy(products) as Array<ProductItem>;
+        while(copyProducts.length > 0){
+            const line = copyProducts.splice(0, countPerLine);
+            result.push(<Line key={id++}>{this.renderContentFromLine(line)}</Line>);
+        }
+        return result;
+    }
+
     render() {
-        let datas = [];
+        let products = [];
         let tag: String = 'all';
         let remain = false;
+        
         if (this.props.datas !== "loading") {
-            console.log(this.props.datas.config.url.split('/')[6]);
-            datas = this.props.datas.data.result;
+            products = this.props.datas.data.result;
             remain = this.props.datas.data.remain;
             tag = this.props.datas.config?.url?.split('/')?.[6] || tag;
         }
 
-
-        let line: Array<any> = [];
         return (
-            this.props.datas == "loading" ? <Div><Descript /><Loading><CircularProgress /></Loading></Div> :
+            this.props.datas == "loading" ? <Div><Descript /><ProgressBox><CircularProgress /></ProgressBox></Div> :
                 <Div>
                     <Descript />
-                    {datas && datas.length > 0 && datas.map((data: any, index: any) => {
-                        if (index % 4 == 3 || index == datas.length - 1) {
-                            if (index % 4 == 0) {
-                                line = [];
-                            }
-                            //console.log(index);
-                            line.push(data);
-                            return (
-                                <Line key={index}>
-                                    {
-                                        line.map((v, i) => {
-                                            return (
-                                                <Content key={v.id} popupRef={this.popupRef} mainImgurl={v.mainImgurl} idx={v.id} imgurl={v.imgurl} tags={v.tags} colors={v.colors} like={v.like} views={v.views} date={v.date} />
-                                            );
-                                        })
-                                    }
-                                </Line>
-                            )
-                        } else if (index % 4 == 0 && index !== datas.length - 1) {
-                            //console.log(index); 
-                            line = [];
-                            line.push(data);
-                        } else {
-                            //console.log(index);
-                            line.push(data);
-                        }
-                    })}
-                    {remain && <More onClick={() => {
-                        this.props.getApi2(`https://${process.env.API_HOST}/api/getProducts/${datas.length}/${tag}/date`);
-                    }}>더보기</More>}
+                    {this.renderLinesFromProducts(products, this.countPerLine)}
+                    {remain && <MoreButton onClick={() => {
+                        this.props.getApi2(`https://${process.env.API_HOST}/api/getProducts/${products.length}/${tag}/date`);
+                    }}>더보기</MoreButton>}
                     <ImagePopup ref={this.popupRef} />
                 </Div>
         );

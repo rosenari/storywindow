@@ -1,5 +1,5 @@
-import styled from 'styled-components';
-import React, { useRef } from 'react';
+import styled, { css } from 'styled-components';
+import React from 'react';
 import Link from 'next/link';
 
 const Div = styled.div`
@@ -13,6 +13,19 @@ const Div = styled.div`
     }
 `;
 
+const Image = css`
+    & img{
+        transition: all 0.2s ease-in-out;
+        transform: scale(1.0);
+    }
+`;
+
+const ImageHover = css`
+    & img:hover{
+        transform: scale(1.2);
+    }
+`;
+
 const Imgbox = styled.div`
     position:relative;
     width:270px;
@@ -20,25 +33,8 @@ const Imgbox = styled.div`
     border-radius:5px;
     background:#aaa;
     overflow:hidden;
-    
-    & img{
-        -webkit-transition: all 0.2s ease-in-out;
-        -o-transition: all 0.2s ease-in-out;
-        transition: all 0.2s ease-in-out;
-        transform: scale(1.0);
-        -webkit-transform: scale(1.0);
-        -moz-transform: scale(1.0);
-        -ms-transform: scale(1.0);
-        -o-transform: scale(1.0);
-    }
-    
-    & img:hover{
-        transform: scale(1.2);
-        -webkit-transform: scale(1.2);
-        -moz-transform: scale(1.2);
-        -ms-transform: scale(1.2);
-        -o-transform: scale(1.2);
-    }
+    ${Image}
+    ${ImageHover}
 `;
 
 const Tagbox = styled.div`
@@ -47,21 +43,6 @@ const Tagbox = styled.div`
     right:5px;
     height:25px;
     z-index: 50;
-`;
-
-const Colorbox = styled.div`
-    position:relative;
-    width:270px;
-    height:20px;
-    line-height:20px;
-`;
-
-const Likebox = styled.div`
-    position:relative;
-    width:270px;
-    height:20px;
-    line-height:20px;
-    font-size:0.7em;
 `;
 
 const Span = styled.span`
@@ -73,30 +54,6 @@ const Span = styled.span`
     color:#444;
     font-size:0.8em;
     font-weight:bold;
-`;
-
-const Colordescript = styled.div`
-    position:relative;
-    float:left;
-    width:50px;
-    height:20px;
-    line-height:20px;
-    font-size:0.7em;
-    font-weight:bold;
-`;
-
-const ColorItem = styled.div`
-    margin-top:4px;
-    position:relative;
-    float:left;
-    width:12px;
-    height:12px;
-    border-radius:2px;
-    background:red;
-    
-    & + div{
-        margin-left:4px;
-    }
 `;
 
 interface ContentProps {
@@ -122,14 +79,14 @@ const Content: React.FC<ContentProps> = (props) => {
                         props.popupRef.current.setVisible(true);
                         props.popupRef.current.setImageUrl(`https://api.storywindow.co.kr/uploads/${props.mainImgurl}`);
                     }}>
-                        <img src={`https://${process.env.API_HOST}/uploads/` + props.imgurl} width="338" />
+                        <img src={`https://${process.env.API_HOST}/uploads/` + props.imgurl} width='338' />
                     </a>
                 </Link>
                 <Tagbox>
                 {
-                    props.tags && props.tags.map((v, i) => {
+                    props.tags && props.tags.map(tag => {
                         return (
-                            <Span key={i}>{decodeURIComponent(v)}</Span>
+                            <Span key={tag}>{decodeURIComponent(tag)}</Span>
                         );
                     })
                 }

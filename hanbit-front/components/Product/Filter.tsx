@@ -171,10 +171,10 @@ const PRODUCT_TEXT = {
 }
 
 class Filter extends React.Component<FilterProps, FilterState<FilterItem>> {
-    width = '75';
-    height = '75';
-    itemcontext: number;
-    containerRef: any;
+    private width = '75';
+    private height = '75';
+    private itemcontext: number;
+    private containerRef: any;
 
     constructor(props: any) {
         super(props);
@@ -249,7 +249,7 @@ class Filter extends React.Component<FilterProps, FilterState<FilterItem>> {
 
         return (
             <Div>
-                <ButtonBox><Button onClick={() => this.LeftClick()}>{"<"}</Button></ButtonBox>
+                <ButtonBox><Button onClick={() => this.LeftClick()}>{'<'}</Button></ButtonBox>
                 <SelectContainer>
                     <ItemContainer ref={this.containerRef}>
                         {this.state.items?.map((item, index) => {
@@ -268,7 +268,7 @@ class Filter extends React.Component<FilterProps, FilterState<FilterItem>> {
                         }
                     </ItemContainer>
                 </SelectContainer>
-                <ButtonBox><Button onClick={() => this.RightClick()}>{">"}</Button></ButtonBox>
+                <ButtonBox><Button onClick={() => this.RightClick()}>{'>'}</Button></ButtonBox>
             </Div>
         );
     }
