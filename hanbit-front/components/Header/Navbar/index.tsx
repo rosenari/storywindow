@@ -1,10 +1,31 @@
 import React, {useRef} from 'react';
-import styles from './index.module.css';
-import styled from 'styled-components';
+import styles from './index.module.scss';
+import styled , { css } from 'styled-components';
 import Link from 'next/link';
 import { CollectPopup } from '../..';
 
-const LOGO = styled.div`
+
+const LogoLink = css`
+	& a {
+		color:#555;
+		letter-spacing:2px;
+	}
+`;
+
+const LogoLinkHover = css`
+	& a:hover{
+		text-decoration:none;
+	}
+`;
+
+const LogoImage = css`
+	& img{
+		margin-top:2px;
+		margin-left:3px;
+	}
+`;
+
+const Logo = styled.div`
 	    position:relative;
         z-index:12;
         float:left;
@@ -16,22 +37,11 @@ const LOGO = styled.div`
         font-size:2.0em;
         text-align:center;
         color:#555;
-        
-        & a {
-        	color:#555;
-        	letter-spacing:2px;
-        }
-        
-        & a:hover{
-        	text-decoration:none;
-        }
-        
-        & img{
-            margin-top:2px;
-        	margin-left:3px;
-        }
+		${LogoLink}
+		${LogoLinkHover}
 `;
-const LOGO_IMG_BOX = styled.div`
+
+const LogoImageBox = styled.div`
 		float:left;
 		position:relative;
 		margin-top:7px;
@@ -43,9 +53,10 @@ const LOGO_IMG_BOX = styled.div`
 		margin-right:5px;
 		animation: circleani 2s infinite;
 		text-align:center;
+		${LogoImage}
 		
 `;
-const LOGO_TEXT_BOX = styled.div`
+const LogoTextBox = styled.div`
 		position:relative;
 		display:inline-block;
 		width:140px;
@@ -53,10 +64,13 @@ const LOGO_TEXT_BOX = styled.div`
         font-size:0.9em;
 `;
 
-const LOGO_TEXT_TOP = styled.div`
+const LogoTextInnerBox = styled.div`
 		position:relative;
 		display:block;
 		width:140px;
+`;
+
+const LogoTextInnerTopBox = styled(LogoTextInnerBox)`
 		height:45px;
 		line-height:45px;
 		font-family: 'Do Hyeon', sans-serif;
@@ -69,10 +83,7 @@ const LOGO_TEXT_TOP = styled.div`
 		transform: scaleX(1.15);
 `;
 
-const LOGO_TEXT_BOTTOM = styled.div`
-		position:relative;
-		display:block;
-		width:140px;
+const LogoTextInnerBottomBox = styled(LogoTextInnerBox)`
 		height:15px;
 		line-height:2px;
 		font-size:5px;
@@ -85,7 +96,7 @@ const LOGO_TEXT_BOTTOM = styled.div`
 
 const STAMP = styled.div`
 		position:absolute;
-		z-index:12px;
+		z-index:12;
 		bottom:6px;
 		left:70px;
 		width:118px;
@@ -100,9 +111,9 @@ const STAMP = styled.div`
 		font-family:Nanum Gothic;
 `;
 
-const CONSTRUCT_CIRCLE = styled.div`
+const ProductCircle = styled.div`
 		position:absolute;
-		z-index:12px;
+		z-index:12;
 		top:13px;
 		right:5px;
 		width:11px;
@@ -112,35 +123,9 @@ const CONSTRUCT_CIRCLE = styled.div`
 		border-radius:50%;
 `;
 
-const CLICKME = styled.div`
-		z-index:100;
-		position:absolute;
-		right:200px;
-		top:0px;
-		width:40px;
-		height:40px;
-		background-image: url('/images/clickme.png');
-		animation: ${styles.bounce} 2s infinite;
-`;
-
-const CLICKME_TEXT = styled.div`
-		z-index:100;
-		position:absolute;
-		right:204px;
-		top:25px;
-		width:90px;
-		height:40px;
-		line-height:40px;
-		font-size:1.2em;
-		color:var(--color-main);
-		font-family:'Nanum Brush Script';
-		animation: ${styles.bounce} 2s infinite;
-`;
-
 interface NavbarProps {
 	AllMenu_up: () => void;
-	Menu_down1: () => void;
-	Menu_down2: () => void;
+	Menu_down: () => void;
 }
 
 const Navbar: React.FC<NavbarProps> = (props) => {
@@ -149,21 +134,19 @@ const Navbar: React.FC<NavbarProps> = (props) => {
 	return (
 		<div className={styles.nav_container}>
 			<nav className={styles.navmenu}>
-				<LOGO onMouseOver={props.AllMenu_up}>
+				<Logo onMouseOver={props.AllMenu_up}>
 					<Link href="/">
 						<a>
-							<LOGO_IMG_BOX><img src="/images/storylogo.png" height="45" /></LOGO_IMG_BOX>
-							<LOGO_TEXT_BOX><LOGO_TEXT_TOP>스토리창</LOGO_TEXT_TOP><LOGO_TEXT_BOTTOM>&nbsp;</LOGO_TEXT_BOTTOM></LOGO_TEXT_BOX>
+							<LogoImageBox><img src="/images/storylogo.png" height="45" /></LogoImageBox>
+							<LogoTextBox><LogoTextInnerTopBox>스토리창</LogoTextInnerTopBox><LogoTextInnerBottomBox>&nbsp;</LogoTextInnerBottomBox></LogoTextBox>
 							<STAMP>전국 블라인드 도매</STAMP>
 						</a>
 					</Link>
-				</LOGO>
-				<ul className={styles.pc_menu}>
-					<li onMouseOver={props.Menu_down1}><Link href="/intro"><a>회사소개</a></Link></li>
-					<li onMouseOver={props.AllMenu_up}><Link href="/product/list"><a><CONSTRUCT_CIRCLE />파트너 시공모음</a></Link></li>
-					{/*<li onMouseOver={props.AllMenu_up}><Link href="/construct/list"><a ><CONSTRUCT_CIRCLE />파트너 시공</a></Link></li>*/}
-
-					<li className={styles.consult_link}>
+				</Logo>
+				<ul>
+					<li onMouseOver={props.Menu_down}><Link href="/intro"><a>회사소개</a></Link></li>
+					<li onMouseOver={props.AllMenu_up}><Link href="/product/list"><a><ProductCircle />파트너 시공모음</a></Link></li>
+					<li>
 						<Link href='/'>
 							<a onClick={(e) => {
 								e.preventDefault();
