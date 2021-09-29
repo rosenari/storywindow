@@ -19,7 +19,7 @@ const Submenu: React.FC<SubmenuProps> = (props) => {
                     <Link href="/intro"><a>스토리창</a></Link>
                 </div>
             </div>
-            <div className={styles.submenu_1_area} ref={props.subMenuAreaRef}>
+            <div className={styles.submenu_area} ref={props.subMenuAreaRef}>
             </div>
         </div>
     )
