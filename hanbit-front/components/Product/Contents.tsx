@@ -81,7 +81,7 @@ class Contents extends Component<ContentsProps> {
 
     renderLinesFromProducts(products: any, countPerLine: number, id: number = 0){
         const result = [];
-        const copyProducts = deepArrayCopy(products) as Array<ProductItem>;
+        const copyProducts = deepArrayCopy<ProductItem>(products);
         while(copyProducts.length > 0){
             const line = copyProducts.splice(0, countPerLine);
             result.push(<Line key={id++}>{this.renderContentFromLine(line)}</Line>);
