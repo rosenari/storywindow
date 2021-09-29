@@ -1,59 +1,71 @@
 import React, { useCallback, useRef, useState } from 'react';
-import Top from "./Top";
-import Navbar from "./Navbar";
-import Submenu from "./Submenu";
-import styles from './index.module.css';
+import Top from './Top';
+import Navbar from './Navbar';
+import Submenu from './Submenu';
+import styles from './index.module.scss';
+
+interface SubMenuVisibleProps {
+	init: boolean;
+	subMenuBox: HTMLDivElement | null;
+	subMenuArea: HTMLDivElement | null;
+}
+
+type SubMenuVisibleReturnType = [ visible: boolean, handler: (visible: boolean) => void];
+
+const useSubMenuVisible = ({ init = false, subMenuBox, subMenuArea } : SubMenuVisibleProps): SubMenuVisibleReturnType => {
+	const [visible, setVisible] = useState<boolean>(init);
+
+	const setVisibleSubMenu = useCallback((visible: boolean) => {
+		if(!subMenuBox || !subMenuArea) return;
+		
+		if(visible){
+			subMenuBox.style.height = '90px';
+			subMenuArea.style.height = '80px';
+		}else {
+			subMenuBox.style.height = '0px';
+			subMenuArea.style.height = '0px';
+		}
+	}, [subMenuBox, subMenuArea]);
+
+	const handler = useCallback((visible: boolean) => {
+		setVisible(visible);
+		setVisibleSubMenu(visible);
+		return;
+	}, []);
+
+	return [visible, handler];
+}
 
 const Header: React.FC = () => {
-
-
-	/* 서브메뉴 관련 훅,콜백 */
-	const [submenu1, setSubmenu1] = useState(false); //false는 안보임
-	const [submenu2, setSubmenu2] = useState(false); //false는 안보임
-
-	const submenubox = useRef<HTMLDivElement>(null);
-	const submenu_1_area = useRef<HTMLDivElement>(null);
+	const subMenuBox = useRef<HTMLDivElement>(null);
+	const subMenuArea = useRef<HTMLDivElement>(null);
+	const [subMenuVisible, setSubMenuVisible] = useSubMenuVisible({ 
+		init: false, 
+		subMenuBox: subMenuBox.current, 
+		subMenuArea: subMenuArea.current });
 
 	const AllMenu_up = useCallback(() => {
-		setSubmenu1(false);
-		setSubmenu2(false);
+		setSubMenuVisible(false);
+	}, []);
 
-		if (submenubox.current) submenubox.current.style.height = "0px";
-		if (submenu_1_area.current) submenu_1_area.current.style.height = "0px";
-	}, [submenubox, submenu_1_area]);
-
-	const Menu_down1 = useCallback(() => {
-		AllMenu_up();
-		setSubmenu1(true);
-
-		if (submenubox.current) submenubox.current.style.height = "90px";
-		if (submenu_1_area.current) submenu_1_area.current.style.height = "80px";
-	}, [submenubox, submenu_1_area]);
-
-	const Menu_down2 = useCallback(() => {
-		AllMenu_up();
-		setSubmenu2(true);
-
-		if (submenubox.current) submenubox.current.style.height = "90px";
-		if (submenu_1_area.current) submenu_1_area.current.style.height = "80px";
-	}, [submenubox, submenu_1_area]);
+	const Menu_down = useCallback(() => {
+		setSubMenuVisible(false);
+		setSubMenuVisible(true);
+	}, []);
 
 	return (
 		<div className={styles.header} onMouseLeave={AllMenu_up}>
 			<Top AllMenu_up={AllMenu_up} />
 			<Navbar
 				AllMenu_up={AllMenu_up}
-				Menu_down1={Menu_down1}
-				Menu_down2={Menu_down2}
+				Menu_down={Menu_down}
 			/>
 			<Submenu
 				AllMenu_up={AllMenu_up}
-				Menu_down1={Menu_down1}
-				Menu_down2={Menu_down2}
-				submenu1={submenu1}
-				submenu2={submenu2}
-				submenubox={submenubox}
-				submenu_1_area={submenu_1_area}
+				Menu_down={Menu_down}
+				subMenuVisible={subMenuVisible}
+				subMenuBoxRef={subMenuBox}
+				subMenuAreaRef={subMenuArea}
 			/>
 		</div>
 	)
