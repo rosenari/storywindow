@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import * as apiActions from '../../store/reducers/api';
 import styled from 'styled-components';
-import Descript from './Summary';
+import Summary from './Summary';
 import Content from './Content';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import { ImagePopup } from '../Popup';
 import { deepArrayCopy } from '../../util';
+import { RequestMoreProductListAction, RequestProductListAction } from '../../store/action/sagaAction';
+import { ProductListData } from '../../store/action/reducerAction';
 
 
 const ProgressBox = styled.div`
@@ -48,8 +49,14 @@ const MoreButton = styled.div`
 `;
 
 interface ContentsProps {
-    datas: any;
-    getApi2: any;
+    productListData: ProductListData;
+    getProductList: ({ tag }: {
+        tag: string;
+    }) => any;
+    getMoreProductList: ({ startIndex, tag }: {
+        startIndex: number;
+        tag: string;
+    }) => any;
 }
 
 interface ProductItem {
@@ -81,7 +88,7 @@ class Contents extends Component<ContentsProps> {
 
     renderLinesFromProducts(products: any, countPerLine: number, id: number = 0){
         const result = [];
-        const copyProducts = deepArrayCopy(products) as Array<ProductItem>;
+        const copyProducts = deepArrayCopy<ProductItem>(products);
         while(copyProducts.length > 0){
             const line = copyProducts.splice(0, countPerLine);
             result.push(<Line key={id++}>{this.renderContentFromLine(line)}</Line>);
@@ -90,23 +97,16 @@ class Contents extends Component<ContentsProps> {
     }
 
     render() {
-        let products = [];
-        let tag: String = 'all';
-        let remain = false;
-        
-        if (this.props.datas !== "loading") {
-            products = this.props.datas.data.result;
-            remain = this.props.datas.data.remain;
-            tag = this.props.datas.config?.url?.split('/')?.[6] || tag;
-        }
+        const productList = this.props.productListData?.result || [];
+        const tag = this.props.productListData?.tag || 'all';
 
         return (
-            this.props.datas == "loading" ? <Div><Descript /><ProgressBox><CircularProgress /></ProgressBox></Div> :
+            (!this.props.productListData || this.props.productListData.loading) ? <Div><Summary /><ProgressBox><CircularProgress /></ProgressBox></Div> :
                 <Div>
-                    <Descript />
-                    {this.renderLinesFromProducts(products, this.countPerLine)}
-                    {remain && <MoreButton onClick={() => {
-                        this.props.getApi2(`https://${process.env.API_HOST}/api/getProducts/${products.length}/${tag}/date`);
+                    <Summary />
+                    {this.renderLinesFromProducts(productList, this.countPerLine)}
+                    {this.props.productListData?.remain && <MoreButton onClick={() => {
+                        this.props.getMoreProductList({ startIndex: productList.length, tag });
                     }}>더보기</MoreButton>}
                     <ImagePopup ref={this.popupRef} />
                 </Div>
@@ -116,13 +116,13 @@ class Contents extends Component<ContentsProps> {
 
 // props 값으로 넣어 줄 상태를 정의해줍니다.
 const mapStateToProps = (state: any) => ({
-    datas: state.api.datas
+    productListData: state.reducer.productListData
 });
 
 // props 값으로 넣어 줄 액션 함수들을 정의해줍니다
 const mapDispatchToProps = (dispatch: any) => ({
-    getApi: (url: string) => dispatch(apiActions.getApi(url)),
-    getApi2: (url: string) => dispatch(apiActions.getApi2(url)),
+    getProductList: ({ tag } : { tag: string; }) => dispatch(new RequestProductListAction({ tag }).toJSON()),
+    getMoreProductList: ({ startIndex, tag } : { startIndex: number; tag: string; }) => dispatch(new RequestMoreProductListAction({ startIndex, tag }).toJSON())
 })
 
 // 컴포넌트를 리덕스와 연동 할 떄에는 connect 를 사용합니다.

@@ -1,8 +1,8 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
 import { connect } from 'react-redux';
-import * as apiActions from '../../store/reducers/api';
 import { deepArrayCopy } from '../../util';
+import { RequestProductListAction } from '../../store/action/sagaAction';
 
 const Div = styled.div`
     position:relative;
@@ -140,9 +140,9 @@ const Itemtext = styled.div`
 `;
 
 interface FilterProps {
-    loading: any;
-    getApi: any;
-    datas: any;
+    getProductList: ({ tag }: {
+        tag: string;
+    }) => any;
 }
 
 interface FilterItem {
@@ -195,8 +195,8 @@ class Filter extends React.Component<FilterProps, FilterState<FilterItem>> {
         };
     }
 
-    componentDidMount() {
-        this.handleGetapi(`https://${process.env.API_HOST}/api/getProducts/0/all/date`);
+    componentDidMount(){
+        this.props.getProductList({ tag: 'all' });
     }
 
     LeftClick() {
@@ -214,8 +214,6 @@ class Filter extends React.Component<FilterProps, FilterState<FilterItem>> {
     }
 
     MenuClick (index: number) {
-        this.props.loading();
-
         const copyItems = deepArrayCopy<FilterItem>(this.state.items);
         copyItems.forEach(item => item.active = false);
         copyItems[index] = { ...copyItems[index], active: true };
@@ -225,7 +223,7 @@ class Filter extends React.Component<FilterProps, FilterState<FilterItem>> {
         });
 
         const activeItem = this.getActiveItem(copyItems);
-        this.callGetProductApi(activeItem);
+        this.props.getProductList({ tag: activeItem.parameter });
     }
 
     isStateChange(curDatas: Array<FilterItem>, nextDatas: Array<FilterItem>): boolean {
@@ -234,15 +232,6 @@ class Filter extends React.Component<FilterProps, FilterState<FilterItem>> {
 
     getActiveItem(items: Array<FilterItem>): FilterItem{
         return items.filter(item => item.active === true)[0];
-    }
-
-    callGetProductApi(item: FilterItem) {
-        const productName = item.parameter;
-        this.handleGetapi(`https://${process.env.API_HOST}/api/getProducts/0/${productName}/date`);
-    }
-
-    handleGetapi = (url: string) => {
-        this.props.getApi(url);
     }
 
     render() {
@@ -274,18 +263,11 @@ class Filter extends React.Component<FilterProps, FilterState<FilterItem>> {
     }
 }
 
-// props 값으로 넣어 줄 상태를 정의해줍니다.
-const mapStateToProps = (state: any) => ({
-    datas: state.api.datas
-});
-
-// props 값으로 넣어 줄 액션 함수들을 정의해줍니다
 const mapDispatchToProps = (dispatch: any) => ({
-    getApi: (url: string) => dispatch(apiActions.getApi(url)),
-    loading: () => dispatch(apiActions.loading())
+    getProductList: ({ tag }: { tag: string }) => dispatch(new RequestProductListAction({ tag }).toJSON())
 })
 
 // 컴포넌트를 리덕스와 연동 할 떄에는 connect 를 사용합니다.
 // connect() 의 결과는, 컴포넌트에 props 를 넣어주는 함수를 반환합니다.
 // 반환된 함수에 우리가 만든 컴포넌트를 넣어주면 됩니다.
-export default connect(mapStateToProps, mapDispatchToProps)(Filter);
+export default connect(null, mapDispatchToProps)(Filter);
