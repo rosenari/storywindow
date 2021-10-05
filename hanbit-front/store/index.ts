@@ -1,8 +1,10 @@
-import { compose, createStore, Store, applyMiddleware } from "redux";
-import rootReducer, { rootSaga } from "./reducers";
+import { compose, createStore, Store, applyMiddleware } from 'redux';
+import rootSaga from './saga';
+import rootReducer from './reducer';
 import createSagaMiddleware from 'redux-saga';
-import { createWrapper } from "next-redux-wrapper";
+import { createWrapper } from 'next-redux-wrapper';
 
+//window 객체 프로퍼티 확장
 declare global {
     interface Window {
         __REDUX_DEVTOOLS_EXTENSION_COMPOSE__?: typeof compose;
