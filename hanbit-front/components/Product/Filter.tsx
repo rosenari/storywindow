@@ -195,10 +195,6 @@ class Filter extends React.Component<FilterProps, FilterState<FilterItem>> {
         };
     }
 
-    componentDidMount(){
-        this.props.getProductList({ tag: 'all' });
-    }
-
     LeftClick() {
         if (this.itemcontext > 0) {
             this.containerRef.current.style.marginLeft = ((this.itemcontext - 1) * -100) + 'px';
