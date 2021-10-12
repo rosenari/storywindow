@@ -1,3 +1,15 @@
+import { Store } from "redux";
+
+export function waitAndGetState(store: Store){
+    return new Promise(resolve => {
+        const unSubscribe = store.subscribe(() => {
+          const state = store.getState();
+          unSubscribe();
+          return resolve(state);
+        });
+    });
+}
+
 export function getInputCursorCoordinate(element: HTMLInputElement, position: number | null){
     if(!element || position === null) return;
     const properties = [

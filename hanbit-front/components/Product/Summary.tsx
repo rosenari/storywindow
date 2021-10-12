@@ -35,8 +35,8 @@ const SummaryBox: React.FC<SummaryProps> = (props) => {
 }
 
 // props 값으로 넣어 줄 상태를 정의해줍니다.
-const mapStateToProps = (state: any) => ({
-    allcount: state.reducer.productListData?.allcount || 0
+const mapStateToProps = (state: any, ownProps: SummaryProps) => ({
+    allcount: state.reducer.productListData?.allcount || ownProps.allcount || 0
 });
 
 // 컴포넌트를 리덕스와 연동 할 떄에는 connect 를 사용합니다.
