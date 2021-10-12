@@ -50,10 +50,10 @@ const MoreButton = styled.div`
 
 interface ContentsProps {
     productListData: ProductListData;
-    getProductList: ({ tag }: {
+    getProductList?: ({ tag }: {
         tag: string;
     }) => any;
-    getMoreProductList: ({ startIndex, tag }: {
+    getMoreProductList?: ({ startIndex, tag }: {
         startIndex: number;
         tag: string;
     }) => any;
@@ -103,10 +103,10 @@ class Contents extends Component<ContentsProps> {
         return (
             (!this.props.productListData || this.props.productListData.loading) ? <Div><Summary /><ProgressBox><CircularProgress /></ProgressBox></Div> :
                 <Div>
-                    <Summary />
+                    <Summary allcount={this.props.productListData.allcount} />
                     {this.renderLinesFromProducts(productList, this.countPerLine)}
                     {this.props.productListData?.remain && <MoreButton onClick={() => {
-                        this.props.getMoreProductList({ startIndex: productList.length, tag });
+                        this.props.getMoreProductList?.({ startIndex: productList.length, tag });
                     }}>더보기</MoreButton>}
                     <ImagePopup ref={this.popupRef} />
                 </Div>
@@ -115,8 +115,8 @@ class Contents extends Component<ContentsProps> {
 }
 
 // props 값으로 넣어 줄 상태를 정의해줍니다.
-const mapStateToProps = (state: any) => ({
-    productListData: state.reducer.productListData
+const mapStateToProps = (state: any, ownProps: ContentsProps) => ({
+    productListData: state.reducer.productListData || ownProps.productListData
 });
 
 // props 값으로 넣어 줄 액션 함수들을 정의해줍니다

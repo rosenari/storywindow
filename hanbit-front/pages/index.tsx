@@ -1,12 +1,14 @@
-import React from "react";
-import { Cardslider, Image, PulseBox, NoticePopup } from "../components";
-import Router from "next/router";
-import { NextPage } from "next";
-import { Context } from "vm";
-import axios from "axios";
-import FadeIn from "react-fade-in";
+import React from 'react';
+import { Cardslider, Image, PulseBox, NoticePopup } from '../components';
+import Router from 'next/router';
+import { NextPage } from 'next';
+import { Context } from 'vm';
+import FadeIn from 'react-fade-in';
 import styled from 'styled-components';
-import styles from "./css/index.module.scss";
+import styles from './css/index.module.scss';
+import { RequestProductListAction } from '../store/action/sagaAction';
+import { waitAndGetState } from '../util';
+import { ProductListData } from '../store/action/reducerAction';
 
 const IMG_URL = {
 	BIG_LOGO: '/images/storylogo_big.png',
@@ -110,10 +112,10 @@ const ROUND = styled.div<RoundProps>`
 `;
 
 interface HomeProps {
-	rankData: any
+	productListData: ProductListData
 }
 
-const Home: NextPage<HomeProps> = (props) => {
+const Home: NextPage<HomeProps> = ({ productListData }) => {
 
 	return (
 		<div>
@@ -160,7 +162,7 @@ const Home: NextPage<HomeProps> = (props) => {
 						Router.push('/product/list');
 					}}>더보기</span>
 				</div>
-				<Cardslider data={props.rankData.result} startDelay={0} delay={3000} />
+				<Cardslider data={productListData.result} startDelay={0} delay={3000} />
 			</div>
 			<div className={styles.industry_main}>
 				<div className={styles.industry_header}>
@@ -206,11 +208,11 @@ const Home: NextPage<HomeProps> = (props) => {
 
 Home.getInitialProps = async (ctx: Context) => {
 
-	const response = await axios.get(`https://${process.env.API_HOST}/api/getProducts/0/all/date`);
-	const data = response.data;
+	ctx.store.dispatch(new RequestProductListAction().toJSON());
+	const state = await waitAndGetState(ctx.store) as { reducer: { productListData: ProductListData }};
 
 	return {
-		rankData: data
+		productListData: state.reducer.productListData
 	}
 
 }
