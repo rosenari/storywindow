@@ -1,0 +1,69 @@
+def notifySlack(STATUS, COLOR) {
+    commitMsg = ""
+    commitAuthor = ""
+    if (env.GIT_COMMIT_MSG != null) {
+        commitMsg = env.GIT_COMMIT_MSG
+    }
+    if (env.GIT_AUTHOR != null) {
+        commitAuthor = "(${env.GIT_AUTHOR})"
+    }
+
+    slackSend channel: "#jenkins-channel", 
+	message: "${env.JOB_NAME} #${env.BUILD_NUMBER} - ${commitMsg} ${commitAuthor} "+STATUS+" : (${env.BUILD_URL})", 
+	color: COLOR, tokenCredentialId: "slack-storywindow", 
+	teamDomain: "storywindow"
+}
+
+node {
+    working_dir = "./story-front"
+    ecr_addr = "740499407256.dkr.ecr.ap-northeast-2.amazonaws.com"
+    ec2_addr = "storywindow.co.kr"
+    repo_name = "storywindow-fe"
+    aws_access_key_credential = "iam-storywindow-access-key"
+    aws_ec2_credential = ['ec2-storywindow-nat-pem']
+
+    try{
+        stage("Clone repository") {
+            checkout scm
+        }
+
+        stage("Get commit Message") {
+            env.GIT_COMMIT_MSG = sh (script: 'git log -1 --pretty=%B ${GIT_COMMIT}', returnStdout: true).trim()
+            env.GIT_AUTHOR = sh (script: 'git log -1 --pretty=%cn ${GIT_COMMIT}', returnStdout: true).trim()
+        }
+
+        notifySlack("[빌드,배포준비 (0/3)] 🚗🚗", "#0000FF")
+
+        stage("Build image") {
+            app = docker.build("${ecr_addr}/${repo_name}","${working_dir}")
+        }
+        notifySlack("[빌드성공 (1/3)] 🚗🚗", "#0000FF")
+
+        stage("Push image") {
+            sh "rm  ~/.dockercfg || true"
+            sh "rm ~/.docker/config.json || true"
+            
+            docker.withRegistry("https://${ecr_addr}", "ecr:ap-northeast-2:${aws_access_key_credential}") {
+                app.push("latest")
+            }
+        }
+        notifySlack("[ECR 배포성공 (2/3)] 🚗🚗", "#0000FF")
+
+        stage("Deploy to EC2") {
+            sshagent (credentials: aws_ec2_credential) {
+                sh "ssh -o StrictHostKeyChecking=no ubuntu@${ec2_addr} uptime"
+                sh "scp ${working_dir}/pullDockerImage.sh ubuntu@${ec2_addr}:/home/ubuntu"
+                sh "ssh -o StrictHostKeyChecking=no -l ubuntu ${ec2_addr} 'cd ~ && chmod +x ./pullDockerImage.sh && ./pullDockerImage.sh'"
+            }
+        }
+        notifySlack("[EC2 배포성공 (3/3)] 🚗🚗", "#0000FF")
+
+        stage("clear Docker Image") {
+            sh 'docker rmi $(docker images -f "dangling=true" -q) || true'
+        }
+        notifySlack("[빌드,배포 전부 성공 !] 👍👍", "#00FF00")
+    }catch(e){
+        echo "${e}"
+        notifySlack("[실패..] 😩", "#FF0000")
+    }
+}
