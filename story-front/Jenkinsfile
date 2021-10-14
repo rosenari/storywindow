@@ -52,7 +52,7 @@ node {
 
         stage("Deploy to EC2") {
             sshagent (credentials: aws_ec2_credential) {
-                sh "ssh -o StrictHostKeyChecking=no ${ec2_username}@${ec2_addr} uptime"
+                sh "ssh -o StrictHostKeyChecking=no ${ec2_username}@${ec2_addr} whoami"
                 sh "scp ${working_dir}/pullDockerImage.sh ${ec2_username}@${ec2_addr}:/home/${ec2_username}"
                 sh "ssh -o StrictHostKeyChecking=no -l ${ec2_username} ${ec2_addr} 'cd ~ && chmod +x ./pullDockerImage.sh && ./pullDockerImage.sh'"
             }
