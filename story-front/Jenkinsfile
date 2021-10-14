@@ -18,6 +18,7 @@ node {
     working_dir = "./story-front"
     ecr_addr = "740499407256.dkr.ecr.ap-northeast-2.amazonaws.com"
     ec2_addr = "storywindow.co.kr"
+    ec2_username = "ec2-user"
     repo_name = "storywindow-fe"
     aws_access_key_credential = "iam-storywindow-access-key"
     aws_ec2_credential = ['ec2-storywindow-nat-pem']
@@ -51,9 +52,9 @@ node {
 
         stage("Deploy to EC2") {
             sshagent (credentials: aws_ec2_credential) {
-                sh "ssh -o StrictHostKeyChecking=no ubuntu@${ec2_addr} uptime"
-                sh "scp ${working_dir}/pullDockerImage.sh ubuntu@${ec2_addr}:/home/ubuntu"
-                sh "ssh -o StrictHostKeyChecking=no -l ubuntu ${ec2_addr} 'cd ~ && chmod +x ./pullDockerImage.sh && ./pullDockerImage.sh'"
+                sh "ssh -o StrictHostKeyChecking=no ${ec2_username}@${ec2_addr} uptime"
+                sh "scp ${working_dir}/pullDockerImage.sh ${ec2_username}@${ec2_addr}:/home/${ec2_username}"
+                sh "ssh -o StrictHostKeyChecking=no -l ${ec2_username} ${ec2_addr} 'cd ~ && chmod +x ./pullDockerImage.sh && ./pullDockerImage.sh'"
             }
         }
         notifySlack("[EC2 배포성공 (3/3)] 🚗🚗", "#0000FF")
