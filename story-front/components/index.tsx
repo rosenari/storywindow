@@ -1,7 +1,6 @@
 export { default as Footer } from './Footer';
 export { default as Header } from './Header';
 export { default as Cardslider } from './Slider/Cardslider';
-export { default as Cardmenu } from './Cardmenu';
 export { default as Image } from './Image';
 export { default as Label } from './Label';
 export { default as PContents } from './Product/Contents';
