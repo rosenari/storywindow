@@ -23,4 +23,4 @@ docker rmi $(docker images -f "dangling=true" -q)
 #aws ecr remove
 IMAGES=$(aws ecr list-images --region ap-northeast-2 --repository-name ${REPO_NAME} --filter "tagStatus=UNTAGGED" --query 'imageIds[*]' --output json)
 
-aws ecr batch-delete-image --region ap-northeast-2 --repository-name ${REPO_NAME} --image-ids ${IMAGES} || true
+aws ecr batch-delete-image --region ap-northeast-2 --repository-name ${REPO_NAME} --image-ids "$IMAGES" || true
