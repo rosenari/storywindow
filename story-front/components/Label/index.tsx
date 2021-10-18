@@ -12,7 +12,7 @@ const Label: React.FC<LabelProps> = (props) => {
     return (
         <div className={styles.label}>
             <div className={styles.label_text}>
-                <FaHome /> HOME <IoIosArrowForward /> {props.position} {props.sub_position && <IoIosArrowForward />} {props.sub_position}
+                <FaHome /> HOME <IoIosArrowForward /> {props.position} {props.sub_position !== "" && <IoIosArrowForward />} {props.sub_position}
             </div>
         </div>
     );
