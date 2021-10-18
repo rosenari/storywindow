@@ -41,19 +41,21 @@ const SHINY = styled.div`
     animation: ${styles.sparkle} 4s ease-in-out infinite;
 `;
 
-export interface CardProps {
-    imgurl: string;
+interface Props {
+    rank: string;
+    imgUrl: string;
+    title: string;
     tags: Array<string>;
 }
 
-const Card: React.FC<CardProps> = ({ imgurl, tags }) => {
+const Card: React.FC<Props> = ({ rank, imgUrl, title, tags }) => {
 
     return (
         <div className={styles.card_slider_item}>
             <Itemrank><Itemrankspan> {decodeURIComponent(tags[0])} </Itemrankspan></Itemrank>
             <div className={styles.card_slider_img} onClick={() => {
                 Router.push('/product/list');
-            }}><img src={`https://${process.env.API_HOST}/uploads/${imgurl}`} height="230" /><SHINY /></div>
+            }}><img src={`https://${process.env.API_HOST}/uploads/${imgUrl}`} height="230" /><SHINY /></div>
         </div>
     )
 }
