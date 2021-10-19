@@ -1,6 +1,6 @@
 import Action from './index';
 import { put } from 'redux-saga/effects'
-import { ResponseMoreProductListAction, ResponseProductListAction, ResponseSmsAction } from './reducerAction';
+import { ResponseMoreProductListAction, ResponseProductListAction } from './reducerAction';
 import axios, { AxiosResponse } from 'axios';
 
 export default interface SagaAction extends Action{
@@ -101,28 +101,33 @@ export class RequestMoreProductListAction extends SagaActionImpl {
 
 interface RequestSmsActionParameterType {
     phonenumber?: string;
+    successHandler?: () => void;
+    failHandler?: () => void;
 }
 
 export class RequestSmsAction extends SagaActionImpl {
     private phonenumber: string;
+    private successHandler: () => void;
+    private failHandler: () => void;
 
-    constructor({ phonenumber = '' }: RequestSmsActionParameterType = {}) {
+    constructor({ phonenumber = '', successHandler = () => {}, failHandler = () => {} }: RequestSmsActionParameterType = {}) {
         super(SagaActionTyeps.POST_SMS);
         this.phonenumber = phonenumber;
+        this.successHandler = successHandler;
+        this.failHandler = failHandler;
     }
 
     public * sagaHandler() {
         try {
-            yield put(new ResponseMoreProductListAction(loadingData).toJSON());
             const response: AxiosResponse = yield axios.post(`https://${process.env.API_HOST}/api/sms`, { phonenumber: this.phonenumber });
-            const smsData = {
-                loading: false,
-                done: true,
-                ...response.data
+            if(response.data?.result === "success"){
+                this.successHandler();
+            }else{
+                this.failHandler();
             }
-            yield put(new ResponseSmsAction(smsData).toJSON());
+
         } catch (e) {
-            yield put(new ResponseSmsAction(failureData).toJSON());
+            console.log(e);
         }
     }
 }

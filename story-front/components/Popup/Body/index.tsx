@@ -1,8 +1,9 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
-import axios from 'axios';
 import Link from 'next/link';
 import { getInputCursorCoordinate } from '../../../util';
+import { useDispatch } from 'react-redux'
 import styles from './index.module.scss';
+import { RequestSmsAction } from '../../../store/action/sagaAction';
 
 const MESSAGE = {
     NOTICE : ['ㆍ🎉 전국 블라인드 도매업체 스토리창이 오픈되었습니다 !',
@@ -46,6 +47,7 @@ interface InputBodyProps extends BodyProps{
 const InputBody: React.FC<InputBodyProps> = ({ type, visible, setVisible }) => {
     const [privacy, setPrivacy] = useState(false);
     const [phonenumber, setPhonenumber] = useState('');
+    const dispatch = useDispatch();
     const inputRef = useRef<HTMLInputElement>(null);
     const cursorRef = useRef<HTMLDivElement>(null);
     const cursorTriger = useCallback((e) => {
@@ -100,14 +102,10 @@ const InputBody: React.FC<InputBodyProps> = ({ type, visible, setVisible }) => {
                                 return;
                             }
 
-                            axios.post('https://api.storywindow.co.kr/api/sms',{
-                                phonenumber
-                            }).then(result => {
-                                if(result?.data?.result === 'success'){
-                                    alert(MESSAGE.SUCCESS);
-                                    setVisible(false);
-                                }
-                            });
+                            dispatch(new RequestSmsAction({ phonenumber, successHandler: () => {
+                                alert(MESSAGE.SUCCESS);
+                                setVisible(false);
+                            }}).toJSON());
                         }}>{MESSAGE.CONTACT}</button>
                     </div>
                 </div>

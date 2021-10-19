@@ -73,18 +73,3 @@ export class ResponseMoreProductListAction extends ReducerActionImpl<ProductList
         }
     }
 }
-
-interface Sms extends Data {
-    result?: string;
-}
-export class ResponseSmsAction extends ReducerActionImpl<Sms> {
-    constructor(data: Sms){
-        super('RESPONSE_SMS', data);
-    }
-
-    public updateState(state: {}){
-        return {
-            ...state, sms: this.data
-        }
-    }
-}
