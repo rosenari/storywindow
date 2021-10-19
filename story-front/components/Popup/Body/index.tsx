@@ -1,8 +1,9 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
-import axios from 'axios';
 import Link from 'next/link';
 import { getInputCursorCoordinate } from '../../../util';
+import { useDispatch } from 'react-redux'
 import styles from './index.module.scss';
+import { RequestSmsAction } from '../../../store/action/sagaAction';
 
 const MESSAGE = {
     NOTICE : ['ㆍ🎉 전국 블라인드 도매업체 스토리창이 오픈되었습니다 !',
@@ -19,7 +20,8 @@ const MESSAGE = {
     DIRECT_CONTACT : '직접 문의하기',
     BUSINESS_TIME : '영업시간 : 월-금 09:00 - 17:00 | 토-일 휴무',
     CONTACT: '문의하기',
-    SUCCESS: '파트너 문의가 성공적으로 접수되었습니다.'
+    SUCCESS: '파트너 문의가 성공적으로 접수되었습니다.',
+    FAIL: '파트너 문의가 수리 중 입니다. 유선문의를 이용해주세요.'
 }
 
 interface BodyProps {
@@ -46,6 +48,7 @@ interface InputBodyProps extends BodyProps{
 const InputBody: React.FC<InputBodyProps> = ({ type, visible, setVisible }) => {
     const [privacy, setPrivacy] = useState(false);
     const [phonenumber, setPhonenumber] = useState('');
+    const dispatch = useDispatch();
     const inputRef = useRef<HTMLInputElement>(null);
     const cursorRef = useRef<HTMLDivElement>(null);
     const cursorTriger = useCallback((e) => {
@@ -100,14 +103,12 @@ const InputBody: React.FC<InputBodyProps> = ({ type, visible, setVisible }) => {
                                 return;
                             }
 
-                            axios.post('https://api.storywindow.co.kr/api/sms',{
-                                phonenumber
-                            }).then(result => {
-                                if(result?.data?.result === 'success'){
-                                    alert(MESSAGE.SUCCESS);
-                                    setVisible(false);
-                                }
-                            });
+                            dispatch(new RequestSmsAction({ phonenumber, successHandler: () => {
+                                alert(MESSAGE.SUCCESS);
+                                setVisible(false);
+                            }, failHandler: () => {
+                                alert(MESSAGE.FAIL);
+                            }}).toJSON());
                         }}>{MESSAGE.CONTACT}</button>
                     </div>
                 </div>
