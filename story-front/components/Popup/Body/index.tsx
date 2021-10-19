@@ -20,7 +20,8 @@ const MESSAGE = {
     DIRECT_CONTACT : '직접 문의하기',
     BUSINESS_TIME : '영업시간 : 월-금 09:00 - 17:00 | 토-일 휴무',
     CONTACT: '문의하기',
-    SUCCESS: '파트너 문의가 성공적으로 접수되었습니다.'
+    SUCCESS: '파트너 문의가 성공적으로 접수되었습니다.',
+    FAIL: '파트너 문의가 수리 중 입니다. 유선문의를 이용해주세요.'
 }
 
 interface BodyProps {
@@ -105,6 +106,8 @@ const InputBody: React.FC<InputBodyProps> = ({ type, visible, setVisible }) => {
                             dispatch(new RequestSmsAction({ phonenumber, successHandler: () => {
                                 alert(MESSAGE.SUCCESS);
                                 setVisible(false);
+                            }, failHandler: () => {
+                                alert(MESSAGE.FAIL);
                             }}).toJSON());
                         }}>{MESSAGE.CONTACT}</button>
                     </div>
