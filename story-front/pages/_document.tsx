@@ -1,6 +1,9 @@
 import React from 'react';
 import Document, { Html, Head, Main, NextScript, DocumentContext } from 'next/document';
 import { ServerStyleSheet } from 'styled-components';
+import { Fonts, generateFontStyleJsx } from '../font';
+
+const FontStyleJsx = generateFontStyleJsx(Fonts);
 
 class MyDocument extends Document {
 
@@ -10,12 +13,12 @@ class MyDocument extends Document {
         try {
             ctx.renderPage = () => 
                 originalRenderPage({
-                    enhanceApp: App => props => sheet.collectStyles(<App {...props} />)
+                    enhanceApp: (App) => (props) => sheet.collectStyles(<App {...props} />)
                 });
                 const initialProps = await Document.getInitialProps(ctx);
                 return {
                     ...initialProps,
-                    style: (
+                    styles: (
                         <>
                             {initialProps.styles}
                             {sheet.getStyleElement()}
@@ -32,8 +35,12 @@ class MyDocument extends Document {
             <Html lang="en">
                 <Head>
                     <link rel="canonical" href="https://storywindow.co.kr/" />
-                    <link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&family=Jua&family=Noto+Sans+KR&family=Nanum+Brush+Script&display=swap" rel="stylesheet" />
                     <link rel="stylesheet" type="text/css" href="/css/nprogress.css" />
+                    {
+                        Fonts.map(({ type, url }) => <link key={url} rel="preload" as="font" type={type} href={url} />)
+                    }
+                    <style dangerouslySetInnerHTML={{__html: FontStyleJsx}}>
+                    </style>
                 </Head>
                 <body>
                     <Main />

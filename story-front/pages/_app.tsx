@@ -1,22 +1,20 @@
 import React from 'react';
 import Head from 'next/head';
-//import { AppProps } from "next/app";
 import { useRouter } from 'next/router';
 import NProgress from 'nprogress';
-import { Header, Footer } from "../components";
-import './css/global.css';
+import { Header, Footer } from '../components';
 import 'bootstrap/dist/css/bootstrap.min.css'
 import wrapper from '../store'
 import { NextComponentType } from 'next';
 import { AppContext, AppInitialProps } from 'next/app';
 import { AppProps } from 'next/dist/next-server/lib/router/router';
-import './global.color.css';
-import './global.font.css';
-import './firework.scss';
+import './css/global.css';
+import './css/global.color.css';
+import './css/firework.scss';
+
+console.log('버그 발생 시 문의주세요. ( ͡~ ͜ʖ ͡°) : rosenari88@gmail.com');
 
 const App: NextComponentType<AppContext, AppInitialProps, AppProps> = ({ Component, pageProps }) => {
-
-	console.log("APp");
 
 	const router = useRouter()
 
@@ -38,7 +36,6 @@ const App: NextComponentType<AppContext, AppInitialProps, AppProps> = ({ Compone
 		}
 
 		const handleError = () => {
-			console.log('onRouteChnageError triggered');
 			NProgress.done();
 		}
 
@@ -88,7 +85,6 @@ const App: NextComponentType<AppContext, AppInitialProps, AppProps> = ({ Compone
 App.getInitialProps = async ({ Component, ctx }: AppContext): Promise<AppInitialProps> => {
 	let pageProps = {};
 	if (Component.getInitialProps) {
-		console.log("App getInital props");
 		pageProps = await Component.getInitialProps(ctx);
 	}
 	return { pageProps };
