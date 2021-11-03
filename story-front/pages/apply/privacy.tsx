@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
 import { NextPage } from 'next';
-import FadeIn from 'react-fade-in';
 
 const Div = styled.div`
     margin:0 auto;

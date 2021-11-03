@@ -6,29 +6,29 @@ interface FontProps {
 }
 
 export const Fonts: Array<FontProps> = [{
-        type: 'font/ttf',
-        format: 'truetype',
-        url: '/font/Jua-Regular.ttf',
+        type: 'font/woff2',
+        format: 'woff2',
+        url: '/font/Jua-Regular.woff2',
         family: 'Jua'
     },{
-        type: 'font/otf',
-        format: 'opentype',
-        url: '/font/NotoSansKR-Regular.otf',
+        type: 'font/woff2',
+        format: 'woff2',
+        url: '/font/NotoSansKR-Regular.woff2',
         family: 'Noto Sans KR'
     },{
-        type: 'font/woff',
-        format: 'woff',
-        url: '/font/SBAggroL.woff',
+        type: 'font/woff2',
+        format: 'woff2',
+        url: '/font/SBAggroL.woff2',
         family: 'SBAggroL'
     },{
-        type: 'font/woff',
-        format: 'woff',
-        url: '/font/SBAggroM.woff',
+        type: 'font/woff2',
+        format: 'woff2',
+        url: '/font/SBAggroM.woff2',
         family: 'SBAggroM'
     },{
-        type: 'font/ttf',
-        format: 'truetype',
-        url: '/font/DoHyeon-Regular.ttf',
+        type: 'font/woff2',
+        format: 'woff2',
+        url: '/font/DoHyeon-Regular.woff2',
         family: 'Do Hyeon'
     }
 ];
@@ -41,6 +41,7 @@ export const generateFontStyleJsx = (Fonts: Array<FontProps>): string => {
             src: url('${url}') format('${format}');
             font-weight: normal;
             font-style: normal;
+            font-display: swap;
         }
         `;
     }, '') || '';
