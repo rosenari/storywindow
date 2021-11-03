@@ -37,7 +37,7 @@ class MyDocument extends Document {
                     <link rel="canonical" href="https://storywindow.co.kr/" />
                     <link rel="stylesheet" type="text/css" href="/css/nprogress.css" />
                     {
-                        Fonts.map(({ type, url }) => <link key={url} rel="preload" as="font" type={type} href={url} />)
+                        Fonts.map(({ type, url }) => <link key={url} rel="preload" crossOrigin="anonymous" as="font" type={type} href={url} />)
                     }
                     <style dangerouslySetInnerHTML={{__html: FontStyleJsx}}>
                     </style>
