@@ -4,7 +4,7 @@
 
 ### ✨Front-End
 
-![뱃지](https://img.shields.io/badge/nextjs-10.0.7-green)
+![뱃지](https://img.shields.io/badge/nextjs-10.2.3-green)
 ![뱃지](https://img.shields.io/badge/react-17.0.1-blue)
 ![뱃지](https://img.shields.io/badge/typescript-4.2.2-blue)
 ![뱃지](https://img.shields.io/badge/redux-4.0.5-red)
@@ -16,6 +16,17 @@
 ### ✨Back-End
 
 ![뱃지](https://img.shields.io/badge/Express-4.16.1-green)
-![뱃지](https://img.shields.io/badge/gm-1.23.1-blue)
-![뱃지](https://img.shields.io/badge/multer-1.4.2-red)
-![뱃지](https://img.shields.io/badge/mysql-5.7.33-blue)
+
+### Production 환경 : 클라우드
+
+![뱃지](https://img.shields.io/badge/Nginx-green)
+![뱃지](https://img.shields.io/badge/OpenVPN-blue)
+![뱃지](https://img.shields.io/badge/Amazon-VPC-red)
+![뱃지](https://img.shields.io/badge/Amazon-ECR-red)
+![뱃지](https://img.shields.io/badge/Amazon-EC2-red)
+![뱃지](https://img.shields.io/badge/Amazon-RDS-red)
+
+### Development 환경 : 온프레미스
+
+![뱃지](https://img.shields.io/badge/Nginx-green)
+![뱃지](https://img.shields.io/badge/VMWARE-ESXI-blue)
