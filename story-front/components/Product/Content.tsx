@@ -77,9 +77,9 @@ const Content: React.FC<ContentProps> = (props) => {
                     <a onClick={(e) => {
                         e.preventDefault();
                         props.popupRef.current.setVisible(true);
-                        props.popupRef.current.setImageUrl(`https://${process.env.API_HOST}/uploads/${props.mainImgurl}`);
+                        props.popupRef.current.setImageUrl(`https://${process.env.IMG_HOST}/uploads/${props.mainImgurl}`);
                     }}>
-                        <img src={`https://${process.env.API_HOST}/uploads/` + props.imgurl} width='338' />
+                        <img src={`https://${process.env.IMG_HOST}/uploads/` + props.imgurl} width='338' />
                     </a>
                 </Link>
                 <Tagbox>

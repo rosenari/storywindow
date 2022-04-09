@@ -53,7 +53,7 @@ const Card: React.FC<CardProps> = ({ imgurl, tags }) => {
             <Itemrank><Itemrankspan> {decodeURIComponent(tags[0])} </Itemrankspan></Itemrank>
             <div className={styles.card_slider_img} onClick={() => {
                 Router.push('/product/list');
-            }}><img src={`https://${process.env.API_HOST}/uploads/${imgurl}`} height="230" /><SHINY /></div>
+            }}><img src={`https://${process.env.IMG_HOST}/uploads/${imgurl}`} height="230" /><SHINY /></div>
         </div>
     )
 }
