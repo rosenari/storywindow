@@ -77,7 +77,7 @@ const Content: React.FC<ContentProps> = (props) => {
                     <a onClick={(e) => {
                         e.preventDefault();
                         props.popupRef.current.setVisible(true);
-                        props.popupRef.current.setImageUrl(`https://api.storywindow.co.kr/uploads/${props.mainImgurl}`);
+                        props.popupRef.current.setImageUrl(`https://${process.env.API_HOST}/uploads/${props.mainImgurl}`);
                     }}>
                         <img src={`https://${process.env.API_HOST}/uploads/` + props.imgurl} width='338' />
                     </a>
