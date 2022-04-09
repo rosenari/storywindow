@@ -13,6 +13,11 @@
 ![뱃지](https://img.shields.io/badge/materialUI-4.11.3-blue)
 ![뱃지](https://img.shields.io/badge/nprogress-0.2.0-green)
 
+#### Front-End 배포 프로세스
+- develop-front 브랜치에 push가 감지되면, 도커 이미지가 ECR에 배포가 진행됨.
+- ECR 배포 진행 이후, 개발자는 frontend 서버에 접속하여 pullDockerImage.sh 실행하여야함
+
+
 ### ✨Back-End
 
 ![뱃지](https://img.shields.io/badge/Express-4.16.1-green)
