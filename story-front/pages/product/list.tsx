@@ -21,7 +21,7 @@ const List: NextPage<ListProps> = ({ productListData }) => {
 
     return (
         <Div>
-            <Label position="파트너 시공모음" sub_position="" />
+            <Label position="납품업체 시공모음" sub_position="" />
             <PFilter />
             <PContents productListData={productListData} />
         </Div>
