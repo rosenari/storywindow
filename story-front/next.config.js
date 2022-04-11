@@ -1,5 +1,6 @@
 module.exports = {
     env: {
-        API_HOST: 'api.storywindow.co.kr',
+        API_HOST: 'storywindow.co.kr',
+        IMG_HOST: 'd2k9kwjcozp2am.cloudfront.net'
     },
 }

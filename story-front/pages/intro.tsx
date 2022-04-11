@@ -65,7 +65,7 @@ const Intro: React.FC = () => {
                     <div style={{ width: "100%", textAlign: "center", marginTop: "40px" }}>
                         <img src="/images/storylogo_big.png" width="300" height="300" />
                     </div>
-                    <Imgdescript1><strong><span style={{ color: "var(--color-main)" }}>스토리 창</span></strong>은 파트너를 적극지원하는 <strong>블라인드 & 커튼 도매업체</strong>입니다.</Imgdescript1>
+                    <Imgdescript1><strong><span style={{ color: "var(--color-main)" }}>스토리 창</span></strong>은 소매업체를 적극지원하는 <strong>블라인드 & 커튼 도매업체</strong>입니다.</Imgdescript1>
                     <Imgdescript2><strong>신생 또는 소규모 업체</strong>를 <strong>적극 지원</strong>하여 <strong><span style={{ color: "var(--color-main)" }}> 안정감과 만족감</span></strong>을 가져다드립니다.</Imgdescript2>
                     <Imgdescript2>
                         <strong><span style={{ color: "var(--color-main)" }}>스토리 창</span></strong>은 <strong>대규모 공장</strong>에서 직접<strong> 블라인드</strong>를 <strong>

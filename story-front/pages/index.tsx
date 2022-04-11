@@ -131,7 +131,7 @@ const Home: NextPage<HomeProps> = ({ productListData }) => {
 			<div className={styles.recruit_main}>
 				<FadeIn delay={300}>
 				<div className={styles.recruit_title}>
-					스토리창 <span className={styles.main}>전국 파트너</span> 모집
+					스토리창 <span className={styles.main}>전국 최저가</span> 블라인드 납품
 				</div>
 				<div className={styles.tag_main}>
 					{TAGS.map(({ id, tag }) => <span key={id} className={styles.tag}>{tag}</span>)}
@@ -156,7 +156,7 @@ const Home: NextPage<HomeProps> = ({ productListData }) => {
 				</div>
 				<div className={styles.card_slider_header}>
 					<strong> 스토리 창
-						<span style={{ color: "var(--color-main)" }}> 파트너 시공사례</span>
+						<span style={{ color: "var(--color-main)" }}> 납품업체 시공사례</span>
 					</strong>
 				<span className={styles.card_slider_header_more} onClick={() => {
 						Router.push('/product/list');
@@ -167,7 +167,7 @@ const Home: NextPage<HomeProps> = ({ productListData }) => {
 			<div className={styles.industry_main}>
 				<div className={styles.industry_header}>
 					<strong> 
-						<span style={{ color: "var(--color-main)" }}>파트너</span> 주요 업종
+						<span style={{ color: "var(--color-main)" }}>납품업체</span> 주요 업종
 					</strong>
 				</div>
 				<div className={styles.industry_body}>

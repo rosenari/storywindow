@@ -115,7 +115,7 @@ const ProductCircle = styled.div`
 		position:absolute;
 		z-index:12;
 		top:13px;
-		right:5px;
+		right:0px;
 		width:11px;
 		height:11px;
 		background:var(--color-main);
@@ -145,14 +145,14 @@ const Navbar: React.FC<NavbarProps> = (props) => {
 				</Logo>
 				<ul>
 					<li onMouseOver={props.Menu_down}><Link href="/intro"><a>회사소개</a></Link></li>
-					<li onMouseOver={props.AllMenu_up}><Link href="/product/list"><a><ProductCircle />파트너 시공모음</a></Link></li>
+					<li onMouseOver={props.AllMenu_up}><Link href="/product/list"><a><ProductCircle />납품업체 시공모음</a></Link></li>
 					<li>
 						<Link href='/'>
 							<a onClick={(e) => {
 								e.preventDefault();
 								popupRef.current.setVisible(true);
 							}}>
-								<span>전국파트너문의</span>
+								<span>납품신청문의</span>
 								<img src="/images/consult_img.png" height="28" width="28" className={styles.consult_img} />
 							</a>
 						</Link>

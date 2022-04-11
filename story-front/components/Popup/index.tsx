@@ -112,7 +112,7 @@ export const CollectPopup = forwardRef((_, ref) => {
                 width,
                 height
             }} visible={visible} setVisible={setVisible} firework={false}>
-                <div><Header title={'🌏 전국파트너문의'} /></div>
+                <div><Header title={'🌏 납품신청문의'} /></div>
                 <div><CollectBody type={type} visible={visible} setVisible={setVisible} /></div>
                 <div><Footer setVisible={setVisible} /></div>
             </Popup>
@@ -137,7 +137,7 @@ export const ImagePopup = forwardRef((_, ref) => {
                 width,
                 height
             }} visible={visible} setVisible={setVisible} firework={false}>
-                <div><Header title={'🖼️ 파트너 시공사진'} /></div>
+                <div><Header title={'🖼️ 납품업체 시공사진'} /></div>
                 <div><ImageBody type={type} visible={visible} setVisible={setVisible} imageUrl={imageUrl} /></div>
                 <div><Footer setVisible={setVisible} /></div>
             </Popup>
