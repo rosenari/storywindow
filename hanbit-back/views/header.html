@@ -1,0 +1,37 @@
+    <link rel="stylesheet" type="text/css" href="semantic/dist/semantic.min.css">
+<script
+  src="https://code.jquery.com/jquery-3.1.1.min.js"
+  integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+  crossorigin="anonymous"></script>
+<script src="semantic/dist/semantic.min.js"></script>
+<div class="header">
+    <ul>
+        <li><a href="/">Admin Page</a></li>
+        <% if(title=="product") { %>
+            <li class="active"><a href="/product">제품소개등록</a></li>
+            <li><a href="/construct">시공모음등록</a></li>
+            <li><a href="/estimate">제품소개/시공모음 삭제</a></li>
+            <li><a href="/etc">기타관리</a></li>
+        <% }else if(title=="construct") { %>
+            <li><a href="/product">제품소개등록</a></li>
+            <li class="active"><a href="/construct">시공모음등록</a></li>
+            <li><a href="/estimate">제품소개/시공모음 삭제</a></li>
+            <li><a href="/etc">기타관리</a></li>
+        <% }else if(title=="estimate") {%>
+            <li><a href="/product">제품소개등록</a></li>
+            <li><a href="/construct">시공모음등록</a></li>
+            <li class="active"><a href="/estimate">제품소개/시공모음 삭제</a></li>
+            <li><a href="/etc">기타관리</a></li>
+        <% }else if(title=="etc") {%>
+            <li><a href="/product">제품소개등록</a></li>
+            <li><a href="/construct">시공모음등록</a></li>
+            <li><a href="/estimate">제품소개/시공모음 삭제</a></li>
+            <li class="active"><a href="/etc">기타관리</a></li>
+        <% }else { %>
+            <li><a href="/product">제품소개등록</a></li>
+            <li><a href="/construct">시공모음등록</a></li>
+            <li><a href="/estimate">제품소개/시공모음 삭제</a></li>
+            <li><a href="/etc">기타관리</a></li>
+        <% } %>
+    </ul>
+</div>

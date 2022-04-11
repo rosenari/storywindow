@@ -1,0 +1,50 @@
+.header{
+   width:100%;
+   height:50px;
+   background:#555;
+   color:white;
+}
+.header ul{
+    margin:0px;
+    padding:0px;
+    list-style:none;
+    font-size:0.9em;
+    font-weight:bold;
+}
+.header li a{
+    display:block;
+    color:white;
+    text-decoration:none;
+}
+.header a:hover{
+    color:skyblue;
+}
+.header li{
+    float:left;
+    width:180px;
+    height:50px;
+    line-height:50px;
+    text-align:center;
+    cursor:pointer;
+    border:#777 solid;
+    border-width:1px;
+    border-top:0px;
+    border-bottom:0px;
+    border-left:0px;
+}
+.header li.active{
+    background:#777;
+}
+.header li:hover{
+    background:#777;
+}
+
+.header li:first-child{
+    width:200px;
+    font-weight:bold;
+    font-size:1.3em;
+    cursor:default;
+}
+.header li:first-child:hover{
+    background:#555;
+}

@@ -1,0 +1,406 @@
+<html>
+  <head>
+    <title>관리자페이지</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel='stylesheet' href='/stylesheets/header.css' />
+    <link rel='stylesheet' href='/stylesheets/index.css' />
+    <link rel='stylesheet' href='/stylesheets/product.css' />
+  </head>
+  <body>
+      <% include ./header.html %>
+      <div class="main">
+        <div class="main_label">
+          제품등록메뉴
+        </div>
+        
+        <div class="tag">
+          <div class="admin_label">태그선택</div>
+          <div class="content">
+           <select name="tags" multiple="" class="ui fluid dropdown" id="tag_select">
+              <option value="">태그선택</option>
+           </select>
+          </div>
+        </div>
+        
+        <div class="product_color">
+          <div class="admin_label">색상선택</div>
+          <div class="content">
+             <div class="ui fluid multiple search normal selection dropdown" id="color_select" style="opacity:1;z-index:1;">
+                <input type="hidden" name="colors" id="colors">
+                <div class="default text">색상선택</div>
+                <div class="menu">
+                </div>
+              </div>
+          </div>
+        </div>
+        
+        <div class="product_character">
+          <div class="admin_label">제품특징</div>
+          <div class="content">
+             <div class="character_list">
+               
+             </div>
+             <button class="ui icon positive button" onclick="addCharacter()">
+              <i class="plus icon"></i>
+             </button>
+             <button class="ui icon positive button" onclick="delCharacter()">
+              <i class="minus icon"></i>
+             </button>
+          </div>
+        </div>
+        
+        <div class="product_mainimage">
+            <div class="admin_label">메인사진</div>
+            <div class="content">
+                <div class="image-upload-wrap">
+                    <input class="file-upload-input" id="mainImage" type='file' onchange="readImage(this);" accept="image/*" />
+                    <div class="drag-text">
+                      <h3>이미지를 드래그하세요.</h3>
+                    </div>
+                </div>
+                  <div class="file-upload-content">
+                    <img class="file-upload-image" src="#" alt="your image" />
+                    <div class="image-title-wrap">
+                         <button type="button" onclick="removeUpload()" class="remove-image">제거하기 <span class="image-title">Uploaded Image</span></button>
+                    </div>
+                  </div>
+            </div>
+        </div>
+        
+        <div class="product_samples">
+            <div class="admin_label">샘플사진</div>
+            <div class="content">
+                <div class="product_items">
+                <div class="product_sample">
+                    <div class="sample1-upload-wrap">
+                        <input class="sample1-upload-input" id="sample1Image" type='file' onchange="readSample1(this);" accept="image/*" />
+                        <div class="drag-text">
+                          <h3>이미지를 드래그하세요.</h3>
+                        </div>
+                    </div>
+                    <div class="sample1-upload-content">
+                        <img class="sample1-upload-image" src="#" alt="your image" />
+                        <div class="sample1-title-wrap">
+                             <button type="button" onclick="removeSample1()" class="remove-sample1">제거하기 <span class="sample1-title">Uploaded Image</span></button>
+                        </div>
+                    </div>
+                </div>
+                <div class="product_sample">
+                    <div class="sample2-upload-wrap">
+                        <input class="sample2-upload-input" id="sample2Image" type='file' onchange="readSample2(this);" accept="image/*" />
+                        <div class="drag-text">
+                          <h3>이미지를 드래그하세요.</h3>
+                        </div>
+                    </div>
+                    <div class="sample2-upload-content">
+                        <img class="sample2-upload-image" src="#" alt="your image" />
+                        <div class="sample2-title-wrap">
+                             <button type="button" onclick="removeSample2()" class="remove-sample2">제거하기 <span class="sample2-title">Uploaded Image</span></button>
+                        </div>
+                    </div>
+                </div>
+                <div class="product_sample">
+                    <div class="sample3-upload-wrap">
+                        <input class="sample3-upload-input" id="sample3Image" type='file' onchange="readSample3(this);" accept="image/*" />
+                        <div class="drag-text">
+                          <h3>이미지를 드래그하세요.</h3>
+                        </div>
+                    </div>
+                    <div class="sample3-upload-content">
+                        <img class="sample3-upload-image" src="#" alt="your image" />
+                        <div class="sample3-title-wrap">
+                             <button type="button" onclick="removeSample3()" class="remove-sample3">제거하기 <span class="sample3-title">Uploaded Image</span></button>
+                        </div>
+                    </div>
+                </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="product_register">
+            <button class="ui positive button" onclick="productRegister(this)">등록</button>
+            <button class="ui positive button" onclick="productCancel()">취소</button>
+        </div>
+        
+      </div>
+<script>
+function getTag(){
+    $.ajax({
+       url:'/api/getTag',
+       type: 'GET',
+       success: function(result){
+         console.log(result.result);
+          insertData(result.result)
+       }
+    });
+}
+
+
+function insertData(data){
+    var select = document.getElementById("tag_select");
+    
+    var code = "";
+    for(i in data){
+        code = code + "<option value=\""+decodeURIComponent(data[i].tagname)+"\">"+decodeURIComponent(data[i].tagname)+"</option>";
+    }
+    select.innerHTML = select.innerHTML+code;
+}
+
+function getColor(){
+    $.ajax({
+       url:'/api/getColor',
+       type: 'GET',
+       success: function(result){
+         console.log(result.result);
+          insertData2(result.result)
+       }
+    });
+}
+
+
+function insertData2(data){
+    var select = document.getElementById("color_select");
+    var menu = select.getElementsByClassName("menu")[0];
+    
+    var code = "";
+    for(i in data){
+        code = code + "<div class=\"item\" data-value=\""+data[i].colorvalue+"\"><span style=\"color:"+data[i].colorvalue+";font-size:1.4em\">●</span>&nbsp;&nbsp;"+decodeURIComponent(data[i].colorname)+"</div>";
+    }
+    menu.innerHTML = menu.innerHTML+code;
+}
+
+function addCharacter(){
+    var list = document.getElementsByClassName("character_list")[0];
+    list.innerHTML = list.innerHTML + "<div class=\"ui input\"><input type=\"text\" class=\"character\" name=\"character\" placeholder=\"제품특징을 입력해주세요.\"></div><div class=\"ui inverted divider\"></div>"
+}
+
+function delCharacter(){
+    var list = document.getElementsByClassName("character_list")[0];
+    list.removeChild(list.lastChild);
+    list.removeChild(list.lastChild);
+}
+
+function readImage(input) {
+    console.log(input);
+  if (input.files && input.files[0]) {
+
+    var reader = new FileReader();
+
+    reader.onload = function(e) {
+      $('.image-upload-wrap').hide();
+
+      $('.file-upload-image').attr('src', e.target.result);
+      $('.file-upload-content').show();
+
+      $('.image-title').html(input.files[0].name);
+    };
+
+    reader.readAsDataURL(input.files[0]);
+
+  } else {
+    removeUpload();
+  }
+}
+function removeUpload() {
+    var agent = navigator.userAgent.toLowerCase();
+    if (agent.indexOf("msie") != -1) { 
+        $('.file-upload-input').replaceWith($('.file-upload-input').clone());
+    } else { 
+        $(".file-upload-input").val(""); 
+    }
+  $('.file-upload-content').hide();
+  $('.image-upload-wrap').show();
+}
+
+function readSample1(input) {
+    console.log(input);
+  if (input.files && input.files[0]) {
+
+    var reader = new FileReader();
+
+    reader.onload = function(e) {
+      $('.sample1-upload-wrap').hide();
+
+      $('.sample1-upload-image').attr('src', e.target.result);
+      $('.sample1-upload-content').show();
+
+      $('.sample1-title').html(input.files[0].name);
+    };
+
+    reader.readAsDataURL(input.files[0]);
+
+  } else {
+    removeSample1();
+  }
+}
+function removeSample1() {
+    var agent = navigator.userAgent.toLowerCase();
+    if (agent.indexOf("msie") != -1) { 
+        $('.sample1-upload-input').replaceWith($('.sample1-upload-input').clone());
+    } else { 
+        $(".sample1-upload-input").val(""); 
+    }
+  $('.sample1-upload-content').hide();
+  $('.sample1-upload-wrap').show();
+}
+
+function readSample2(input) {
+    console.log(input);
+  if (input.files && input.files[0]) {
+
+    var reader = new FileReader();
+
+    reader.onload = function(e) {
+      $('.sample2-upload-wrap').hide();
+
+      $('.sample2-upload-image').attr('src', e.target.result);
+      $('.sample2-upload-content').show();
+
+      $('.sample2-title').html(input.files[0].name);
+    };
+
+    reader.readAsDataURL(input.files[0]);
+
+  } else {
+    removeSample1();
+  }
+}
+function removeSample2() {
+    var agent = navigator.userAgent.toLowerCase();
+    if (agent.indexOf("msie") != -1) { 
+        $('.sample2-upload-input').replaceWith($('.sample2-upload-input').clone());
+    } else { 
+        $(".sample2-upload-input").val(""); 
+    }
+  $('.sample2-upload-content').hide();
+  $('.sample2-upload-wrap').show();
+}
+
+function readSample3(input) {
+    console.log(input);
+  if (input.files && input.files[0]) {
+
+    var reader = new FileReader();
+
+    reader.onload = function(e) {
+      $('.sample3-upload-wrap').hide();
+
+      $('.sample3-upload-image').attr('src', e.target.result);
+      $('.sample3-upload-content').show();
+
+      $('.sample3-title').html(input.files[0].name);
+    };
+
+    reader.readAsDataURL(input.files[0]);
+
+  } else {
+    removeSample1();
+  }
+}
+function removeSample3() {
+    var agent = navigator.userAgent.toLowerCase();
+    if (agent.indexOf("msie") != -1) { 
+        $('.sample3-upload-input').replaceWith($('.sample3-upload-input').clone());
+    } else { 
+        $(".sample3-upload-input").val(""); 
+    }
+  $('.sample3-upload-content').hide();
+  $('.sample3-upload-wrap').show();
+}
+
+function productRegister(obj){
+    product_pic_flag=true;
+    var loader = document.createElement('div');
+    loader.className = 'ui active inverted mini centered inline loader';
+    obj.innerHTML="";
+    obj.appendChild(loader);
+    obj.disabled=true;
+    
+    //선택태그 배열화
+    let tag_select = document.getElementById("tag_select").options;
+    let tags = [];
+    for(i in tag_select){
+        if(tag_select[i].selected){
+            tags.push(encodeURIComponent(tag_select[i].value));
+        }
+    }
+    
+    //선택색상 배열화
+    let color_select = document.getElementById("colors").value;
+    let colors = color_select.split(',');
+    
+    //제품특징 배열화
+    let character = document.getElementsByClassName("character");
+    let note = [];
+    
+    for(i in character){
+        if(character[i].value!==undefined){
+            note.push(encodeURIComponent(character[i].value));
+        }
+    }
+
+    
+    //var file1 = $('#secondetc_pic_form').find('input[name="file1"]')[0].files[0];
+    var mainImage = document.getElementById("mainImage").files[0];
+    var sample1Image = document.getElementById("sample1Image").files[0];
+    var sample2Image = document.getElementById("sample2Image").files[0];
+    var sample3Image = document.getElementById("sample3Image").files[0];
+    
+    
+    var formData = new FormData();
+    formData.append('mainImage',mainImage);
+    formData.append('sample1Image',sample1Image);
+    formData.append('sample2Image',sample2Image);
+    formData.append('sample3Image',sample3Image);
+    formData.append('tags',tags);
+    formData.append('colors',colors);
+    formData.append('note',note);
+    
+    setTimeout(function(){
+    $.ajax({
+       url:'/api/addProduct/',
+       dataType: 'json',
+       processData: false,
+       contentType: false,
+       data: formData,
+       type: 'POST',
+       success: function(result){
+          console.log(result);
+          if(result.result=="Success"){
+             alert("등록 성공");
+          }else{
+             alert("등록 실패");
+          }
+          obj.disabled =false;
+          $(obj).text("등록");
+          $(obj).children().remove();
+          product_pic_flag=false;
+       },
+       error:function(request,status,error){
+            alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+            obj.disabled =false;
+            $(obj).text("등록");
+            $(obj).children().remove();
+            product_pic_flag=false;
+       }
+    });
+    },1000);
+    
+    
+}
+
+function productCancel(){
+    
+}
+
+
+$(document).ready(function(){
+        $("#tag_select").dropdown();
+         $("#color_select").dropdown();
+        getTag();
+        getColor();
+        addCharacter();
+});
+</script>
+  </body>
+</html>

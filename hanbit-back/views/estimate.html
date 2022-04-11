@@ -1,0 +1,115 @@
+<html>
+  <head>
+    <title>관리자페이지</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel='stylesheet' href='/stylesheets/header.css' />
+    <link rel='stylesheet' href='/stylesheets/index.css' />
+  </head>
+  <body>
+      <% include ./header.html %>
+      <div style="width:1124px;margin:0 auto;margin-top:20px">
+      <table class="ui celled table" id="product_list">
+        <thead>
+          <tr><th>번호</th>
+          <th>제품종류</th>
+          <th>날짜</th>
+          <th>삭제버튼</th>
+        </tr></thead>
+        <tbody>
+        </tbody>
+      </table>
+      </div>
+      <div style="width:1124px;margin:0 auto;margin-top:20px">
+      <table class="ui celled table" id="construct_list">
+        <thead>
+          <tr><th>번호</th>
+          <th>제목</th>
+          <th>날짜</th>
+          <th>삭제버튼</th>
+        </tr></thead>
+        <tbody>
+        </tbody>
+      </table>
+      </div>
+  
+  <script>
+    $(document).ready(function(){
+      
+      let delProduct = function(idx){
+        $.ajax({
+          url:"/api/delProduct",
+          type:"POST",
+          data:{id:idx},
+          success:function(res){
+            if(res.result=="Success"){
+              alert("삭제 성공 !");
+            }else{
+              alert("삭제 실패 !");
+            }
+            location.href="/estimate";
+          }
+        });
+      }
+      
+      let delConstruct = function(idx){
+        $.ajax({
+          url:"/api/delConstruct",
+          type:"POST",
+          data:{id:idx},
+          success:function(res){
+            if(res.result=="Success"){
+              alert("삭제 성공 !");
+            }else{
+              alert("삭제 실패 !");
+            }
+            location.href="/estimate";
+          }
+        });
+      }
+      
+      window.delProduct = delProduct;
+      window.delConstruct = delConstruct;
+      
+      $.ajax({
+        url:"/api/getProducts/0/all/like",
+        type:"GET",
+        success:function(res){
+          console.log("test")
+          let tbody = $("#product_list > tbody");
+          tbody.html();
+          $.each(res.result,function(i,v){
+            let HTMLString = "<tr>"
+                            +"<td>"+v.id+"</td>"
+                            +"<td>"+decodeURIComponent(v.tags)+"</td>"
+                            +"<td>"+v.date+"</td>"
+                            +"<td><a href=\"#\" onclick=\"delProduct('"+v.id+"');\">삭제</a></td>"
+                            +"</tr>";
+            tbody.append(HTMLString);
+            
+          });         
+        }
+      });
+      
+      $.ajax({
+        url:"/api/getConstructs/0/all/all/false/false/like",
+        type:"GET",
+        success:function(res){
+          console.log("test")
+          let tbody = $("#construct_list > tbody");
+          tbody.html();
+          $.each(res.result,function(i,v){
+            let HTMLString = "<tr>"
+                            +"<td>"+v.id+"</td>"
+                            +"<td>"+decodeURIComponent(v.title)+"</td>"
+                            +"<td>"+v.date+"</td>"
+                            +"<td><a href=\"#\" onclick=\"delConstruct('"+v.id+"');\">삭제</a></td>"
+                            +"</tr>";
+            tbody.append(HTMLString);
+            
+          });         
+        }
+      });
+    });
+  </script>    
+  </body>
+</html>

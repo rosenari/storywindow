@@ -1,2 +1,37 @@
-# hanbit_project
-한빛창 프로젝트
+![스토리창로고](https://user-images.githubusercontent.com/49670068/118394969-cb6f3a00-b682-11eb-83f7-70d1f71f23a5.jpg)
+
+`Service url`  : https://storywindow.co.kr
+
+### ✨Front-End
+
+![뱃지](https://img.shields.io/badge/nextjs-10.2.3-green)
+![뱃지](https://img.shields.io/badge/react-17.0.1-blue)
+![뱃지](https://img.shields.io/badge/typescript-4.2.2-blue)
+![뱃지](https://img.shields.io/badge/redux-4.0.5-red)
+![뱃지](https://img.shields.io/badge/reduxSaga-1.1.3-red)
+![뱃지](https://img.shields.io/badge/axios-0.14.0-yellow)
+![뱃지](https://img.shields.io/badge/materialUI-4.11.3-blue)
+![뱃지](https://img.shields.io/badge/nprogress-0.2.0-green)
+
+#### Front-End 배포 프로세스
+- develop-front 브랜치에 push가 감지되면, 도커 이미지가 ECR에 배포가 진행됨.
+- ECR 배포 진행 이후, 개발자는 frontend 서버에 접속하여 pullDockerImage.sh 실행하여야함
+
+
+### ✨Back-End
+
+![뱃지](https://img.shields.io/badge/Express-4.16.1-green)
+
+### Production 환경 : 클라우드
+
+![뱃지](https://img.shields.io/badge/Nginx-green)
+![뱃지](https://img.shields.io/badge/OpenVPN-blue)
+![뱃지](https://img.shields.io/badge/Amazon-VPC-red)
+![뱃지](https://img.shields.io/badge/Amazon-ECR-red)
+![뱃지](https://img.shields.io/badge/Amazon-EC2-red)
+![뱃지](https://img.shields.io/badge/Amazon-RDS-red)
+
+### Development 환경 : 온프레미스
+
+![뱃지](https://img.shields.io/badge/Nginx-green)
+![뱃지](https://img.shields.io/badge/VMWARE-ESXI-blue)

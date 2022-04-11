@@ -1,0 +1,520 @@
+
+html, body {
+    position: relative;
+    height: 100%;
+    width: 100%;
+}
+
+body {
+    font-family: 'Nanum Gothic', sans-serif;
+    font-size: 16px;
+    color:#000;
+    margin: 0;
+    padding: 0;
+}
+
+#wrap {
+    width: 100%; /* width  */
+    height: 100%;
+    position: relative;
+    /* overflow: hidden; */
+    overflow: auto;
+}
+
+#icon1 {
+    border-bottom:0px;
+}
+
+.room {
+    /*padding: 16px 16px;
+    padding-right: 16px; */
+    
+    padding-top: 16px;
+    padding-left: 16px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid silver;
+    
+}
+
+.room_last{
+    padding-top: 16px;
+    padding-left: 16px;
+    padding-bottom: 16px;
+    border-bottom: 0px solid silver;
+}
+
+.search_rooms {
+    width:100%;
+    
+}
+
+.search_rooms img {
+    border-radius: 16px;    
+    vertical-align: top;
+    width:160px;
+    height:130px;
+ 
+}
+
+.room_title {
+    margin-bottom: 0px;
+    font-size:26px;
+    font-weight:bold;
+    display:inline-block;
+}
+
+.price {
+    border-bottom:1px solid silver;
+    padding-bottom:10px;
+}
+
+.total_price {
+    padding-top:10px;
+}
+
+.room_img {
+    display:inline;
+}
+
+.room_details {
+    padding-left:16px;
+    width:83%;
+    max-width: 100%;
+    display:inline-block;
+}
+
+.room_price {
+    text-align:right;
+    font-size:17px;
+    font-weight:bold;
+}
+
+.room_book {
+    color:gray;
+    font-size:12px;
+}
+
+.select_room_index {
+    height:auto;
+    overflow:hidden;
+}
+
+.index_title{
+    padding: 20px 20px;
+    margin-bottom:0px;
+    border: 1px solid silver;
+}
+
+.check_info {
+    padding-left:20px;
+    padding-bottom:10px;
+    border-left:1px solid silver;
+    border-right:1px solid silver;
+    border-bottom:1px solid silver;
+}
+
+#collection, #provision{
+    cursor:pointer;
+}
+
+
+/*
+.ui.grid > [class*="eight wide"].column {
+    padding-top: 14px;
+    padding-left: 0px;
+    padding-right: 0px;
+    padding-bottom: 0px;
+    border: 1px;
+}*/
+
+.rev_select_info {
+    padding: 15px;
+    padding: 10px;
+    margin: 1px;
+}
+
+.rev_left_select {
+    width:50%;
+    border: 1px solid silver;
+    height:398px;
+    float:left;
+
+}
+
+.rev_right_select {
+    width:50%;
+    border-right : 1px solid silver;
+    border-bottom : 1px solid silver;
+    height:398px;
+    display:inline-block;
+}
+
+.calendar_select {
+    text-align:center;
+    padding: 10px;
+    margin: 1px; 
+}
+
+#first_select_day, #last_select_day, #alert_days {
+    text-align:center;
+    padding-left: 10px;
+    padding-right: 10px;
+    font-size:20px;
+    font-weight:bold;
+}
+
+.alert_day {
+    text-align:center;
+    padding: 10px;
+    padding-bottom: 14px;
+    margin: 1px; 
+}
+
+.room_price{
+    text-align:right;
+}
+
+.icon {
+    border:1px solid silver;
+    text-align:center;
+}
+
+.icon img {
+    width:36px;
+    height:36px;
+}
+
+.icon_text {
+    text-align:center;
+    font-size:12px;
+
+}
+
+.icon_labeld{
+    padding: 20px 20px;
+    display:inline-block;
+}
+
+.swiper-box {
+    position: relative;
+    width:100%;
+    /* float:left;*/
+    
+}
+.swiper-container {
+    position: relative;
+    width: 100%;
+    height: 250px;
+}
+.swiper-slide {
+    position: relative;
+    overflow: hidden;
+}
+.swiper-slide img {
+    /* box-sizing: content-box; */
+    width:100%;
+    height:100%;
+    max-width:100%;
+    max-height:100%;
+    float:left;
+}
+
+h2 {
+    text-align:center;
+    padding-top: 10px;
+}
+
+i {
+/*    padding-right: 14px; */
+}
+
+i.icon {
+    border:0px;
+}
+
+/*
+p {
+    white-space: nowrap;
+}
+*/
+a {
+    color:black;
+}
+
+
+#custom_calendar {
+    position: relative;
+    display:inline;
+}
+
+.datepicker {
+    width:100%;
+    /*height:100%;*/
+    height:300px;
+    max-width:100%;
+    max-height:100%;
+    font-size: 17px;
+}
+
+.datepicker--cell.-current- {
+    color:#4a4a4a;
+}
+
+.datepicker--nav {
+    min-height: 46px;
+    padding: 4px;
+    /*font-weight:bold;*/
+    font-size: 20px;
+    
+    /*
+    border-bottom: 1px solid #efefef;
+    바텀 부분의 borderer
+    */
+}
+
+.datepicker--days-names {
+    border-bottom: 1px solid #efefef;
+    padding-bottom: 15px;
+}
+
+.datepicker--day-name {
+    color:black;
+}
+
+.datepicker--cells {
+    padding-top: 10px;
+}
+
+.datepicker--cell.-in-range- {
+    /* background: rgba(92, 196, 239, 0.1);*/
+    /*background: #5cc4ef;*/
+    background:#5cc4ef;
+    color: #4a4a4a;
+    border-radius: 0;
+}
+
+.datepicker--cell.-selected- {
+    color: #fff;
+    border: none;
+    background: #5cc4ef;
+}
+
+.datepicker--cells.datepicker--cells-days > .datepicker--cell.datepicker--cell-day.-weekend-:nth-child(7n-6) {color:red;}
+.datepicker--cells.datepicker--cells-days > .datepicker--cell.datepicker--cell-day.-weekend-:nth-child(7n) {color:blue;}
+.datepicker--cells.datepicker--cells-days > .datepicker--cell.datepicker--cell-day.-weekend-.-disabled-:nth-child(n) {color:#aeaeae;}
+
+.datepicker--cell-day {
+    width: 14.28571%; 
+}
+
+ /*.room_index,*/
+
+.right_select, .select_info, .select_day, .paytype, .terms, .room_info, .terms  tr{
+    border: 1px solid silver;
+}
+
+.select_price, .paytype p {
+    padding-left:20px;
+    padding-bottom:10px;
+}
+
+.select_day, .camp_info, .room_index, .check_info .ui.checkbox {
+    border-bottom: 0px;
+}
+
+.select_day {
+    height:150px;
+}
+
+.room_info {
+    padding:20px 20px;
+    border-top:0px;
+}
+
+.room_info p {
+     font-size: 13px;
+    padding:0px;
+    margin:0px;
+}
+
+.calendar_select {
+    text-align:center;
+    padding: 10px;
+    margin: 1px; 
+}
+
+.alert_day {
+    text-align:center;
+}
+
+#first_select_day, #last_select_day, #alert_days {
+    text-align:center;
+    padding-left: 10px;
+    padding-right: 10px;
+    font-size:20px;
+    font-weight:bold;
+}
+
+.ui.checkbox {
+    display:block;
+    padding-top:10px;
+    padding-bottom:5px;
+    border-bottom:1px solid silver;
+}
+
+.ui.checkbox p{
+    display:inline;
+    border-bottom:1px solid silver;
+    color:gray;
+}
+
+.terms_detail{
+    text-align:right;
+    display:inline;
+
+}
+
+.modal_body {
+    padding:20px 20px;
+}
+
+#cancel_terms {
+    border-bottom:0px solid silver;
+}
+
+#cancel_terms p {
+    color:black;
+    border-bottom:0px;
+}
+
+.cancel_info  {
+    padding-top:20px;
+    padding-bottom:10px;
+
+}
+
+.terms table {
+    border-collapse: collapse;
+    width:100%;
+    margin-top: 10px;
+    border: 1px solid silver;
+}
+
+.terms table  td, .terms_agree {
+    padding: 10px 20px;
+}
+
+.terms_info{
+    padding: 0px 30px;
+}
+
+.td_left {
+    color:gray;
+}
+
+.td_right {
+    border-left: 1px solid silver;
+}
+
+.btn button{
+    display:block;
+    color:black;
+    border:0px;
+    background-color:silver;
+    width:100%;
+    height:60px;
+    font-size:30px;
+    font-weight:bold;
+}
+
+/*
+.ui.grid > [class*="eight wide"].column {
+    padding-top: 14px;
+    padding-left: 0px;
+    padding-right: 0px;
+    padding-bottom: 0px;
+    border: 1px;
+}*/
+
+.swiper-box {
+    position: relative;
+    width:100%;
+    /* float:left;*/
+    
+}
+
+.swiper-container {
+    position: relative;
+    width: 100%;
+    height: 250px;
+}
+.swiper-slide {
+    position: relative;
+    overflow: hidden;
+}
+.swiper-slide img {
+    /* box-sizing: content-box; */
+    width:100%;
+    height:100%;
+    max-width:100%;
+    max-height:100%;
+    float:left;
+}
+
+
+h2 {
+    text-align:center;
+    padding-top: 10px;
+}
+
+.h3_title {
+    padding: 20px 20px;
+    border-bottom: 1px solid silver;
+}
+
+.booking_info {
+    padding-left: 30px;
+    padding-right: 20px;
+    padding-bottom: 20px;
+}
+
+.booking_input{
+    display:inline;
+}
+
+
+.input {   
+    padding-left: 20px; 
+    width:80%;
+}
+
+.icon {
+    text-align:center;
+}
+
+.icon img {
+    width:36px;
+    height:36px;
+}
+
+.icon_text {
+    text-align:center;
+    font-size:12px;
+
+}
+
+.icon_labeld{
+    padding: 20px 20px;
+    display:inline-block;
+}
+
+#top{
+	width: 100%;
+        background-color: rgb(107, 107, 107);
+        height: 35px;
+}
+
+#topmenu{
+	margin-top:0px;
+        height: 35px;
+}
