@@ -113,7 +113,7 @@ const InputBody: React.FC<InputBodyProps> = ({ type, visible, setVisible }) => {
                     </div>
                 </div>
                 <div className={styles.question}>
-                    <div><span style={{ padding:'3px', background:'purple', color:'white', borderRadius: '3px'}}>{MESSAGE.DIRECT_CONTACT}</span></div>
+                    <div><span style={{ padding:'3px', background:'#007bc7', color:'white', borderRadius: '3px'}}>{MESSAGE.DIRECT_CONTACT}</span></div>
                     <div>{MESSAGE.Q_KAKAO}
                     &nbsp;{MESSAGE.Q_TEL}&nbsp;{MESSAGE.Q_RTEL}</div>
                 </div>
