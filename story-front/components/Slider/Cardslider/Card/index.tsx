@@ -22,13 +22,13 @@ const Itemrank = styled.div`
     z-index:999;
 `;
 const Itemrankspan = styled.div`
-    background: linear-gradient(45deg, #FFB15E 0%, #F8FF3F 100%);
+    background: linear-gradient(45deg, #007bc7 0%, #36bfe8 100%);
     padding:3px;
     padding-left:5px;
     padding-right:5px;
     border-radius:3px;
     font-family: 'SBAggroM', sans-serif;
-    color: #444;
+    color: white;
 `;
 
 const SHINY = styled.div`

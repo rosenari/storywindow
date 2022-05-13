@@ -9,7 +9,7 @@ interface ImageProps {
     isShadow?: boolean;
 }
 
-const padding = 10;
+const padding = 0;
 const ratio = 0.05;
 
 const renderImage = ({ url, width, height, isAnimation } : Omit<ImageProps,'isShadow'>) => {

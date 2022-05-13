@@ -34,7 +34,7 @@ const Img = styled.img`
 `;
 
 const Imgdescript1 = styled.div`
-    margin-top:70px;
+    margin-top:30px;
     width:1124px;
     height:50px;
     line-height:50px;
@@ -60,17 +60,23 @@ const Intro: React.FC = () => {
             <Label position="회사소개" sub_position="스토리창" />
             <div className={styles.introbox}>
                 <FadeIn delay={300}>
-                    <Header>전국<strong> 블라인드 & 커튼 </strong> 도매업체 <strong><span style={{ color: "var(--color-main)" }}>스토리 창</span></strong></Header>
+                    <Header>전국<strong> 블라인드 </strong> 도매업체 <strong><span style={{ color: "var(--color-main)" }}>스토리 창</span></strong></Header>
                     <hr />
                     <div style={{ width: "100%", textAlign: "center", marginTop: "40px" }}>
-                        <img src="/images/storylogo_big.png" width="300" height="300" />
+                        <img src="/images/factory_inner.png" width="1000" height="536" style={{ borderRadius: "20px" }} />
                     </div>
-                    <Imgdescript1><strong><span style={{ color: "var(--color-main)" }}>스토리 창</span></strong>은 소매업체를 적극지원하는 <strong>블라인드 & 커튼 도매업체</strong>입니다.</Imgdescript1>
+                    <Imgdescript1><strong><span style={{ color: "var(--color-main)" }}>스토리 창</span></strong>은 전국을 대상으로 하는 국내 최고의 <strong>블라인드 도매업체</strong>입니다.</Imgdescript1>
+					<div style={{ width: "100%", textAlign: "center", marginTop: "40px" }}>
+                        <img src="/images/factory_inner_small.jpg" width="1000" height="536" style={{ borderRadius: "20px" }} />
+                    </div>
                     <Imgdescript2><strong>신생 또는 소규모 업체</strong>를 <strong>적극 지원</strong>하여 <strong><span style={{ color: "var(--color-main)" }}> 안정감과 만족감</span></strong>을 가져다드립니다.</Imgdescript2>
                     <Imgdescript2>
                         <strong><span style={{ color: "var(--color-main)" }}>스토리 창</span></strong>은 <strong>대규모 공장</strong>에서 직접<strong> 블라인드</strong>를 <strong>
                             <span style={{ color: "skyblue" }}>맞춤제작</span></strong>하여 <strong>전국 최저가</strong>에 제공해드립니다.
                     </Imgdescript2>
+					<div style={{ width: "100%", textAlign: "center", marginTop: "40px" }}>
+                        <img src="/images/factory_machine_big.png" width="1000" height="536" style={{ borderRadius: "20px" }} />
+                    </div>
                     <Imgdescript2><strong>스토리창은 모든 업체를 존중합니다.</strong></Imgdescript2>
                 </FadeIn>
             </div>

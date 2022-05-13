@@ -41,7 +41,7 @@ const MoreButton = styled.div`
     width:1114px;
     height:50px;
     color:white;
-    background:orange;
+    background:var(--color-main);
     font-size:1.2em;
     font-weight:bold;
     border-radius:5px;

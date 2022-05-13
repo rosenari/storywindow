@@ -12,7 +12,7 @@
 
 .notice.body > .opentime{
     font-size:0.9em;
-    color: #F2709C;
+    color: #007bc7;
 }
 
 /* CollectBody */
@@ -50,7 +50,7 @@
     height:40px;
     font-size:1.0em;
     text-align: center;
-    caret-color: #F2709C;
+    caret-color: #007bc7;
 }
 
 .collect.body > .input_box > .input_cursor{
@@ -64,7 +64,7 @@
 }
 
 .collect.body > .input_box > .input_cursor > .desc {
-    background: #F2709C;
+    background: #007bc7;
     color: white;
     padding:3px;
     border-radius: 5px;
@@ -121,7 +121,7 @@
 }
 
 .collect.body > .submit_box > .input_box > button {
-    background: linear-gradient(45deg, #F2709C 0%, #ffbca7 100%) 0 0 / 300% no-repeat;
+    background: linear-gradient(45deg, #36bfe8 0%, #007bc7 100%) 0 0 / 300% no-repeat;
     color:white;
     height: 30px;
     line-height: 30px;
@@ -145,7 +145,7 @@
     height:30px;
     line-height: 30px;
     font-size:0.9em;
-    color: #F2709C;
+    color: #007bc7;
 }
 
 

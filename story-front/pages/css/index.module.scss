@@ -13,7 +13,7 @@
     width:1124px;
     height:60px;
     line-height: 60px;
-    background: linear-gradient(45deg, #F2709C 0%, #ffbca7 100%) 0 0 / 300% no-repeat;
+    background: linear-gradient(45deg, #35c0e8 0%, #007bc7 100%) 0 0 / 300% no-repeat;
     animation: gradient_animation 4s ease infinite;
     color:white;
     font-family: 'SBAggroM', sans-serif;
@@ -37,9 +37,14 @@
     position: relative;
     margin:0 auto;
     margin-top: 60px;
-    width: 1124px;
-    height: 470px;
+    width: 1140px;
+    height: 600px;
     padding-left:10px;
+	z-index: 70;
+}
+
+.recruit_desc{
+	z-index: 100;
 }
 
 .recruit_title{
@@ -81,9 +86,14 @@
 
 .recruit_description{
     position: relative;
+	width: max-content;
     margin-top:30px;
     font-size: 1.5em;
     font-family: 'SBAggroM', sans-serif;
+	background: white;
+	padding: 5px;
+	background-color: rgba( 255, 255, 255, 0.7 );
+	border-radius: 5px;
 }
 
 .recruit_description > .main {
@@ -101,11 +111,9 @@
 
 .logo_box{
     position: absolute;
-    top:150px;
+    bottom:0px;
     right:0px;
     padding: 0px;
-    width: 300px;
-    height: 300px;
     z-index: 99;
 }
 

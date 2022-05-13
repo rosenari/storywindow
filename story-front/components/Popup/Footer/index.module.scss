@@ -2,7 +2,7 @@
     height: 33px;
     line-height: 33px;
     font-size: 1.3em;
-    background: linear-gradient(45deg, #F2709C 0%, #ffbca7 100%) 0 0 / 300% no-repeat;
+    background: linear-gradient(45deg, #007bc7 0%, #36bfe8 100%) 0 0 / 300% no-repeat;
     color:white;
     border:#eee 2px solid;
     transition:all ease 0.1s;
@@ -61,5 +61,5 @@
 }
 
 .expire.today_close:hover{
-    color: #F2709C;
+    color: #007bc7;
 }
