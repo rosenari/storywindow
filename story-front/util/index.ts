@@ -82,6 +82,6 @@ export function deepArrayCopy<T>(arr: Array<T>): Array<T>{
   return JSON.parse(JSON.stringify(arr));
 }
 
-export function classFor(class_names: Array<String>): String{
+export function classFor(class_names: Array<string>): string{
 	return class_names.join(" ");
 }
