@@ -86,9 +86,14 @@
 
 .recruit_description{
     position: relative;
+	width: max-content;
     margin-top:30px;
     font-size: 1.5em;
     font-family: 'SBAggroM', sans-serif;
+	background: white;
+	padding: 5px;
+	background-color: rgba( 255, 255, 255, 0.7 );
+	border-radius: 5px;
 }
 
 .recruit_description > .main {

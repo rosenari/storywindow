@@ -129,15 +129,14 @@ const Home: NextPage<HomeProps> = ({ productListData }) => {
 				</div>
 			</div>
 			<div className={styles.recruit_main}>
-				<FadeIn delay={300}>
 				<div className={classFor([styles.recruit_title, styles.recruit_desc])}>
 					스토리창 <span className={styles.main}>전국 최저가</span> 블라인드 납품
 				</div>
 				<div className={classFor([styles.tag_main, styles.recruit_desc])}>
 					{TAGS.map(({ id, tag }) => <span key={id} className={styles.tag}>{tag}</span>)}
 				</div>
-				<div className={classFor([styles.recruit_description, styles.recruit_desc])} style={{ marginTop:'100px' }}>
-					ㆍ <span className={styles.main}>공장</span>에서 블라인드를 직접 제작하여, <span className={styles.main}>전국 최저가</span>로 납품해드립니다
+				<div className={classFor([styles.recruit_description, styles.recruit_desc])} style={{ marginTop:'70px' }}>
+					ㆍ <span className={styles.main}>공장</span>에서 블라인드를 직접 제작하여, <span className={styles.main}>전국 최저가</span>로 납품해드립니다.
 				</div>
 				<div className={classFor([styles.recruit_description, styles.recruit_desc])}>
 					ㆍ <span className={styles.main}>신생</span> 또는 <span className={styles.main}>소량 발주하는 업체</span>도 감사한 마음으로 친절하게 모십니다.
@@ -145,9 +144,8 @@ const Home: NextPage<HomeProps> = ({ productListData }) => {
 				<div className={classFor([styles.recruit_description, styles.recruit_desc])}>
 					ㆍ <span className={styles.main}>건설업체, 관공서, 공공기관</span>에 대량 납품 가능합니다.
 				</div>
-				</FadeIn>
 				<div className={styles.logo_box}>
-						<Image url={IMG_URL.FACTORY_PICTURE} width={900} height={506} isAnimation={false} isShadow={false} />
+						<Image url={IMG_URL.FACTORY_PICTURE} width={1140} height={641} isAnimation={false} isShadow={false} />
 				</div>
 			</div>
 			<div className={styles.card_main}>
