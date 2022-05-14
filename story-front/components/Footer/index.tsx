@@ -22,7 +22,7 @@ const Footer: React.FC = () => {
                 <div className={styles.footer_inner_container_left}>
                     <div className={styles.footer_menu_1}><Link href="/intro"><a>회사소개</a></Link> | <Link href="/apply/privacy"><a>개인정보처리방침</a></Link></div>
                     <div className={styles.footer_business_info_first}><span className="call_text"><IoIosCall />1588 - 0475</span>&nbsp;&nbsp;| 영업시간 : 월-금 09:00 - 17:00 | 토-일 휴무 </div>
-                    <div className={styles.footer_business_info}>대표: {footer_info.business_info.ceo_name} | 사업자등록번호: {footer_info.business_info.register_number} | 업체명: {footer_info.business_info.company_name}</div>
+                    <div className={styles.footer_business_info}>대표: {footer_info.business_info.ceo_name} | 사업자등록번호: {footer_info.business_info.register_number} | 상호명: {footer_info.business_info.company_name} | 사이트명: {footer_info.business_info.company_name}</div>
                     <div className={styles.footer_business_info}>공장: {footer_info.business_info.factory_address}</div>
                     <div className={styles.footer_menu_4}>스토리 창은 소매업체를 적극 지원하는 전국 블라인드 도매업체입니다.</div>
                 </div>
