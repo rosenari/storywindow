@@ -19,7 +19,13 @@
     "jsx": "preserve",
     "noImplicitAny": true,
     "noImplicitThis": true,
-    "strictNullChecks": true
+    "strictNullChecks": true,
+    "baseUrl": ".",
+    "paths": {
+        "@/components/*": ["components/*"],
+        "@/store/*": ["store/*"],
+        "@/util/*": ["util/*"]
+    }
   },
   "include": [
     "next-env.d.ts",

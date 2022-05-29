@@ -1,6 +1,8 @@
 import styled, { css } from 'styled-components';
+import { useDispatch } from 'react-redux';
 import React from 'react';
 import Link from 'next/link';
+import { ImagePopupSetData } from '@/store/action/reducerAction';
 
 const Div = styled.div`
     position:relative;
@@ -65,10 +67,10 @@ interface ContentProps {
     views: number;
     like: number;
     date?: string;
-    popupRef?: any;
 }
 
 const Content: React.FC<ContentProps> = (props) => {
+    const dispatch = useDispatch();
 
     return (
         <Div>
@@ -76,8 +78,7 @@ const Content: React.FC<ContentProps> = (props) => {
                 <Link href='/'>
                     <a onClick={(e) => {
                         e.preventDefault();
-                        props.popupRef.current.setVisible(true);
-                        props.popupRef.current.setImageUrl(`https://${process.env.IMG_HOST}/uploads/${props.mainImgurl}`);
+                        dispatch(new ImagePopupSetData({ visible: true, img_url: `https://${process.env.IMG_HOST}/uploads/${props.mainImgurl}` }).toJSON());
                     }}>
                         <img src={`https://${process.env.IMG_HOST}/uploads/` + props.imgurl} width='338' />
                     </a>

@@ -1,9 +1,9 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import Link from 'next/link';
-import { getInputCursorCoordinate } from '../../../util';
+import { getInputCursorCoordinate } from '@/util/index';
 import { useDispatch } from 'react-redux'
 import styles from './index.module.scss';
-import { RequestSmsAction } from '../../../store/action/sagaAction';
+import { RequestSmsAction } from '@/store/action/sagaAction';
 
 const MESSAGE = {
     NOTICE : ['ㆍ🎉 전국 블라인드 도매업체 스토리창이 오픈되었습니다 !',
