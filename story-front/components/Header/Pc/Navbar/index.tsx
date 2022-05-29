@@ -4,7 +4,7 @@ import { CollectPopupSetData } from '@/store/action/reducerAction';
 import styles from './index.module.scss';
 import styled , { css } from 'styled-components';
 import Link from 'next/link';
-import { CollectPopup } from '@/components/Popup/index';
+import { CollectPopup } from '@/components/index';
 
 
 const LogoLink = css`
