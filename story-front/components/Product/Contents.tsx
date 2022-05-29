@@ -71,16 +71,14 @@ interface ProductItem {
 }
 
 class Contents extends Component<ContentsProps> {
-    private popupRef: React.RefObject<{ setVisible?: any }>;
     private countPerLine = 4;
 
     constructor(props: ContentsProps){
         super(props);
-        this.popupRef = React.createRef();
     }
 
     renderContentFromLine(line: Array<ProductItem>){
-        return line.map(product => <Content key={product.id} popupRef={this.popupRef} 
+        return line.map(product => <Content key={product.id} 
             mainImgurl={product.mainImgurl} idx={product.id} 
             imgurl={product.imgurl} tags={product.tags} colors={product.colors} 
             like={product.like} views={product.views} date={product.date} />);
@@ -108,7 +106,7 @@ class Contents extends Component<ContentsProps> {
                     {this.props.productListData?.remain && <MoreButton onClick={() => {
                         this.props.getMoreProductList?.({ startIndex: productList.length, tag });
                     }}>더보기</MoreButton>}
-                    <ImagePopup ref={this.popupRef} />
+                    <ImagePopup />
                 </Div>
         );
     }

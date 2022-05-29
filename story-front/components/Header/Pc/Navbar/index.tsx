@@ -1,8 +1,10 @@
-import React, {useRef} from 'react';
+import React from 'react';
+import { useDispatch } from 'react-redux';
+import { CollectPopupSetData } from '@/store/action/reducerAction';
 import styles from './index.module.scss';
 import styled , { css } from 'styled-components';
 import Link from 'next/link';
-import { CollectPopup } from '../..';
+import { CollectPopup } from '@/components/Popup/index';
 
 
 const LogoLink = css`
@@ -129,7 +131,7 @@ interface NavbarProps {
 }
 
 const Navbar: React.FC<NavbarProps> = (props) => {
-	const popupRef = useRef<{ setVisible?: any}>({});
+    const dispatch = useDispatch();
 
 	return (
 		<div className={styles.nav_container}>
@@ -149,8 +151,8 @@ const Navbar: React.FC<NavbarProps> = (props) => {
 					<li>
 						<Link href='/'>
 							<a onClick={(e) => {
-								e.preventDefault();
-								popupRef.current.setVisible(true);
+                                e.preventDefault();
+                                dispatch(new CollectPopupSetData({ visible: true}).toJSON());
 							}}>
 								<span>납품신청문의</span>
 								<img src="/images/consult_img.png" height="28" width="28" className={styles.consult_img} />
@@ -159,7 +161,7 @@ const Navbar: React.FC<NavbarProps> = (props) => {
 					</li>
 				</ul>
 			</nav>
-			<CollectPopup ref={popupRef} />
+            <CollectPopup />
 		</div>
 	)
 

@@ -3,7 +3,6 @@ import { Cardslider, Image, PulseBox, NoticePopup } from '../components';
 import Router from 'next/router';
 import { NextPage } from 'next';
 import { Context } from 'vm';
-import FadeIn from 'react-fade-in';
 import styled from 'styled-components';
 import styles from './css/index.module.scss';
 import { RequestProductListAction } from '../store/action/sagaAction';
