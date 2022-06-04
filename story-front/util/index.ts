@@ -1,3 +1,4 @@
+import React from 'react';
 import { Store } from "redux";
 
 export function waitAndGetState(store: Store){
@@ -84,4 +85,10 @@ export function deepArrayCopy<T>(arr: Array<T>): Array<T>{
 
 export function classFor(class_names: Array<string>): string{
 	return class_names.join(" ");
+}
+
+export function generateGetCssFunction(styles: Styles, styles_mobile: Styles) {
+    return function getCss(is_mobile: boolean) {
+        return is_mobile ? styles_mobile : styles
+    }
 }
