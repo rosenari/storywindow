@@ -1,21 +1,13 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { IoIosCall } from 'react-icons/io';
 import Link from 'next/link';
 import styles from './css/index.module.css';
 import styles_mobile from './css/index_mobile.module.css';
 import * as c from './constant';
-import { useIsMobile } from '@/hooks/index';
-import { generateGetCssFunction } from '@/util/index';
-
-const getCss = generateGetCssFunction(styles, styles_mobile);
+import useCssSelector from '@/hooks/useCssSelector';
 
 function Footer() {
-    const isMobile = useIsMobile();
-    let css: Styles = getCss(isMobile);
-    
-    useEffect(() => {
-        css = getCss(isMobile);
-    }, [isMobile]);
+    const css = useCssSelector({ pc: styles, mobile: styles_mobile });
 
     return (
         <div className={css.footer}>
