@@ -1,8 +1,8 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
 import { connect } from 'react-redux';
-import { deepArrayCopy } from '../../util';
-import { RequestProductListAction } from '../../store/action/sagaAction';
+import { deepArrayCopy } from '@/util/index';
+import { RequestProductListAction } from '@/store/action/sagaAction';
 
 const Div = styled.div`
     position:relative;
