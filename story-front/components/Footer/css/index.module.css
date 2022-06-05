@@ -62,3 +62,7 @@
 .footer_logo{
     margin-top:5px;
 }
+.footer_logo > img {
+    width: 400px;
+    height: 130px;
+}

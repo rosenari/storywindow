@@ -6,24 +6,24 @@ const getInnerWidth = (w: { innerWidth: number }) => {
 const getIsMobile = (width: number) => width <= 800;
 
 function useIsMobile(): boolean {
-    if (typeof window !== 'undefined') {
-        const [isMobile, setIsMobile] = useState(getIsMobile(getInnerWidth(window)));
+    const [isMobile, setIsMobile] = useState(false);
+    
+    useEffect(() => {
+        const onResize = () => {
+            setIsMobile(getIsMobile(getInnerWidth(window)));
+        }
+
+        window.addEventListener('resize', onResize);
         
-        useEffect(() => {
-            const onResize = () => {
-                setIsMobile(getIsMobile(getInnerWidth(window)));
-            }
+        setIsMobile(getIsMobile(getInnerWidth(window)));
 
-            window.addEventListener('resize', onResize);
+        return () => {
+            window.removeEventListener('resize', onResize);
+        }
 
-            return () => {
-                window.removeEventListener('resize', onResize);
-            }
+    }, []);
 
-        }, []);
-
-        return isMobile;
-    }else return false;
+    return isMobile;
 }
 
 export default useIsMobile;

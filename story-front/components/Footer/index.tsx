@@ -20,7 +20,7 @@ function Footer() {
                     <div className={css.footer_menu_4}>{c.DESC}</div>
                 </div>
                 <div className={css.footer_inner_container_right}>
-                    <div className={css.footer_logo}><img src="/images/footer_logo.png" width="400" height="130" /></div>
+                    <div className={css.footer_logo}><img src="/images/footer_logo.png" /></div>
                 </div>
             </div>
         </div>

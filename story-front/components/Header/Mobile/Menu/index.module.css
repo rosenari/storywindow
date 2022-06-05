@@ -1,0 +1,38 @@
+.menu_container {
+    visibility: hidden;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0px;
+    background-color: rgba(0, 0, 0, 0.2);
+    z-index:120;
+    transition: visibility 0.4s;
+}
+
+.menu_container.opened{
+    visibility: visible;
+}
+
+.menu_container.closed{
+    visibility: hidden;
+}
+
+.menu {
+    position: fixed;
+    width:70%;
+    height:100%;
+    top:0px;
+    left:-70%;
+    background: var(--color-main);
+    z-index:100;
+    transition: left 0.4s;
+    opacity: 1.0;
+}
+
+.menu.opened {
+    left: 0%;
+}
+
+.menu.closed {
+    left: -70%;
+}

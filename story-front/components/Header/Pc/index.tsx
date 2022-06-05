@@ -36,7 +36,7 @@ const useSubMenuVisible = ({ init = false, subMenuBox, subMenuArea } : SubMenuVi
 	return [visible, handler];
 }
 
-const Header: React.FC = () => {
+const HeaderPc: React.FC = () => {
 	const subMenuBox = useRef<HTMLDivElement>(null);
 	const subMenuArea = useRef<HTMLDivElement>(null);
 	const [subMenuVisible, setSubMenuVisible] = useSubMenuVisible({ 
@@ -71,4 +71,4 @@ const Header: React.FC = () => {
 	)
 }
 
-export default Header;
+export default HeaderPc;
