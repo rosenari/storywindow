@@ -85,7 +85,7 @@ export const NoticePopup: React.FC = () => {
         
             setPopupVisibility(type, visible, height);
             setBackgroundVisibility(type, visible);
-        }, [visible]);
+        }, [visible, is_mobile]);
     
         return (
                 <Popup type={type} size={{
