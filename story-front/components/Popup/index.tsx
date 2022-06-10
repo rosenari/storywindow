@@ -26,9 +26,9 @@ const setBackgroundVisibility = (type: String, power: Boolean) => {
 const setPopupVisibility = (type: String, power: Boolean, height: string) => {
     const popup = document.querySelector<HTMLElement>(`.${type}.${styles.popup}`);
     if(power){
-        popup && (popup.style.height = height);
+        popup && (popup.style.height = height) && (popup.style.maxHeight = '600px');
     }else {
-        popup && (popup.style.height = '0px');
+        popup && setTimeout(() => { popup.style.maxHeight = '0px' });
     }
 }
 
