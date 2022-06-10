@@ -1,23 +1,21 @@
 .card_slider_item{
     position:relative;
-    width:372px;
-    height:240px;
+    width:100%;
     border:#aaa solid;
     border-width:0px;
     text-align:center;
     cursor: pointer;
     overflow:hidden;
 }
-.card_slider_img{
+.card_slider_img {
     position:relative;
     width:100%;
-    height:230px;
     border-radius:5px;
     overflow:hidden;
 }
 
 .card_slider_img > img {
-    height: 230px;
+    width: 100%;
 }
 
 .card_slider_item_description{

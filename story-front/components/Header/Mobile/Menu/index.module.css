@@ -23,10 +23,11 @@
     height:100%;
     top:0px;
     left:-70%;
-    background: var(--color-main);
+    background: #fff;
     z-index:100;
     transition: left 0.4s;
     opacity: 1.0;
+    border-right: 1px solid #ddd;
 }
 
 .menu.opened {

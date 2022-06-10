@@ -21,6 +21,10 @@ const InquiryButton = styled.button`
     cursor: pointer;
     font-size: 1em;
     font-weight: 600;
+
+    &:active {
+        background: #0679f0;
+    }
 `;
 
 interface NavbarProps {
@@ -30,7 +34,7 @@ interface NavbarProps {
 const Navbar: React.FC<NavbarProps> = ({ setOpen }) => {
     return (
         <div className={styles.navbar}>
-        <div className={styles.left_box}><MenuButton onClick={() => setOpen(true)} /></div>
+            <div className={styles.left_box}><MenuButton onClick={() => setOpen(true)} /></div>
             <div className={styles.center_box}>{"스토리창"}</div>
             <div className={styles.right_box}><InquiryButton>{"문의"}</InquiryButton></div>
         </div>

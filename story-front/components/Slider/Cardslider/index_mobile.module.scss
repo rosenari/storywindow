@@ -1,0 +1,138 @@
+.card_descript{
+    display:none;
+    position:relative;
+    float:left;
+    width:274px;
+    border:#aaa solid;
+    border-width:1px;
+    height:280px;
+    border-radius:3px;
+}
+.card_descript.active{
+    display:block;
+    animation: fadein 1s;
+    -moz-animation: fadein 1s; /* Firefox */
+    -webkit-animation: fadein 1s; /* Safari and Chrome */
+    -o-animation: fadein 1s; /* Opera */
+}
+
+.card_descript_title{
+    position:relative;
+    width:100%;
+    height:30px;
+    line-height:30px;
+    font-size:1.0em;
+    font-weight:700;
+    border:#ddd solid;
+    border-width:0px;
+    border-top:0px;
+    border-left:0px;
+    border-right:0px;
+}
+.card_descript_title_image{
+    margin:2px 4px;
+    float:left;
+    border:#aaa solid;
+    border-width:1px;
+    border-radius:50%;
+    width:26px;
+    height:26px;
+    background-image:url('/images/hanbit_icon.png');
+}
+.card_descript_title_center{
+    float:left;
+}
+.card_descript_title_right{
+    padding:0px;
+    width:20px;
+    height:100%;
+    float:right;
+}
+.card_descript_picture{
+    width:100%;
+    height:181px;
+    border:#ddd solid;
+    border-width:0px;
+    border-top:0px;
+    border-left:0px;
+    border-right:0px;
+}
+.card_descript_like{
+    width:100%;
+    height:26px;
+    border:#ddd solid;
+    border-width:0px;
+    border-top:0px;
+    border-left:0px;
+    border-right:0px;
+}
+.card_descript_like_item{
+    float:left;
+}
+.card_descript_like_item:first-child{
+    margin-left:5px;
+}
+.card_descript_like_item:last-child{
+    float:right;
+    margin-right:5px;
+}
+.card_descript_hashtag_1{
+    width:100%;
+    height:20px;
+    line-height:20px;
+    padding-left:5px;
+    border:#ddd solid;
+    border-width:0px;
+    border-top:0px;
+    border-left:0px;
+    border-right:0px;
+    font-size:0.7em;
+    font-weight:600;
+}
+.card_descript_hashtag_2{
+    width:100%;
+    height:20px;
+    line-height:20px;
+    padding-left:5px;
+    font-size:0.7em;
+    font-weight:600;
+}
+.card_slider{
+    display:none;
+    position:relative;
+    padding:0 0 0 0px;
+    margin:0 auto;
+    width:100%;
+    height: auto;
+}
+.card_slider.active{
+    display:block;
+    animation: fadein 1s;
+    -moz-animation: fadein 1s; /* Firefox */
+    -webkit-animation: fadein 1s; /* Safari and Chrome */
+    -o-animation: fadein 1s; /* Opera */
+}
+
+
+@keyframes fadein {
+    from {
+        opacity:0;
+        top:50px;
+    }
+    to {
+        opacity:1;
+        top:0px;
+    }
+}
+
+
+@keyframes fadeout {
+    from {
+        opacity:1;
+        top:0px;
+    }
+    to {
+        opacity:0;
+        top:50px;
+    }
+}
