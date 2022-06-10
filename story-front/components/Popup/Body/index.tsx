@@ -3,7 +3,9 @@ import Link from 'next/link';
 import { getInputCursorCoordinate } from '@/util/index';
 import { useDispatch } from 'react-redux'
 import styles from './index.module.scss';
+import styles_mobile from './index_mobile.module.scss';
 import { RequestSmsAction } from '@/store/action/sagaAction';
+import useCssSelector from '@/hooks/useCssSelector';
 
 const MESSAGE = {
     NOTICE : ['ㆍ🎉 전국 블라인드 도매업체 스토리창이 오픈되었습니다 !',
@@ -31,11 +33,12 @@ interface BodyProps {
 interface NoticeBodyProps extends BodyProps{}
 
 export const NoticeBody: React.FC<NoticeBodyProps> = ({ type }) => {
+    const css = useCssSelector({ pc: styles, mobile: styles_mobile });
     
     return (
-            <div className={[styles[`${type}`], styles.body].join(' ')}>
+            <div className={[css[`${type}`], css.body].join(' ')}>
                 {MESSAGE.NOTICE.map(notice => <div key={notice}>{notice}</div>)}
-                &nbsp;{MESSAGE.Q_RTEL} <span className={styles.opentime}>({MESSAGE.BUSINESS_TIME})</span>
+                &nbsp;{MESSAGE.Q_RTEL} <span className={css.opentime}>({MESSAGE.BUSINESS_TIME})</span>
             </div>
     )
 }

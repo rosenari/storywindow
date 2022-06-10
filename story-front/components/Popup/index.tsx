@@ -2,6 +2,7 @@ import React, { useState, useCallback, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { CollectPopupSetData, ImagePopupSetData } from '@/store/action/reducerAction';
 import { CollectBody, ImageBody, NoticeBody } from './Body';
+import { useIsMobile } from '@/hooks/index';
 import Footer, { ExpireFooter } from './Footer';
 import Header from './Header';
 import styles from './index.module.scss';
@@ -74,9 +75,10 @@ const Popup: React.FC<PopupProps> = ({ type, size = { width: '400px', height: '1
 
 export const NoticePopup: React.FC = () => {
         const [visible, setVisible] = useState(true);
+        const is_mobile = useIsMobile();
         const type = 'notice';
-        const width = '600px';
-        const height = '290px';
+        const width = is_mobile ? '98%' : '600px';
+        const height = is_mobile ? 'auto' : '290px';
 
         useEffect(() => {
             if(validExpireDate(type)) setVisible(false); //현재시간이 닫힘유효시간보다 작다면, 팝업 숨기기
