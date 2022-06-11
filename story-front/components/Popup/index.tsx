@@ -28,7 +28,7 @@ const setPopupVisibility = (type: String, power: Boolean, height: string) => {
     if(power){
         popup && (popup.style.height = height) && (popup.style.maxHeight = '600px');
     }else {
-        popup && setTimeout(() => { popup.style.maxHeight = '0px' });
+        popup && (popup.style.maxHeight = '0px'); 
     }
 }
 
@@ -102,17 +102,18 @@ export const NoticePopup: React.FC = () => {
 export const CollectPopup = () => {
     const dispatch = useDispatch();
     const visible = useSelector((state: any) => state?.reducer?.collect_popup?.visible) || false;
+    const is_mobile = useIsMobile();
     const setVisible = useCallback((v: boolean) => {
         dispatch(new CollectPopupSetData({ visible: v }).toJSON());
     }, []);
     const type = 'collect';
-    const width = '600px';
-    const height = '280px';
+    const width = is_mobile ? '98%' : '600px';
+    const height = is_mobile ? 'auto' : '280px';
 
     useEffect(() => {
         setPopupVisibility(type, visible, height);
         setBackgroundVisibility(type, visible);
-    });
+    }, [visible, is_mobile]);
 
     return (
             <Popup type={type} size={{

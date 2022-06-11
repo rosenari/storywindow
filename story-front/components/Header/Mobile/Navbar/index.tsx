@@ -1,5 +1,8 @@
 import React from 'react';
 import Link from 'next/link';
+import { useDispatch } from 'react-redux';
+import { CollectPopupSetData } from '@/store/action/reducerAction';
+import { CollectPopup } from '@/components/index';
 import styles from './index.module.scss';
 import styled from 'styled-components';
 
@@ -33,11 +36,18 @@ interface NavbarProps {
 }
 
 const Navbar: React.FC<NavbarProps> = ({ setOpen }) => {
+    const dispatch = useDispatch();
+
     return (
         <div className={styles.navbar}>
             <div className={styles.left_box}><MenuButton onClick={() => setOpen(true)} /></div>
             <div className={styles.center_box}><Link href='/'><a>{"스토리창"}</a></Link></div>
-            <div className={styles.right_box}><InquiryButton>{"문의"}</InquiryButton></div>
+            <div className={styles.right_box}>
+                <InquiryButton onClick={() => {
+                    dispatch(new CollectPopupSetData({ visible: true}).toJSON());}}>{"문의"}
+                </InquiryButton>
+            </div>
+            <CollectPopup />
         </div>
     )
 }
