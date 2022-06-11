@@ -37,3 +37,27 @@
 .menu.closed {
     left: -70%;
 }
+
+.menu_button {
+    height: 40px;
+    line-height: 40px;
+    font-size: 0.9em;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+    font-family: 'SBAggroM', sans-serif;
+}
+
+.menu_button:hover {
+    background: var(--color-main);
+    color: white;
+}
+
+.close_hint {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    color: white;
+    font-size: 1.0em;
+    font-family: 'SBAggroM', sans-serif;
+    writing-mode: tb-rl;
+}
