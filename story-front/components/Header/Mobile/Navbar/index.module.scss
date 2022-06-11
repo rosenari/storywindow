@@ -27,6 +27,23 @@
     flex-grow: 1;
 }
 
+@mixin link {
+    color:#000;
+    text-decoration: none;
+}
+
+.center_box > a {
+    @include link;
+}
+
+.center_box > a:active {
+    @include link;
+}
+
+.center_box > a:hover {
+    @include link;
+}
+
 .right_box {
     @include box;
     flex-shrink: 0;

@@ -1,4 +1,5 @@
 import React from 'react';
+import Link from 'next/link';
 import styles from './index.module.scss';
 import styled from 'styled-components';
 
@@ -35,7 +36,7 @@ const Navbar: React.FC<NavbarProps> = ({ setOpen }) => {
     return (
         <div className={styles.navbar}>
             <div className={styles.left_box}><MenuButton onClick={() => setOpen(true)} /></div>
-            <div className={styles.center_box}>{"스토리창"}</div>
+            <div className={styles.center_box}><Link href='/'><a>{"스토리창"}</a></Link></div>
             <div className={styles.right_box}><InquiryButton>{"문의"}</InquiryButton></div>
         </div>
     )
