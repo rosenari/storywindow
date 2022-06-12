@@ -1,0 +1,42 @@
+@import "./intro.module.scss";
+
+.intro{
+    position:relative;
+    margin:0 auto;
+    width:98%;
+}
+
+.introbox{
+    margin-top: 10px;
+}
+
+
+@mixin header {
+    margin-top: 20px;
+    width: 100%;
+    height: auto;
+    font-size: 0.9em;
+    line-height: 30px;
+    text-align: center;
+}
+
+.introbox_title {
+    @include header;
+    font-size: 1.0em;
+    line-height: 20px;
+}
+
+.introbox_header{
+    @include header;
+}
+
+.introbox_label {
+    width: 100%;
+    text-align: center;
+    margin-top: 10px;
+}
+
+.introbox_label > img {
+    width: 100%;
+    height: auto;
+}

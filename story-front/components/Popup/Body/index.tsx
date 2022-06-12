@@ -52,7 +52,6 @@ const InputBody: React.FC<InputBodyProps> = ({ type, visible, setVisible }) => {
     const [privacy, setPrivacy] = useState(false);
     const [phonenumber, setPhonenumber] = useState('');
     const css = useCssSelector({ pc: styles, mobile: styles_mobile });
-    const is_mobile = useIsMobile();
     const dispatch = useDispatch();
     const inputRef = useRef<HTMLInputElement>(null);
     const cursorRef = useRef<HTMLDivElement>(null);
@@ -89,7 +88,7 @@ const InputBody: React.FC<InputBodyProps> = ({ type, visible, setVisible }) => {
                     <div ref={cursorRef} className={css.input_cursor}>👈 <span className={css.desc}>번호를 입력해주세요.</span> 
                     <br /> <span className={css.number}>예) 010-0000-0000&nbsp;</span></div></div>
                 <div className={css.submit_box}>
-                    {!is_mobile && <div className={css.state}>{MESSAGE.Q_INPUT}</div>}
+                    <div className={css.state}>{MESSAGE.Q_INPUT}</div>
                     <div className={css.input_box}>
                         <input type='checkbox' checked={privacy} onChange={() => setPrivacy(!privacy)} />
                     </div>
