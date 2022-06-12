@@ -160,7 +160,11 @@ const Home: NextPage<HomeProps> = ({ productListData }) => {
 					<strong> 스토리 창
 						<span style={{ color: "var(--color-main)" }}> 납품업체 시공사례</span>
 					</strong>
-				<span className={css.card_slider_header_more} onClick={() => {
+                    <span className={css.card_slider_header_more} onClick={() => {
+                        if(is_mobile) {
+                            alert('준비중인 메뉴입니다. (해당 메뉴는 pc버전에서 이용 가능합니다.)');
+                            return;
+                        }
 						Router.push('/product/list');
 					}}>더보기</span>
 				</div>
