@@ -3,7 +3,9 @@ import Link from 'next/link';
 import { getInputCursorCoordinate } from '@/util/index';
 import { useDispatch } from 'react-redux'
 import styles from './index.module.scss';
+import styles_mobile from './index_mobile.module.scss';
 import { RequestSmsAction } from '@/store/action/sagaAction';
+import { useCssSelector, useIsMobile } from '@/hooks/index';
 
 const MESSAGE = {
     NOTICE : ['ㆍ🎉 전국 블라인드 도매업체 스토리창이 오픈되었습니다 !',
@@ -31,11 +33,12 @@ interface BodyProps {
 interface NoticeBodyProps extends BodyProps{}
 
 export const NoticeBody: React.FC<NoticeBodyProps> = ({ type }) => {
+    const css = useCssSelector({ pc: styles, mobile: styles_mobile });
     
     return (
-            <div className={[styles[`${type}`], styles.body].join(' ')}>
+            <div className={[css[`${type}`], css.body].join(' ')}>
                 {MESSAGE.NOTICE.map(notice => <div key={notice}>{notice}</div>)}
-                &nbsp;{MESSAGE.Q_RTEL} <span className={styles.opentime}>({MESSAGE.BUSINESS_TIME})</span>
+                &nbsp;{MESSAGE.Q_RTEL} <span className={css.opentime}>({MESSAGE.BUSINESS_TIME})</span>
             </div>
     )
 }
@@ -48,6 +51,7 @@ interface InputBodyProps extends BodyProps{
 const InputBody: React.FC<InputBodyProps> = ({ type, visible, setVisible }) => {
     const [privacy, setPrivacy] = useState(false);
     const [phonenumber, setPhonenumber] = useState('');
+    const css = useCssSelector({ pc: styles, mobile: styles_mobile });
     const dispatch = useDispatch();
     const inputRef = useRef<HTMLInputElement>(null);
     const cursorRef = useRef<HTMLDivElement>(null);
@@ -73,25 +77,25 @@ const InputBody: React.FC<InputBodyProps> = ({ type, visible, setVisible }) => {
     }, [visible]);
     
     return (
-            <div className={[styles[`${type}`], styles.body].join(' ')}>
-                <div className={styles.desc}>{MESSAGE.CONSULT}</div>
-                <div className={styles.input_box}>
+            <div className={[css[`${type}`], css.body].join(' ')}>
+                <div className={css.desc}>{MESSAGE.CONSULT}</div>
+                <div className={css.input_box}>
                     <input type='text' maxLength={13} placeholder={'연락가능한 번호를 입력해주세요.'} ref={inputRef} onBlur={() => {
                         (inputRef?.current as HTMLInputElement).placeholder = '연락가능한 번호를 입력해주세요.';
                         (cursorRef?.current as HTMLDivElement).style.visibility = 'hidden';
                      }
                     } onFocus={cursorTriger} onKeyUp={cursorTriger} onChange={(e) => setPhonenumber(e.target.value)} />
-                    <div ref={cursorRef} className={styles.input_cursor}>👈 <span className={styles.desc}>번호를 입력해주세요.</span> 
-                    <br /> <span className={styles.number}>예) 010-0000-0000&nbsp;</span></div></div>
-                <div className={styles.submit_box}>
-                    <div className={styles.state}>{MESSAGE.Q_INPUT}</div>
-                    <div className={styles.input_box}>
+                    <div ref={cursorRef} className={css.input_cursor}>👈 <span className={css.desc}>번호를 입력해주세요.</span> 
+                    <br /> <span className={css.number}>예) 010-0000-0000&nbsp;</span></div></div>
+                <div className={css.submit_box}>
+                    <div className={css.state}>{MESSAGE.Q_INPUT}</div>
+                    <div className={css.input_box}>
                         <input type='checkbox' checked={privacy} onChange={() => setPrivacy(!privacy)} />
                     </div>
-                    <div className={styles.text}>
+                    <div className={css.text}>
                         <Link href='/apply/privacy'><a onClick={() => setVisible(false)}>{MESSAGE.APPROVE_PRIV}</a></Link>
                     </div>
-                    <div className={styles.input_box}>
+                    <div className={css.input_box}>
                         <button onClick={() => {
                             if(!privacy){
                                 alert(MESSAGE.Q_APPROVE_PRIV);
@@ -112,12 +116,12 @@ const InputBody: React.FC<InputBodyProps> = ({ type, visible, setVisible }) => {
                         }}>{MESSAGE.CONTACT}</button>
                     </div>
                 </div>
-                <div className={styles.question}>
+                <div className={css.question}>
                     <div><span style={{ padding:'3px', background:'#007bc7', color:'white', borderRadius: '3px'}}>{MESSAGE.DIRECT_CONTACT}</span></div>
                     <div>{MESSAGE.Q_KAKAO}
                     &nbsp;{MESSAGE.Q_TEL}&nbsp;{MESSAGE.Q_RTEL}</div>
                 </div>
-                <div className={styles.opentime}>
+                <div className={css.opentime}>
                     {MESSAGE.BUSINESS_TIME}
                 </div>
             </div>

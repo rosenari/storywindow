@@ -1,53 +1,53 @@
 .advertise_main{
+    display: flex;
+    justify-content: center;
     position: relative;
     margin:0 auto;
-    margin-top: 20px;
-    width: 1124px;
-    height: 50px;
-    padding-left:10px;
+    margin-top: 5px;
+    width: 100%;
+    height: 40px;
+    font-size:0.8em;
 }
 
 .advertise_box{
     display: flex;
     flex-direction: row;
-    width:1124px;
-    height:60px;
-    line-height: 60px;
+    width:98%;
+    height:40px;
     background: linear-gradient(45deg, #35c0e8 0%, #007bc7 100%) 0 0 / 300% no-repeat;
     animation: gradient_animation 4s ease infinite;
     color:white;
     font-family: 'SBAggroM', sans-serif;
-    font-size: 1.2em;
-    padding-left:30px;
+    padding-left: 6px;
     border-radius: 5px;
 }
 
 .advertise_title {
-    line-height: 76px;
+    height: 40px;
+    line-height: 42px;
 }
 
 .advertise_img {
     position: absolute;
-    top: 5px;
+    top: 1px;
     border-radius: 50%;
-    margin-right: 20px;
-    width: 50px;
-    height: 50px;
+    width: 38px;
+    height: 38px;
 }
 
 .advertise_title_text {
-    margin-left: 70px;
-    margin-right: 20px;
+    margin-left: 53px;
 }
 
 .recruit_main{
     position: relative;
     margin:0 auto;
-    margin-top: 60px;
-    width: 1140px;
-    height: 600px;
+    margin-top: 10px;
+    width: 100%;
     padding-left:10px;
+    padding-right: 10px;
 	z-index: 70;
+	overflow:hidden;
 }
 
 .recruit_desc{
@@ -55,10 +55,13 @@
 }
 
 .recruit_title{
+    margin-top: 10px;
+    width: 100%;
     position: relative;
-    font-size: 4.0em;
+    font-size: 1.4em;
     font-weight: 600;
     font-family: 'SBAggroM', sans-serif;
+    background: rgba(255,255,255,0.7);
 }
 
 .recruit_title > .main {
@@ -66,23 +69,24 @@
 }
 
 .tag_main{
+    margin-top:5px;
     position: relative;
-    height: 50px;
-    line-height: 50px;
+    line-height: 30px;
 }
 
 @mixin tag {
-    margin-right:10px;
-    background: #333;
-    padding:8px;
+    margin-right:3px;
+    background: var(--color-main);
+    padding:5px;
     color:white;
     border-radius: 2px;
     font-family: 'SBAggroL', sans-serif;
+    font-weight: 600;
 }
 
 .tag{
     @include tag;
-    font-size: 1.3em;
+    font-size: 0.73em;
 }
 
 .tag_small{
@@ -93,25 +97,26 @@
 
 .recruit_description{
     position: relative;
-	width: max-content;
-    margin-top:30px;
-    font-size: 1.5em;
+	width: 98%;
+    margin-top:10px;
+    font-size: 0.9em;
     font-family: 'SBAggroM', sans-serif;
 	background: white;
-	padding: 5px;
+	padding: 2px;
 	background-color: rgba( 255, 255, 255, 0.7 );
 	border-radius: 5px;
 }
 
-.recruit_description.first {
-    margin-top: 70px;
+.recruit_description.first{
+    margin-top: 20px;
 }
 
 .recruit_description.last{
+    margin-bottom: 50px;
 }
 
 .recruit_description > .main {
-    color: var(--color-main);
+    color: #007bc7;
 }
 
 .short_phrase{
@@ -136,39 +141,37 @@
     margin:0 auto;
     font-family: 'SBAggroL', sans-serif;
     width:100%;
-    height:30px;
-    line-height:30px;
 }
 
 @mixin box_main{
-    clear:both;
     position:relative;
-    margin:0 auto;
-    margin-top:40px;
-    width:1124px;
+    margin-top:0px;
+    width: 100%;
     padding-left:10px;
+    padding-right:10px;
 }
 
 .card_main{
     @include box_main;
-    height:330px;
+    margin-top:14px;
 }
 
 .card_slider_subheader{
     @include box_header;
-    font-size:0.8em;
+    font-size:0.7em;
 }
 
 .card_slider_header{
     @include box_header;
-    margin-bottom:20px;
-    font-size:1.5em;
+    margin-bottom: 10px;
+    font-size:1.2em;
 }
 
 .card_slider_header_more{
     position:absolute;
     right:0px;
-    font-size:0.8em;
+    bottom:5px;
+    font-size:0.7em;
     font-weight:bold;
     cursor:pointer;
 }
@@ -180,36 +183,36 @@
 
 .industry_main{
     @include box_main;
-    height:390px;
+    margin-top: 14px;
+    width: 100%;
 }
 
 .industry_header{
     @include box_header;
-    font-size:1.5em;
+    font-size:1.2em;
     margin-bottom: 20px;
 }
 
 .industry_body{
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     position: relative;
     margin:0 auto;
-    width:1124px;
-    height:298px;
+    width: 100%;
     border:1px #eee solid;
 }
 
 .industry_body > .box {
     position: relative;
-    width: 561px;
+    width: 100%;
 }
 
 .industry_body > .box > .header {
-    padding-left:15px;
-    line-height: 50px;
+    padding-left:9px;
+    line-height: 40px;
     text-align: left;
     font-family: 'SBAggroM', sans-serif;
-    font-size: 1.0em;
+    font-size: 0.9em;
 }
 
 .industry_body > .box > .header > .text{
@@ -222,28 +225,30 @@
 .industry_body > .box > .body {
     display: flex;
     flex-direction: row;
+    font-size: 0.8em;
 }
 
 .industry_body > .box > .body > .description_box {
-    margin-top:20px;
-    width: 361px;
+    margin-top:10px;
+    width: 50%;
 }
 
 .industry_body > .box > .body > .description_box > .description {
-    margin-top:10px;
+    margin-top: 10px;
     margin-left:30px;
-    line-height: 30px;
+    line-height: 25px;
     font-family: 'SBAggroM', sans-serif;
 }
 
 .industry_body > .box > .body > .img_box {
-    width: 200px;
+    display: flex;
+    justify-content: center;
+    width: 50%;
 }
 
 .industry_body > .box > .body > .img_box > img {
-    width: 200px;
+    width: 98%;
 }
-
 
 @keyframes zoom_animation {
 	0%{

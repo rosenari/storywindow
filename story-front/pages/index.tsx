@@ -1,13 +1,15 @@
 import React from 'react';
-import { Cardslider, Image, PulseBox, NoticePopup } from '../components';
+import { Cardslider, Image, PulseBox, NoticePopup, BalloonLink } from '../components';
 import Router from 'next/router';
 import { NextPage } from 'next';
 import { Context } from 'vm';
 import styled from 'styled-components';
 import styles from './css/index.module.scss';
+import styles_mobile from './css/index_mobile.module.scss';
 import { RequestProductListAction } from '../store/action/sagaAction';
 import { waitAndGetState, classFor } from '../util';
 import { ProductListData } from '../store/action/reducerAction';
+import { useIsMobile, useCssSelector } from '@/hooks/index';
 
 const IMG_URL = {
 	FACTORY_PICTURE: '/images/factory_inner_big.png',
@@ -88,6 +90,7 @@ const rounds = [
 	}
 ].map((round, index) => ({...round, id: index}));
 
+
 interface RoundProps {
 	top: number;
 	left: number;
@@ -115,88 +118,103 @@ interface HomeProps {
 }
 
 const Home: NextPage<HomeProps> = ({ productListData }) => {
+    const is_mobile = useIsMobile();
+    const css = useCssSelector({ pc: styles, mobile: styles_mobile });
 
 	return (
 		<div>
-			<div className={styles.advertise_main}>
-				<div className={styles.advertise_box}>
-					<PulseBox text={'DC모터'} top={9} left={110}  />
-					<PulseBox text={'AC모터'} top={9} left={183}  />
-					<img src='/images/leftmenu_img1.png' width={50} height={50} />
-					<div className={styles.advertise_title}><span style={{ marginLeft:'70px', marginRight: '20px' }}>충전식ㆍ전기식 커튼, 블라인드 모터 판매합니다 !</span></div>
-					<div>{AD_TAGS.map(({ id, tag }) => <span key={id} className={styles.tag_small}>{tag}</span>)}</div>
+			<div className={css.advertise_main}>
+				<div className={css.advertise_box}>
+                    {!is_mobile && <PulseBox text={'DC모터'} top={9} left={110}  />}
+                    {!is_mobile && <PulseBox text={'AC모터'} top={9} left={183}  />}
+					<img src='/images/leftmenu_img1.png' className={css.advertise_img} />
+					<div className={css.advertise_title}><span className={css.advertise_title_text}>충전식ㆍ전기식 커튼, 블라인드 모터 판매합니다 !</span></div>
+					<div>{!is_mobile && AD_TAGS.map(({ id, tag }) => <span key={id} className={css.tag_small}>{tag}</span>)}</div>
 				</div>
 			</div>
-			<div className={styles.recruit_main}>
-				<div className={classFor([styles.recruit_title, styles.recruit_desc])}>
-					스토리창 <span className={styles.main}>전국 최저가</span> 블라인드 납품
+			<div className={css.recruit_main}>
+				<div className={classFor([css.recruit_title, css.recruit_desc])}>
+					스토리창 <span className={css.main}>전국 최저가</span> 블라인드 납품
 				</div>
-				<div className={classFor([styles.tag_main, styles.recruit_desc])}>
-					{TAGS.map(({ id, tag }) => <span key={id} className={styles.tag}>{tag}</span>)}
+				<div className={classFor([css.tag_main, css.recruit_desc])}>
+					{TAGS.map(({ id, tag }) => <span key={id} className={css.tag}>{tag}</span>)}
 				</div>
-				<div className={classFor([styles.recruit_description, styles.recruit_desc])} style={{ marginTop:'70px' }}>
-					ㆍ <span className={styles.main}>공장</span>에서 블라인드를 직접 제작하여, <span className={styles.main}>전국 최저가</span>로 납품해드립니다.
+				<div className={classFor([css.recruit_description, css.recruit_desc, css.first])}>
+					ㆍ <span className={css.main}>공장</span>에서 블라인드를 직접 제작하여, <span className={css.main}>전국 최저가</span>로 납품해드립니다.
 				</div>
-				<div className={classFor([styles.recruit_description, styles.recruit_desc])}>
-					ㆍ <span className={styles.main}>신생</span> 또는 <span className={styles.main}>소량 발주하는 업체</span>도 감사한 마음으로 친절하게 모십니다.
+				<div className={classFor([css.recruit_description, css.recruit_desc])}>
+					ㆍ <span className={css.main}>신생</span> 또는 <span className={css.main}>소량 발주하는 업체</span>도 감사한 마음으로 친절하게 모십니다.
 				</div>
-				<div className={classFor([styles.recruit_description, styles.recruit_desc])}>
-					ㆍ <span className={styles.main}>건설업체, 관공서, 공공기관</span>에 대량 납품 가능합니다.
+				<div className={classFor([css.recruit_description, css.recruit_desc, css.last])}>
+					ㆍ <span className={css.main}>건설업체, 관공서, 공공기관</span>에 대량 납품 가능합니다.
 				</div>
-				<div className={styles.logo_box}>
-						<Image url={IMG_URL.FACTORY_PICTURE} width={1140} height={641} isAnimation={false} isShadow={false} />
+				<div className={css.logo_box}>
+						<Image url={IMG_URL.FACTORY_PICTURE} width={is_mobile ? '100%' : '1140px'} height={is_mobile? '100%' : '641px'} />
 				</div>
 			</div>
-			<div className={styles.card_main}>
-				<div className={styles.card_slider_subheader}>
+			<div className={css.card_main}>
+				<div className={css.card_slider_subheader}>
 					현재 다수의 업체가 스토리창과 함께하고 있습니다.
 				</div>
-				<div className={styles.card_slider_header}>
+				<div className={css.card_slider_header}>
 					<strong> 스토리 창
 						<span style={{ color: "var(--color-main)" }}> 납품업체 시공사례</span>
 					</strong>
-				<span className={styles.card_slider_header_more} onClick={() => {
+                    <span className={css.card_slider_header_more} onClick={() => {
+                        if(is_mobile) {
+                            alert('준비중인 메뉴입니다. (해당 메뉴는 pc버전에서 이용 가능합니다.)');
+                            return;
+                        }
 						Router.push('/product/list');
 					}}>더보기</span>
 				</div>
 				<Cardslider data={productListData.result} startDelay={0} delay={3000} />
 			</div>
-			<div className={styles.industry_main}>
-				<div className={styles.industry_header}>
+			<div className={css.industry_main}>
+				<div className={css.industry_header}>
 					<strong> 
 						<span style={{ color: "var(--color-main)" }}>납품업체</span> 주요 업종
 					</strong>
 				</div>
-				<div className={styles.industry_body}>
-					<div className={[styles.box, styles.interior].join(' ')}>
-						<div className={styles.header}>
-							<span className={styles.text}>인테리어</span>
+				<div className={css.industry_body}>
+					<div className={[css.box, css.interior].join(' ')}>
+						<div className={css.header}>
+							<span className={css.text}>인테리어</span>
 						</div>
-						<div className={styles.body}>
-							<div className={styles.description_box}>
-								{INTERIOR_DESCRIPTION.map(({ id, desc }) => <div key={id} className={styles.description}>{desc}</div>)}
+						<div className={css.body}>
+							<div className={css.description_box}>
+								{INTERIOR_DESCRIPTION.map(({ id, desc }) => <div key={id} className={css.description}>{desc}</div>)}
 							</div>
-							<div className={styles.img_box}>
+							<div className={css.img_box}>
 								<img src={IMG_URL.INTERIOR_VECTOR} width={200} />
 							</div>
 						</div>
 					</div>
-					<div className={[styles.box, styles.blind].join(' ')}>
-						<div className={styles.header}>
-							<span className={styles.text}>블라인드</span>
+					<div className={[css.box, css.blind].join(' ')}>
+						<div className={css.header}>
+							<span className={css.text}>블라인드</span>
 						</div>
-						<div className={styles.body}>
-							<div className={styles.description_box}>
-								{BLIND_DESCRIPTION.map(v => <div key={v.id} className={styles.description}>{v.desc}</div>)}
+						<div className={css.body}>
+							<div className={css.description_box}>
+								{BLIND_DESCRIPTION.map(v => <div key={v.id} className={css.description}>{v.desc}</div>)}
 							</div>
-							<div className={styles.img_box}>
-								<img src={IMG_URL.BLIND_VECTOR} width={200} />
+							<div className={css.img_box}>
+								<img src={IMG_URL.BLIND_VECTOR} />
 							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-			{rounds.map(({ top, left, width, height, duration, delay, id}) => 
+            </div>
+            {is_mobile && <BalloonLink style={{ position:'fixed', width: 'auto', height: 'auto', bottom: '3%', right: '3%', zIndex: 99, cursor: 'pointer' }} isAnimation={true}>
+                <div style={{ display: 'flex', flexDirection: 'column' }} onClick={() => {
+                    if(confirm('전화 문의로 이동하시겠습니까')){
+                        Router.push('tel:010-4414-2464');
+                    }
+                }}>
+                    <img src={"/images/call_img.png"} style={{ width: '50px', height: '50px' }} /><span style={{ fontSize: '0.8em', background: 'green', color: 'white', borderRadius:'5px', padding: '3px' }}>{'전화걸기'}</span>
+                </div>
+            </BalloonLink>}
+			{!is_mobile && rounds.map(({ top, left, width, height, duration, delay, id}) => 
 				<ROUND key={id} top={top} left={left} width={width} height={height} duration={duration} delay={delay} />)}
 			<NoticePopup />
 		</div>

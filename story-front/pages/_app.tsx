@@ -72,8 +72,7 @@ const App: NextComponentType<AppContext, AppInitialProps, AppProps> = ({ Compone
 			<div style={{
 				position: "relative",
 				margin: "0px auto",
-				padding: "0px",
-				marginTop: "101px"
+				padding: "0px"
             }}>
                     <Component {...pageProps} />
 			</div>

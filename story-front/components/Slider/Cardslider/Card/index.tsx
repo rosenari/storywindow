@@ -1,17 +1,10 @@
 import React from "react";
+import { useCssSelector } from '@/hooks/index';
 import styles from "./index.module.css";
+import styles_mobile from './index_mobile.module.css';
 import styled from "styled-components";
 import Router from "next/router";
 
-const Itemtagspan = styled.span`
-    background:var(--color-main);
-    padding:3px;
-    border-radius:3px;
-    margin-right:5px;
-    color:white;
-    font-size:0.9em;
-    font-weight:bold;
-`;
 const Itemrank = styled.div`
     position:absolute;
     top:5px;
@@ -47,13 +40,14 @@ export interface CardProps {
 }
 
 const Card: React.FC<CardProps> = ({ imgurl, tags }) => {
+    const css = useCssSelector({ pc: styles, mobile: styles_mobile });
 
     return (
-        <div className={styles.card_slider_item}>
+        <div className={css.card_slider_item}>
             <Itemrank><Itemrankspan> {decodeURIComponent(tags[0])} </Itemrankspan></Itemrank>
-            <div className={styles.card_slider_img} onClick={() => {
+            <div className={css.card_slider_img} onClick={() => {
                 Router.push('/product/list');
-            }}><img src={`https://${process.env.IMG_HOST}/uploads/${imgurl}`} height="230" /><SHINY /></div>
+            }}><img src={`https://${process.env.IMG_HOST}/uploads/${imgurl}`}  /><SHINY /></div>
         </div>
     )
 }

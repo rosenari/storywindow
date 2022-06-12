@@ -4,10 +4,10 @@ import styled from 'styled-components';
 import Summary from './Summary';
 import Content from './Content';
 import CircularProgress from '@material-ui/core/CircularProgress';
-import { ImagePopup } from '../Popup';
-import { deepArrayCopy } from '../../util';
-import { RequestMoreProductListAction, RequestProductListAction } from '../../store/action/sagaAction';
-import { ProductListData } from '../../store/action/reducerAction';
+import { ImagePopup } from '@/components/index';
+import { deepArrayCopy } from '@/util/index';
+import { RequestMoreProductListAction, RequestProductListAction } from '@/store/action/sagaAction';
+import { ProductListData } from '@/store/action/reducerAction';
 
 
 const ProgressBox = styled.div`

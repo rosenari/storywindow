@@ -1,0 +1,53 @@
+.navbar {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 60px;
+    border-bottom: 1px solid #ddd;
+}
+
+@mixin box {
+    display: flex;
+    align-items: center;
+    height: 100%;
+}
+
+.left_box {
+    @include box;
+    padding-left: 10px;
+    flex-shrink: 0;
+    width: 70px;
+}
+
+.center_box {
+    @include box;
+    justify-content: center; 
+    font-size: 1.7em;
+    font-family: 'Do Hyeon', sans-serif;
+    flex-grow: 1;
+}
+
+@mixin link {
+    color:#000;
+    text-decoration: none;
+}
+
+.center_box > a {
+    @include link;
+}
+
+.center_box > a:active {
+    @include link;
+}
+
+.center_box > a:hover {
+    @include link;
+}
+
+.right_box {
+    @include box;
+    flex-shrink: 0;
+    justify-content: right; 
+    padding-right: 10px;
+    width: 70px;
+}
