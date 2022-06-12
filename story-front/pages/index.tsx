@@ -1,5 +1,5 @@
 import React from 'react';
-import { Cardslider, Image, PulseBox, NoticePopup } from '../components';
+import { Cardslider, Image, PulseBox, NoticePopup, BalloonLink } from '../components';
 import Router from 'next/router';
 import { NextPage } from 'next';
 import { Context } from 'vm';
@@ -204,7 +204,16 @@ const Home: NextPage<HomeProps> = ({ productListData }) => {
 						</div>
 					</div>
 				</div>
-			</div>
+            </div>
+            {is_mobile && <BalloonLink style={{ position:'fixed', width: 'auto', height: 'auto', bottom: '3%', right: '3%', zIndex: 99, cursor: 'pointer' }} isAnimation={true}>
+                <div style={{ display: 'flex', flexDirection: 'column' }} onClick={() => {
+                    if(confirm('전화 문의로 이동하시겠습니까')){
+                        Router.push('tel:010-4414-2464');
+                    }
+                }}>
+                    <img src={"/images/call_img.png"} style={{ width: '50px', height: '50px' }} /><span style={{ fontSize: '0.8em', background: 'green', color: 'white', borderRadius:'5px', padding: '3px' }}>{'전화걸기'}</span>
+                </div>
+            </BalloonLink>}
 			{!is_mobile && rounds.map(({ top, left, width, height, duration, delay, id}) => 
 				<ROUND key={id} top={top} left={left} width={width} height={height} duration={duration} delay={delay} />)}
 			<NoticePopup />
