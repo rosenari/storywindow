@@ -12,7 +12,7 @@ router.get('/getProduct/:id', function (req, res, next) {
    controller.getProduct(req, res);
 });
 
-router.get('/getProducts/:index/:tag/:order', function (req, res, next) {
+router.get('/getProducts/:index/:type/:order', function (req, res, next) {
    controller.getProducts(req, res);
 });
 

@@ -29,12 +29,12 @@ module.exports = (function(){
     product.getProducts = (req,res,errhandler) => {
         let startindex = req.params.index;
         let endindex = parseInt(startindex) + 16;
-        let tag = encodeURIComponent(req.params.tag);
+        let type = req.params.type;
         let order = req.params.order;
         
-        let sql = "select p.id,p.tags,p.colors,p.views,p.note,p.thumbnail,p.mainimage,p.sampleimage,p.date,COUNT(pl.product_id) as 'like' from product as p left outer join product_like as pl on p.id = pl.product_id where p.tags like \"%"+tag+"%\" group by p.id order by '"+order+"' limit "+startindex+","+endindex;
+        let sql = "select p.id,p.tags,p.colors,p.views,p.note,p.thumbnail,p.mainimage,p.sampleimage,p.date,COUNT(pl.product_id) as 'like' from product as p left outer join product_like as pl on p.id = pl.product_id where p.type like \"%"+type+"%\" group by p.id order by '"+order+"' limit "+startindex+","+endindex;
         
-        if(req.params.tag=="all"){
+        if(type=="all"){
             sql = "select p.id,p.tags,p.colors,p.views,p.note,p.thumbnail,p.mainimage,p.sampleimage,p.date,COUNT(pl.product_id) as 'like' from product as p left outer join product_like as pl on p.id = pl.product_id group by p.id order by '"+order+"' limit "+startindex+","+endindex;
         }
         
@@ -58,9 +58,9 @@ module.exports = (function(){
             }
             
             result = arr;
-            let sql2 = "select count(id) as allcount from product where tags like \"%"+tag+"%\"";
+            let sql2 = "select count(id) as allcount from product where type like \"%"+type+"%\"";
             
-            if(req.params.tag=="all"){
+            if(type=="all"){
                 sql2 = "select count(id) as allcount from product";
             }
             
