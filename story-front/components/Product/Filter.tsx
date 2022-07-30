@@ -182,15 +182,15 @@ class Filter extends React.Component<FilterProps, FilterState<FilterItem>> {
         this.itemcontext = 0;
         this.state = {
             items: [{ imgurl: '/images/product_all.png', text: PRODUCT_TEXT.ALL, parameter: 'all', active: true }
-                , { imgurl: '/images/product_curtain.png', text: PRODUCT_TEXT.CURTAIN, parameter: PRODUCT_TEXT.CURTAIN }
-                , { imgurl: '/images/product_combi.png', text: PRODUCT_TEXT.COMBI, parameter: PRODUCT_TEXT.COMBI }
-                , { imgurl: '/images/product_wood.png', text: PRODUCT_TEXT.WOOD, parameter: PRODUCT_TEXT.WOOD }
-                , { imgurl: '/images/product_roll.png', text: PRODUCT_TEXT.ROLL, parameter: PRODUCT_TEXT.ROLL }
-                , { imgurl: '/images/product_honey.png', text: PRODUCT_TEXT.HONEY, parameter: PRODUCT_TEXT.HONEY }
-                , { imgurl: '/images/product_triple.png', text: PRODUCT_TEXT.TRIPLE, parameter: PRODUCT_TEXT.TRIPLE }
-                , { imgurl: '/images/product_verticul.png', text: PRODUCT_TEXT.VERTICUL, parameter: PRODUCT_TEXT.VERTICUL }
-                , { imgurl: '/images/product_vene.png', text: PRODUCT_TEXT.VENE, parameter: PRODUCT_TEXT.VENE }
-                , { imgurl: '/images/product_holding.png', text: PRODUCT_TEXT.HOLDING, parameter: PRODUCT_TEXT.HOLDING }]
+                , { imgurl: '/images/product_curtain.png', text: PRODUCT_TEXT.CURTAIN, parameter: 'curtain' }
+                , { imgurl: '/images/product_combi.png', text: PRODUCT_TEXT.COMBI, parameter: 'combi' }
+                , { imgurl: '/images/product_wood.png', text: PRODUCT_TEXT.WOOD, parameter: 'wood' }
+                , { imgurl: '/images/product_roll.png', text: PRODUCT_TEXT.ROLL, parameter: 'roll' }
+                , { imgurl: '/images/product_honey.png', text: PRODUCT_TEXT.HONEY, parameter: 'honey' }
+                , { imgurl: '/images/product_triple.png', text: PRODUCT_TEXT.TRIPLE, parameter: 'triple' }
+                , { imgurl: '/images/product_verticul.png', text: PRODUCT_TEXT.VERTICUL, parameter: 'verticul' }
+                , { imgurl: '/images/product_vene.png', text: PRODUCT_TEXT.VENE, parameter: 'vene' }
+                , { imgurl: '/images/product_holding.png', text: PRODUCT_TEXT.HOLDING, parameter: 'holding'}]
                 .map(({ imgurl = '', text = '', parameter = 'all', active = false }, index) => ({id: index, imgurl, text, parameter, active})),
         };
     }
