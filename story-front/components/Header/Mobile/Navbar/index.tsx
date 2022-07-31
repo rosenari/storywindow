@@ -8,7 +8,7 @@ import styled from 'styled-components';
 
 
 const MenuButton = styled.button`
-    background: url("/images/mobile-menu.svg") no-repeat;
+    background: url("http://${process.env.IMG_HOST}/images/mobile-menu.svg") no-repeat;
     background-position: center center;
     border: none;
     width: 30px;
@@ -41,7 +41,7 @@ const Navbar: React.FC<NavbarProps> = ({ setOpen }) => {
     return (
         <div className={styles.navbar}>
             <div className={styles.left_box}><MenuButton onClick={() => setOpen(true)} /></div>
-            <div className={styles.center_box}><Link href='/'><a>{"스토리창"}</a></Link></div>
+            <div className={styles.center_box}><Link href='/'><a>{"창세계"}</a></Link></div>
             <div className={styles.right_box}>
                 <InquiryButton onClick={() => {
                     dispatch(new CollectPopupSetData({ visible: true}).toJSON());}}>{"문의"}

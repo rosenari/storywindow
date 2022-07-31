@@ -78,7 +78,7 @@ const Content: React.FC<ContentProps> = (props) => {
                 <Link href='/'>
                     <a onClick={(e) => {
                         e.preventDefault();
-                        dispatch(new ImagePopupSetData({ visible: true, img_url: `https://${process.env.IMG_HOST}/uploads/${props.mainImgurl}` }).toJSON());
+                        dispatch(new ImagePopupSetData({ visible: true, img_url: `http://${process.env.IMG_HOST}/uploads/${props.mainImgurl}` }).toJSON());
                     }}>
                         <img src={`https://${process.env.IMG_HOST}/uploads/` + props.imgurl} width='338' />
                     </a>

@@ -92,7 +92,7 @@ export const NoticePopup: React.FC = () => {
                     width,
                     height
                 }} visible={visible} setVisible={setVisible} firework={true}>
-                    <div><Header title={'🌈 전국블라인드 도매 스토리창 오픈 !!'} /></div>
+                    <div><Header title={'🌈 전국블라인드 도매 창세계 오픈 !!'} /></div>
                     <div><NoticeBody type={type} /></div>
                     <div><ExpireFooter setVisible={setVisible} storeExpireDate={storeExpireDate} /></div>
                 </Popup>

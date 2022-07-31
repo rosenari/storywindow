@@ -12,9 +12,9 @@ import { ProductListData } from '../store/action/reducerAction';
 import { useIsMobile, useCssSelector } from '@/hooks/index';
 
 const IMG_URL = {
-	FACTORY_PICTURE: '/images/factory_inner_big.png',
-	INTERIOR_VECTOR: '/images/interior_vector.png',
-	BLIND_VECTOR: '/images/blind_vector.png'
+    FACTORY_PICTURE: `http://${process.env.IMG_HOST}/images/factory_inner_big.png`,
+    INTERIOR_VECTOR: `http://${process.env.IMG_HOST}/images/interior_vector.png`,
+    BLIND_VECTOR: `http://${process.env.IMG_HOST}/images/blind_vector.png`
 }
 
 const TAGS = ['#전국블라인드도매', '#공장제작', '#전국최저가', '#소량주문환영'].map((tag, i) => ({ id: i + 1, tag}));
@@ -107,7 +107,7 @@ const ROUND = styled.div<RoundProps>`
 		left: calc(50% + ${props => props.left}px);
 		width: ${props => props.width}px;
 		height: ${props => props.height}px;
-		background-image:url('/images/round01.png');
+        background-image:url('http://${process.env.IMG_HOST}/images/round01.png');
 		background-size: ${props => props.width}px ${props => props.height}px;
 		animation:${styles.zoom_animation} ${props => props.duration}s ${props => props.delay}s ease-in-out infinite;
 		z-index: -10;
@@ -127,14 +127,14 @@ const Home: NextPage<HomeProps> = ({ productListData }) => {
 				<div className={css.advertise_box}>
                     {!is_mobile && <PulseBox text={'DC모터'} top={9} left={110}  />}
                     {!is_mobile && <PulseBox text={'AC모터'} top={9} left={183}  />}
-					<img src='/images/leftmenu_img1.png' className={css.advertise_img} />
+                    <img src={`http://${process.env.IMG_HOST}/images/leftmenu_img1.png`} className={css.advertise_img} />
 					<div className={css.advertise_title}><span className={css.advertise_title_text}>충전식ㆍ전기식 커튼, 블라인드 모터 판매합니다 !</span></div>
 					<div>{!is_mobile && AD_TAGS.map(({ id, tag }) => <span key={id} className={css.tag_small}>{tag}</span>)}</div>
 				</div>
 			</div>
 			<div className={css.recruit_main}>
 				<div className={classFor([css.recruit_title, css.recruit_desc])}>
-					스토리창 <span className={css.main}>전국 최저가</span> 블라인드 납품
+					창세계 <span className={css.main}>전국 최저가</span> 블라인드 납품
 				</div>
 				<div className={classFor([css.tag_main, css.recruit_desc])}>
 					{TAGS.map(({ id, tag }) => <span key={id} className={css.tag}>{tag}</span>)}
@@ -154,10 +154,10 @@ const Home: NextPage<HomeProps> = ({ productListData }) => {
 			</div>
 			<div className={css.card_main}>
 				<div className={css.card_slider_subheader}>
-					현재 다수의 업체가 스토리창과 함께하고 있습니다.
+					현재 다수의 업체가 창세계와 함께하고 있습니다.
 				</div>
 				<div className={css.card_slider_header}>
-					<strong> 스토리 창
+					<strong> 창세계 
 						<span style={{ color: "var(--color-main)" }}> 납품업체 시공사례</span>
 					</strong>
                     <span className={css.card_slider_header_more} onClick={() => {
@@ -211,7 +211,7 @@ const Home: NextPage<HomeProps> = ({ productListData }) => {
                         Router.push('tel:010-4414-2464');
                     }
                 }}>
-                    <img src={"/images/call_img.png"} style={{ width: '50px', height: '50px' }} /><span style={{ fontSize: '0.8em', background: 'green', color: 'white', borderRadius:'5px', padding: '3px' }}>{'전화걸기'}</span>
+                <img src={`http://${process.env.IMG_HOST}/images/call_img.png`} style={{ width: '50px', height: '50px' }} /><span style={{ fontSize: '0.8em', background: 'green', color: 'white', borderRadius:'5px', padding: '3px' }}>{'전화걸기'}</span>
                 </div>
             </BalloonLink>}
 			{!is_mobile && rounds.map(({ top, left, width, height, duration, delay, id}) => 

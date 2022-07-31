@@ -191,7 +191,7 @@ class Filter extends React.Component<FilterProps, FilterState<FilterItem>> {
                 , { imgurl: '/images/product_verticul.png', text: PRODUCT_TEXT.VERTICUL, parameter: 'verticul' }
                 , { imgurl: '/images/product_vene.png', text: PRODUCT_TEXT.VENE, parameter: 'vene' }
                 , { imgurl: '/images/product_holding.png', text: PRODUCT_TEXT.HOLDING, parameter: 'holding'}]
-                .map(({ imgurl = '', text = '', parameter = 'all', active = false }, index) => ({id: index, imgurl, text, parameter, active})),
+            .map(({ imgurl = '', text = '', parameter = 'all', active = false }, index) => ({id: index, imgurl: `http://${process.env.IMG_HOST}${imgurl}`, text, parameter, active})),
         };
     }
 

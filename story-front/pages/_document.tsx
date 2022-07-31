@@ -34,7 +34,7 @@ class MyDocument extends Document {
         return (
             <Html lang="en">
                 <Head>
-                    <link rel="canonical" href="https://storywindow.co.kr/" />
+                    <link rel="canonical" href="https://windowworld.co.kr/" />
                     <link rel="stylesheet" type="text/css" href="/css/nprogress.css" />
                     {
                         Fonts.map(({ type, url }) => <link key={url} rel="preload" crossOrigin="anonymous" as="font" type={type} href={url} />)

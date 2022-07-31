@@ -20,7 +20,7 @@ function Footer() {
                     <div className={css.footer_menu_4}>{c.DESC}</div>
                 </div>
                 <div className={css.footer_inner_container_right}>
-                    <div className={css.footer_logo}><img src="/images/footer_logo.png" /></div>
+                    <div className={css.footer_logo}><img src={`https://${process.env.IMG_HOST}/images/footer_logo.png`} /></div>
                 </div>
             </div>
         </div>
