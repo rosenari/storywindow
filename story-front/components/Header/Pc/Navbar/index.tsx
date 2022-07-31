@@ -80,7 +80,7 @@ const LogoTextInnerTopBox = styled(LogoTextInnerBox)`
         font-weight:500;
 		letter-spacing:3px;
 		text-align:left;
-		padding-left:20px;
+		padding-left:23px;
 		color:#555;
 		transform: scaleX(1.15);
 `;
@@ -101,7 +101,7 @@ const STAMP = styled.div`
 		z-index:12;
 		bottom:6px;
 		left:70px;
-		width:118px;
+		width:100px;
 		height:16px;
 		line-height:16px;
 		background:var(--color-main);
@@ -139,9 +139,9 @@ const Navbar: React.FC<NavbarProps> = (props) => {
 				<Logo onMouseOver={props.AllMenu_up}>
 					<Link href="/">
 						<a>
-							<LogoImageBox><img src="/images/storylogo.png" height="45" /></LogoImageBox>
-							<LogoTextBox><LogoTextInnerTopBox>스토리창</LogoTextInnerTopBox><LogoTextInnerBottomBox>&nbsp;</LogoTextInnerBottomBox></LogoTextBox>
-							<STAMP>전국 블라인드 도매</STAMP>
+							<LogoImageBox><img src="/images/changlogo.png" height="45" /></LogoImageBox>
+							<LogoTextBox><LogoTextInnerTopBox>창세계</LogoTextInnerTopBox><LogoTextInnerBottomBox>&nbsp;</LogoTextInnerBottomBox></LogoTextBox>
+							<STAMP>전국블라인드도매</STAMP>
 						</a>
 					</Link>
 				</Logo>

@@ -134,7 +134,7 @@ const Home: NextPage<HomeProps> = ({ productListData }) => {
 			</div>
 			<div className={css.recruit_main}>
 				<div className={classFor([css.recruit_title, css.recruit_desc])}>
-					스토리창 <span className={css.main}>전국 최저가</span> 블라인드 납품
+					창세계 <span className={css.main}>전국 최저가</span> 블라인드 납품
 				</div>
 				<div className={classFor([css.tag_main, css.recruit_desc])}>
 					{TAGS.map(({ id, tag }) => <span key={id} className={css.tag}>{tag}</span>)}
@@ -154,10 +154,10 @@ const Home: NextPage<HomeProps> = ({ productListData }) => {
 			</div>
 			<div className={css.card_main}>
 				<div className={css.card_slider_subheader}>
-					현재 다수의 업체가 스토리창과 함께하고 있습니다.
+					현재 다수의 업체가 창세계와 함께하고 있습니다.
 				</div>
 				<div className={css.card_slider_header}>
-					<strong> 스토리 창
+					<strong> 창세계 
 						<span style={{ color: "var(--color-main)" }}> 납품업체 시공사례</span>
 					</strong>
                     <span className={css.card_slider_header_more} onClick={() => {

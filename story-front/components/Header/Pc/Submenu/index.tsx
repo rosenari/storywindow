@@ -16,7 +16,7 @@ const Submenu: React.FC<SubmenuProps> = (props) => {
         <div className={styles.submenubox} ref={props.subMenuBoxRef}>
             <div className={props.subMenuVisible ? styles.submenu : styles.submenu_hidden} onMouseOver={props.Menu_down} onMouseOut={props.AllMenu_up}>
                 <div className={styles.submenu_item}>
-                    <Link href="/intro"><a>스토리창</a></Link>
+                    <Link href="/intro"><a>창세계</a></Link>
                 </div>
             </div>
             <div className={styles.submenu_area} ref={props.subMenuAreaRef}>
