@@ -63,8 +63,8 @@ const App: NextComponentType<AppContext, AppInitialProps, AppProps> = ({ Compone
 				<meta property="og:type" content="website" />
 				<meta property="og:title" content="스토리창" />
 				<meta property="og:description" content="스토리창,전동블라인드,블라인드도매,전동커튼,충전식전동블라인드,블라인드공장" />
-				<meta property="og:image" content="https://storywindow.co.kr/images/storylogo_big.png" />
-				<meta property="og:url" content="https://storywindow.co.kr" />
+				<meta property="og:image" content="https://windowworld.co.kr/images/storylogo_big.png" />
+				<meta property="og:url" content="https://windowworld.co.kr" />
 				<meta name="naver-site-verification" content="8eb195906cd1d2dbe29c59b1fdab3d3787772a0c" />
 				<title>스토리창 블라인드도매</title>
 			</Head>
