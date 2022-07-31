@@ -32,7 +32,7 @@ export const Fonts: Array<FontProps> = [{
         family: 'Do Hyeon'
     }
 ].map((font) => {
-    return {...font, url: `http://${process.env.IMG_HOST}${font.url}`}
+    return {...font, url: `https://${process.env.IMG_HOST}${font.url}`}
 });
 
 export const generateFontStyleJsx = (Fonts: Array<FontProps>): string => {
