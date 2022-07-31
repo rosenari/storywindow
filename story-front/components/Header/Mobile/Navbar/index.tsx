@@ -8,7 +8,7 @@ import styled from 'styled-components';
 
 
 const MenuButton = styled.button`
-    background: url("/images/mobile-menu.svg") no-repeat;
+    background: url("http://${process.env.IMG_HOST}/images/mobile-menu.svg") no-repeat;
     background-position: center center;
     border: none;
     width: 30px;

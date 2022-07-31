@@ -139,7 +139,7 @@ const Navbar: React.FC<NavbarProps> = (props) => {
 				<Logo onMouseOver={props.AllMenu_up}>
 					<Link href="/">
 						<a>
-							<LogoImageBox><img src="/images/changlogo.png" height="45" /></LogoImageBox>
+                            <LogoImageBox><img src={`http://${process.env.IMG_HOST}/images/changlogo.png`} height="45" /></LogoImageBox>
 							<LogoTextBox><LogoTextInnerTopBox>창세계</LogoTextInnerTopBox><LogoTextInnerBottomBox>&nbsp;</LogoTextInnerBottomBox></LogoTextBox>
 							<STAMP>전국블라인드도매</STAMP>
 						</a>
@@ -155,7 +155,7 @@ const Navbar: React.FC<NavbarProps> = (props) => {
                                 dispatch(new CollectPopupSetData({ visible: true}).toJSON());
 							}}>
 								<span>납품신청문의</span>
-								<img src="/images/consult_img.png" height="28" width="28" className={styles.consult_img} />
+                                <img src={`http://${process.env.IMG_HOST}/images/consult_img.png`} height="28" width="28" className={styles.consult_img} />
 							</a>
 						</Link>
 					</li>

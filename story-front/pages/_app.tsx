@@ -63,7 +63,7 @@ const App: NextComponentType<AppContext, AppInitialProps, AppProps> = ({ Compone
 				<meta property="og:type" content="website" />
 				<meta property="og:title" content="창세계" />
 				<meta property="og:description" content="창세계,전동블라인드,블라인드도매,전동커튼,충전식전동블라인드,블라인드공장" />
-				<meta property="og:image" content="https://windowworld.co.kr/images/storylogo_big.png" />
+                <meta property="og:image" content={`http://${process.env.IMG_HOST}/images/storylogo_big.png`} />
 				<meta property="og:url" content="https://windowworld.co.kr" />
 				<meta name="naver-site-verification" content="8eb195906cd1d2dbe29c59b1fdab3d3787772a0c" />
 				<title>창세계 블라인드도매</title>

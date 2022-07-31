@@ -8,7 +8,7 @@ interface FontProps {
 export const Fonts: Array<FontProps> = [{
         type: 'font/woff2',
         format: 'woff2',
-        url: '/font/Jua-Regular.woff2',
+        url: `/font/Jua-Regular.woff2`,
         family: 'Jua'
     },{
         type: 'font/woff2',
@@ -31,7 +31,9 @@ export const Fonts: Array<FontProps> = [{
         url: '/font/DoHyeon-Regular.woff2',
         family: 'Do Hyeon'
     }
-];
+].map((font) => {
+    return {...font, url: `http://${process.env.IMG_HOST}${font.url}`}
+});
 
 export const generateFontStyleJsx = (Fonts: Array<FontProps>): string => {
     return Fonts.reduce((result, { format, url, family }) => {
