@@ -1,5 +1,5 @@
 import React from 'react';
-import { Cardslider, Image, PulseBox, NoticePopup, BalloonLink } from '../components';
+import { Cardslider, Image, Circle, NoticePopup, BalloonLink } from '../components';
 import Router from 'next/router';
 import { NextPage } from 'next';
 import { Context } from 'vm';
@@ -15,10 +15,10 @@ const IMG_URL = {
     FACTORY_PICTURE: `http://${process.env.IMG_HOST}/images/factory_inner_big.png`,
     INTERIOR_VECTOR: `http://${process.env.IMG_HOST}/images/interior_vector.png`,
     BLIND_VECTOR: `http://${process.env.IMG_HOST}/images/blind_vector.png`
-}
+ }
 
+const SMALL_TAGS = ['DC모터', 'AC모터'].map((tag, i) => ({ id: i + 1, tag }));
 const TAGS = ['#전국블라인드도매', '#공장제작', '#전국최저가', '#소량주문환영'].map((tag, i) => ({ id: i + 1, tag}));
-const AD_TAGS = ['#블라인드모터판매', '#모터최저가', '#장착형모터'].map((tag, i) => ({ id: i + 1, tag}));
 
 const INTERIOR_DESCRIPTION = [
 	'ㆍ인테리어 완성을 위한 고품질의 블라인드를 전국 최저가에 제공해드립니다.',
@@ -125,11 +125,11 @@ const Home: NextPage<HomeProps> = ({ productListData }) => {
 		<div>
 			<div className={css.advertise_main}>
 				<div className={css.advertise_box}>
-                    {!is_mobile && <PulseBox text={'DC모터'} top={9} left={110}  />}
-                    {!is_mobile && <PulseBox text={'AC모터'} top={9} left={183}  />}
+                    {/*!is_mobile && <PulseBox text={'DC모터'} top={9} left={110}  />*/}
+                    {/*!is_mobile && <PulseBox text={'AC모터'} top={9} left={183}  />*/}
                     <img src={`http://${process.env.IMG_HOST}/images/leftmenu_img1.png`} className={css.advertise_img} />
-					<div className={css.advertise_title}><span className={css.advertise_title_text}>충전식ㆍ전기식 커튼, 블라인드 모터 판매합니다 !</span></div>
-					<div>{!is_mobile && AD_TAGS.map(({ id, tag }) => <span key={id} className={css.tag_small}>{tag}</span>)}</div>
+					<div className={css.advertise_title}><span className={css.advertise_title_text}>전동 커튼, 블라인드 모터 특판 !</span></div>
+                    <div>{!is_mobile && SMALL_TAGS.map(({ id, tag }) => <span key={id} className={css.tag_small}>{tag}&nbsp;<Circle top={5} right={5} /></span>)}</div>
 				</div>
 			</div>
 			<div className={css.recruit_main}>

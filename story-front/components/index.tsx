@@ -5,6 +5,6 @@ export { default as Image } from './Image';
 export { default as Label } from './Label';
 export { default as PContents } from './Product/Contents';
 export { default as PFilter } from './Product/Filter';
-export { default as PulseBox } from './PulseBox';
+export { default as Circle } from './Circle';
 export { NoticePopup, CollectPopup, ImagePopup } from './Popup';
 export { default as BalloonLink } from './BalloonLink';
