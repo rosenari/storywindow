@@ -128,13 +128,13 @@ const Home: NextPage<HomeProps> = ({ productListData }) => {
                     {/*!is_mobile && <PulseBox text={'DC모터'} top={9} left={110}  />*/}
                     {/*!is_mobile && <PulseBox text={'AC모터'} top={9} left={183}  />*/}
                     <img src={`http://${process.env.IMG_HOST}/images/leftmenu_img1.png`} className={css.advertise_img} />
-					<div className={css.advertise_title}><span className={css.advertise_title_text}>전동 커튼, 블라인드 모터 특판 !</span></div>
+					<div className={css.advertise_title}><span className={css.advertise_title_text}>전동 커튼, 블라인드 특판 !</span></div>
                     <div>{!is_mobile && SMALL_TAGS.map(({ id, tag }) => <span key={id} className={css.tag_small}>{tag}&nbsp;<Circle top={5} right={5} /></span>)}</div>
 				</div>
 			</div>
 			<div className={css.recruit_main}>
 				<div className={classFor([css.recruit_title, css.recruit_desc])}>
-					창세계 <span className={css.main}>전국 최저가</span> 블라인드 납품
+					<span className={css.main}>전국 최저가</span> 블라인드 납품
 				</div>
 				<div className={classFor([css.tag_main, css.recruit_desc])}>
 					{TAGS.map(({ id, tag }) => <span key={id} className={css.tag}>{tag}</span>)}
@@ -146,7 +146,7 @@ const Home: NextPage<HomeProps> = ({ productListData }) => {
 					ㆍ <span className={css.main}>신생</span> 또는 <span className={css.main}>소량 발주하는 업체</span>도 감사한 마음으로 친절하게 모십니다.
 				</div>
 				<div className={classFor([css.recruit_description, css.recruit_desc, css.last])}>
-					ㆍ <span className={css.main}>건설업체, 관공서, 공공기관</span>에 대량 납품 가능합니다.
+					ㆍ <span className={css.main}>건설업체, 관공서, 공공기관</span> 대량 납품 가능합니다.
 				</div>
 				<div className={css.logo_box}>
 						<Image url={IMG_URL.FACTORY_PICTURE} width={is_mobile ? '100%' : '1140px'} height={is_mobile? '100%' : '641px'} />
